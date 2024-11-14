@@ -1,0 +1,404 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html {
+    /* width: 1920px; */
+    width: 100vw; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header { /*아무말 대잔치 레이아웃*/
+    display:flex;
+    justify-items: center;
+    justify-content: center;
+    gap: 141px;
+    width: 100%;
+    width:1920px;
+    height:104px;
+    border-bottom: 1px solid black; /* 두께 2px, 검정색 실선 테두리 */
+
+    
+    align-items: center;
+
+    
+}
+
+.header h1 { /*아무말 대잔치 글씨*/
+    width:206px;
+    height:32px;
+    
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 32px;
+    text-align: center;
+    /* position:relative;  < 의 기준(부모*) */
+}
+
+.header a {
+    /* position :absolute;
+    left:20px;     < 정렬부분 수정 필요 (억지로 맞춰둠) */
+    text-decoration: none; /* 밑줄 제거 */
+    font-size: 30px;
+    color:black;
+}
+
+.image1 {
+    /* position :absolute;
+    right:20px; */
+    max-width:36px;         /* 아무말 대잔치 오른쪽사진*/
+    max-height:36px;
+    border-radius:100px;
+}
+
+.wrap {
+    width:100%;
+    max-width:544px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+article {
+    width:100%;
+    max-width:544px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title h1{    /* 제목1 글씨 */
+    margin-top:19px;
+    width:59px;
+    height:31px;
+    width: 100%;
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 31.2px;
+
+}
+
+.image2{
+    width:36px;
+    height:36px;
+}
+
+.userinfo {
+    display: flex;
+    align-items: center;
+}
+
+p {
+    padding-left: 14px;
+    padding-right: 16px;
+
+    font-family: 'Pretendard-Regular';      /* 더미 작성자 1 글씨 */
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19.5px;
+}
+
+p1 {
+    font-family: 'Pretendard-Regular';      /* 더미 작성자 1 글씨 */
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18.2px;
+    text-align: right;
+}
+
+.editdel{
+    margin-left:auto;       /* 왼쪽요소 빼고 오른쪽으로 정렬 */
+    text-align:right;
+    
+}
+
+.editdel button {
+    width: 50px;            /* 수정 삭제 버튼 조절*/
+    height: 28px;
+
+    background-color: white;
+    border: 2px solid#ACA0EB;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.topofphoto {
+    width:592px;
+    margin-top:20px;
+    margin-left: -20px;
+    margin-right: -20px;    /* hr 억지로 늘리기*/
+    opacity: 40%;       /* 라인 투명도 조절 */
+}
+
+.image3 {
+    margin-top: 20px;
+    width: 544px;
+    height:306px;
+}
+
+.content p {
+    width:100%;
+    max-width:544px;
+    height:231px;
+    margin-top: 20px;
+    padding:0px;
+    margin-bottom:0px;
+
+    font-family: 'Pretendard-Regular';      /* 게시글 글씨 */
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21.5px;
+
+}
+
+.gaechu {
+    display: flex;
+    align-items: center;        
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.gaechu1 {
+    width:116px;
+    height:77px;        /* 좋아요수 조회수 댓글 박스 */
+    margin:7px;
+    margin-top:10px;
+    padding:0px;
+    background-color: #d9d9d9;
+    border-radius: 16px;
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    
+}
+.likesu {
+    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    margin-bottom:4px;
+}
+
+span su{
+    font-family: 'Pretendard-Regular';      /* 좋아요,조회수,댓글 글씨 */
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 25.04px;
+    text-align: center;
+}
+
+.commentBox{
+    width:100%;
+}
+
+.commentBox textarea {
+    width:100%;
+    height:94px;
+    margin:0px;
+    padding-top:1px;
+    margin-top:20px;
+    border : none;
+}
+.normalhr {
+    opacity:40%;
+    width:100%;
+    margin:0px;
+}
+
+.commentUp {
+    display:flex;
+    flex-direction: row-reverse;
+    margin-top:5px;
+}
+
+.commentUp button {
+    width:138px;
+    height: 39px;
+    border-radius:15px;
+    border:none;
+    background-color: #ACA0EB;
+    
+    color:white;
+    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 25.04px;
+    text-align: center;
+    margin-bottom:20px;
+    cursor: pointer; /* 포인터 변경 */
+}
+
+/* 버튼 활성화시 */
+.commentUp button.active{
+    background-color: #7F6AEE;
+}
+
+.comments {
+    display:flex;   
+    align-items: center;
+}
+
+.allcommentBox {
+    display: flex;
+    justify-content: space-between;
+    width: 544px;
+    margin-top: 10px;
+}
+
+.commentInfo {
+    display:flex;
+    flex-direction: column;
+}
+
+.image4 {
+    width:36px;
+    height:36px;
+    border-radius: 100px;
+}
+
+.commentcontent {
+    margin-left:51px;
+    margin-top:13px;
+    margin-bottom: 19px;
+    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21.15px;
+}
+
+.author {
+    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19.5px;
+
+    margin-left: 14px;
+}
+
+.date {
+    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18.02px;
+    text-align: right;
+    
+    margin-left:19px;
+}
+
+.editdelete {
+    max-width:144px;
+    height:71px;
+    margin-top:20px;
+}
+
+.editdelB{
+    
+
+}
+.editdelB button {
+    width: 50px;            /* 수정 삭제 버튼 조절*/
+    height: 28px;
+
+    background-color: white;
+    border: 2px solid#ACA0EB;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* post_detail.css */
+
+/* 모달 배경 스타일 */
+.deletemodal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed; /* 고정 위치 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+    width: 100%; /* 전체 화면 너비 */
+    height: 100%; /*전체 화면 높이*/
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+}
+
+/* 모달 내용 스타일 */
+.modalcontent {
+    background-color:white; /*흰색 배경*/
+    margin: 15% auto; /* 화면 중앙에 위치 */
+    border-radius: 15px;
+    width: 408px; /* 너비 설정 */
+    height:242px;
+}
+
+.modalcontent {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalbutton {
+    width:100%;
+    height:44px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:20px;   /* 버튼사이의 간격 */
+    margin-top:20px;
+    
+}
+
+.modalbutton button {
+    width:127px;
+    height:44px;
+    border:none;
+    border-radius: 15px;
+
+    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23.87px;
+    text-align: center;
+
+    cursor: pointer; /* 포인터 변경 */
+    
+}
+.confirmButton {
+    background-color: #ACA0EB;
+    color:black;
+}
+.cancleButton{
+    background-color: black;
+    color:white;
+}
+.modalcontent h1 {
+    font-family: 'Pretendard-Regular';      /*게시물을삭제? 글씨*/
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28.64px;
+    text-align: center;
+}
+.modalcontent p1 {
+    font-family: 'Pretendard-Regular';      /* 삭제된 내용은~글씨 */
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23.87px;
+    text-align: center;
+}
+
+
+/* 댓글,게시물 삭제 모달 수정 css 같음 (class같이 씀)*/

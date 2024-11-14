@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html {
+    /* width: 1920px; */
+    width: 100vw; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header { /*아무말 대잔치 레이아웃*/
+    display:flex;
+    justify-items: center;
+    justify-content: center;
+    gap: 141px;
+    width: 100%;
+    width:1920px;
+    height:104px;
+    border-bottom: 1px solid black; /* 두께 2px, 검정색 실선 테두리 */
+
+    
+    align-items: center;
+
+    
+}
+
+.header h1 { /*아무말 대잔치 글씨*/
+    width:206px;
+    height:32px;
+    
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 32px;
+    text-align: center;
+    /* position:relative;  < 의 기준(부모*) */
+}
+
+.header a {
+    /* position :absolute;
+    left:20px;     < 정렬부분 수정 필요 (억지로 맞춰둠) */
+    text-decoration: none; /* 밑줄 제거 */
+    font-size: 30px;
+    color:black;
+}
+
+.image1 {
+    /* position :absolute;
+    right:20px; */
+    max-width:36px;         /* 아무말 대잔치 오른쪽사진*/
+    max-height:36px;
+    border-radius:100px;
+}
+
+.container {    
+    display:flex;
+
+    
+}
+.container h1 {
+    margin-top:40px;
+    width:280px;
+    height:62px;
+    /* letter-spacing: 2px; 글자간격 조절 */
+    line-height: 41px;
+
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31.2px;
+    text-align: center;
+}
+.specialfont {
+    font-family: 'Pretendard-Regular'; /* 원하는 글꼴로 설정 */
+    font-size: 24px; /* 글자 크기 조절 */
+    font-weight: 700;
+    font-weight: bold; /* 글자 두께 조절 */
+    color: black; /* 글자 색상 조절 */
+}
+#postup {
+    margin-top:14px;
+
+    border-radius: 15px; /*버튼 둥글게*/
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 25.04px;
+    text-align: center;
+    color:white;
+    padding: 4px;
+    max-height:32px;
+
+    width:130px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
+    box-shadow: none; /* 그림자 제거 */
+    border: none; /* 테두리 제거 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    background-color: #ACA0EB;
+}  
+
+#postup:hover{
+    background-color: #7F6AEE;
+}
+
+.flexcont {
+    width:600px;
+
+
+    display:flex;
+    justify-content: flex-end;  /*게시글 작성 맨오른쪽으로*/
+}
+
+article {
+    display:flex;
+    width:600px;
+    margin-top: 15px;
+
+    flex-direction: column;
+}
+.like{
+    display:flex;
+    width:600px;
+    align-items: center;
+    justify-content: space-between;
+
+    height:20px;
+    margin-top:8px;
+}
+
+.like p{
+    margin-right:15px;   /*좋아요 간(p)간의 간격 조절*/
+
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18.2px;
+    text-align: right;
+
+}
+.like p1{
+    margin-left:auto;
+}
+
+.postbox {
+    width:600px;
+    margin-bottom: 40px;
+    
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+}
+
+/* 게시글 제목 공간 (26자 제한) */
+.postbox h1 {      
+    margin-bottom: 0px;
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 31.2px;
+
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 최대 2줄로 제한 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;      /* 넘치는 텍스트는 숨김 */
+    text-overflow: clip;   /* "..." 없이 텍스트 잘리게 처리 */
+
+    white-space: normal;   /* 여러 줄로 넘길 수 있도록 설정 */
+
+    max-width: 26ch;       /* 26자까지만 표시 */
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19.5px;
+}
+
+.image {
+    width: 36px;
+    height: 36px;
+    padding-right: 10px;
+}
+
+hr {
+    margin-top: 25px;
+}

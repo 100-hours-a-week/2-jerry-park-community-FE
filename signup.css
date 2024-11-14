@@ -1,0 +1,171 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html {
+    /* width: 1920px; */
+    width: 100vw; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header { /*아무말 대잔치 레이아웃*/
+    display:flex;
+    justify-items: center;
+    
+    width: 100%;
+    width:1920px;
+    height:104px;
+    border-bottom: 1px solid black; /* 두께 2px, 검정색 실선 테두리 */
+
+    justify-content: center;
+    align-items: center;
+    position:relative;
+}
+.header h1{
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38.19px;
+    text-align: center;
+}
+.header a{
+    position:absolute;
+    left:680px;
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+.container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* width: 1920px; */
+    margin-top:60px;
+}
+
+.profileinfo {
+    width: 360px;
+    height: 206px;
+    display: flex;
+    flex-direction: column;
+}
+
+.center {
+    display:flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.image {
+    width:149px;
+    height:149px;
+}
+
+article {
+    width:100%;
+    max-width:392px;
+    height:406px;
+    max-height:406px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -10px;
+}
+
+.inputBox {
+    width:100%;
+    max-width: 355px;
+    height:63px;
+
+    display:flex;
+    flex-direction: column;
+    /* row-gap:8px; */
+    margin-bottom: 18px;
+    padding-top:2px;
+}
+
+.inputBox input {
+    height : 59px;
+    margin-bottom: 4px;
+    font-family: 'Pretendard-Regular';
+    /* font-weight: 400; */
+    font-size: 14px;
+    /* line-height: 38.19px; */
+    /* margin-top:1px; */
+    padding:5px;
+}
+
+.buttons {
+    width: 100%;
+    width: 355px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.buttons button {
+    width: 100%;
+    max-width: 392px;
+    height: 30px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    background-color: #ACA0EB;
+    color:white;
+}
+
+button.active {
+    background-color: #7F6AEE;
+    cursor: pointer;
+}
+button.disabled {
+    background-color: #ACA0EB;
+    cursor: not-allowed;
+}
+.buttons a{
+    margin-top : 14px;
+    text-decoration: none;
+    color:black;
+    font-size:14px;
+}
+
+.inputBox label {
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 38.19px;
+    /* text-align: center; */
+    height:33px;
+
+}
+
+.profileinfo {
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 17.9px;
+    /* text-align: center; */
+}
+
+/* 헬퍼텍스트 */
+p {
+    display: none;
+    margin : -2px;
+    padding-left:4px;   
+    font-size: 12px;
+    color:#FF0000
+}

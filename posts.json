@@ -1,0 +1,84 @@
+[
+    {
+      "postid": 1,
+      "title": "posts.json의 id 1 첫 번째 게시물의 제목",
+      "content": "첫 번째 게시물 내용입니다.213234231421387y4c8nㅇㄴㅁㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴfyq8wuhfo8uewyqn8fucyds8ufcnys8daufycn8oasdufycoa8snudcfy8saducn",
+      "author": "작성자1",
+      "date": "2024-10-09 12:12:12",
+      "likes": 1500,
+      "comments": 2,
+      "views": 250000,
+      "commentList" : [
+        {
+            "commentid":1,
+            "commentcontent": "내가 첫번째 댓글이다.",
+            "commentauthor": "내가 첫번재 댓글 주인이다 !!!",
+            "commentdate": "2024-11-08 00:09:21"
+        },
+        {
+            "commentid":2,
+            "commentcontent": "내가 2번째 댓글이다.",
+            "commentauthor": "내가 2번재 댓글 주인이다 !!!",
+            "commentdate": "2024-11-08 00:09:21"
+        },
+        {
+            "commentid":3,
+            "commentcontent": "내가 3번째 댓글이다.",
+            "commentauthor": "내가 3번재 댓글 주인이다 !!!",
+            "commentdate": "2024-11-33 00:09:21"
+        }
+      ]
+    },
+    
+    {
+      "postid": 2,
+      "title": "두 번째 게시물",
+      "content": "두 번째 게시물 내용입니다.",
+      "author": "작성자2",
+      "date": "2024-09-01 00:01:01",
+      "likes": 100,
+      "comments": 10,
+      "views": 5000
+    },
+    {
+        "postid": 2,
+        "title": "세 번째 게시물은 26자를넘기도록 한 번 해보겠습니다 1234546546234213123213.",
+        "content": "세 번째 게시물 내용입니다.",
+        "author": "작성자3",
+        "date": "2024-09-01 00:01:01",
+        "likes": 20100,
+        "comments": 6666,
+        "views": 381919
+    },
+    {
+        "postid": 2,
+        "title": "두 번째 게시물",
+        "content": "두 번째 게시물 내용입니다.",
+        "author": "작성자2",
+        "date": "2024-09-01 00:01:01",
+        "likes": 100,
+        "comments": 10,
+        "views": 5000
+      },
+      {
+        "postid": 2,
+        "title": "두 번째 게시물",
+        "content": "두 번째 게시물 내용입니다.",
+        "author": "작성자2",
+        "date": "2024-09-01 00:01:01",
+        "likes": 100,
+        "comments": 10,
+        "views": 5000
+      },
+      {
+        "postid": 2,
+        "title": "두 번째 게시물",
+        "content": "두 번째 게시물 내용입니다.",
+        "author": "작성자2",
+        "date": "2024-09-01 00:01:01",
+        "likes": 100,
+        "comments": 10,
+        "views": 5000
+      }
+]
+  

@@ -1,0 +1,228 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html {
+    /* width: 1920px; */
+    width: 100vw; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header { /*아무말 대잔치 레이아웃*/
+    display:flex;
+    justify-items: center;
+    justify-content: center;
+    gap: 141px;
+    width: 100%;
+    width:1920px;
+    height:104px;
+    border-bottom: 1px solid black; /* 두께 2px, 검정색 실선 테두리 */
+
+    
+    align-items: center;
+
+    
+}
+
+.header h1 { /*아무말 대잔치 글씨*/
+    width:206px;
+    height:32px;
+    
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 32px;
+    text-align: center;
+    /* position:relative;  < 의 기준(부모*) */
+}
+
+.header a {
+    /* position :absolute;
+    left:20px;     < 정렬부분 수정 필요 (억지로 맞춰둠) */
+    text-decoration: none; /* 밑줄 제거 */
+    font-size: 30px;
+    color:black;
+}
+
+.image1 {
+    /* position :absolute;
+    right:20px; */
+    max-width:36px;         /* 아무말 대잔치 오른쪽사진*/
+    max-height:36px;
+    border-radius:100px;
+}
+
+.image {
+    position :absolute;
+    right:20px;
+    max-width:36px;
+    max-height:36px;
+}
+
+.topofphoto {
+    /* width:592px; */
+    margin-top:20px;
+    margin-left: -20px;
+    margin-right: -20px;    /* hr 억지로 늘리기*/
+    opacity: 40%;       /* 라인 투명도 조절 */
+}
+
+.headtext h1{
+
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 24px;        /* 폰트 속성 */
+    line-height: 31.4px;
+    text-align: center;
+
+}
+
+.headtext {
+    display: flex;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    max-width:570px;
+    
+}
+.titleBox {
+    width: 570px;
+    margin-top: 30px;
+
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 16px;        /* 폰트 속성 */
+    line-height: 31.4px;
+}
+
+.titleBox input {
+    box-sizing: border-box;
+    width: 570px;
+    height: 44px;
+    padding-left:10px;
+    /* padding: 13px;      텍스트상자 크기 조절 플렉스박스 벗어나서 커짐 주의 */
+    border: none;
+    margin-top: 2px;
+    margin-bottom: -9px;
+}
+
+.content {
+    max-width: 570px;
+    margin-top: 30px;
+
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 16px;        /* 폰트 속성 */
+    line-height: 31.4px;
+}
+
+.content h1{
+    margin-top:-2px;
+}
+.content textarea {                /*내용 텍스트상자*/
+
+    width: 570px;
+    height : 299px;
+    box-sizing: border-box; /* 패딩 포함한 크기 계산 (패딩 늘려도 박스 안 커짐 !)*/
+    padding:14px;
+    padding-top:18px;
+    border:none;
+}
+
+.inputBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
+
+label[for=profile] {        /*이미지 글씨*/
+    margin-top:20px;
+    margin-bottom: 7px;
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 15px;        /* 폰트 속성 */
+    line-height: 17.9px;
+}
+
+#image {        /* 파일 선택 부분 css*/
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 14px;        /* 폰트 속성 */
+    line-height: 16.71px;
+    max-width:68px;
+    width:100%
+}
+
+.filech{
+    display:flex;
+    align-items: center;
+}
+
+p {
+    margin-left:10px;
+    font-size: 14px;        /* 폰트 속성 */
+    line-height: 16.71px;
+    
+}
+
+.comp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#compb {
+    margin-top: 10px;
+    
+    max-width:355px;
+    width: 100%;
+    height: 33px;
+    background-color: #ACA0EB;
+    border : none;
+    border-radius: 7px;
+
+    color:white;
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 14px;        /* 폰트 속성 */
+    line-height: 16.71px;
+    text-align: center;
+
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+}
+
+/* 버튼 활성화시 */
+#compb.active{
+    background-color: #7F6AEE;
+}
+
+.helperText {
+    color:#FF0000;
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.52px;
+    margin-left:-8px;
+}
+.helpertextbox{
+    margin-top: -3px;
+    width:100%;
+}
