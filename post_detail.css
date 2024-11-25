@@ -258,9 +258,11 @@ span su{
 
 .allcommentBox {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 544px;
     margin-top: 10px;
+
 }
 
 .commentInfo {

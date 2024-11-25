@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+    <title> 게시글 목록조회 </title>
+    <link rel="stylesheet" href = "postlist.css">  <!--외부 css 파일 연결-->
+</head>
+
+<body>
+    <div class = "header">
+        <div class= "space">  </div>
+        <h1> 아무 말 대잔치 </h1>  <!--아무말 대잔치 레이아웃-->
+        <a href = "accountEdit.html">
+        <img class="image1" src="profile_img.webp"/>
+        </a>
+    </div>
+
+    <div class = "container"> 
+        <h1>안녕하세요,<br>아무 말 대잔치 <span class="specialfont">게시판</span> 입니다.</h1>
+    </div>
+
+    <div class = "flexcont">
+        <button id= "postup" onclick="PostPage()">게시글 작성</button>
+    </div>
+    
+    <article>
+        <div class = "postbox" onclick="goToPostDetail(1)">
+            <h1>제목 1</h1>
+            <div class ="like">
+                <p>좋아요  <span id="like1"></span></p>
+                <p>댓글  <span id="comment1"></span></p>
+                <p> 조회수  <span id="views1"></span></p>
+                <p1>2021-01-01 00:00:00</p1>
+            </div>
+                <hr>
+            <div class="author">
+                <img class="image" src="profile_img.webp"/>
+                <p> 더미 작성자 1</p>
+            </div>
+        </div>
+        <div class = "postbox" onclick="goToPostDetail()">
+            <h1>제목 1</h1>
+            <div class ="like">
+                <p>좋아요 0 </p><p>댓글 0</p><p> 조회수 0</p>
+                <p1>2021-01-01 00:00:00</p1>
+            </div>
+                <hr>
+            <div class="author">
+                <img class="image" src="profile_img.webp"/>
+                <p> 더미 작성자 1</p>
+            </div>
+        </div>
+        <div class = "postbox" onclick="goToPostDetail()">
+            <h1>만약26자를 넘는다면 제목이 이렇게 잘려나갑니다.  6글자 css를 바꿔서 적용하였습니다.이제 26자를 넘겼겠죠 ?1111111111111111111111111</h1>
+            <div class ="like">
+                <p>좋아요 0 </p><p>댓글 0</p><p> 조회수 0</p>
+                <p1>2021-01-01 00:00:00</p1>
+            </div>
+                <hr>
+            <div class="author">
+                <img class="image" src="profile_img.webp"/>
+                <p> 더미 작성자 1</p>
+            </div>
+        </div>
+        <div class = "postbox" onclick="goToPostDetail()">
+            <h1>제목 1</h1>
+            <div class ="like">
+                <p>좋아요 0 </p><p>댓글 0</p><p> 조회수 0</p>
+                <p1>2021-01-01 00:00:00</p1>
+            </div>
+                <hr>
+            <div class="author">
+                <img class="image" src="profile_img.webp"/>
+                <p> 더미 작성자 1</p>
+            </div>
+        </div>
+    </article>
+</body>
+
+<script>
+    function PostPage() {
+        window.location.href = 'post.html';     /*게시물작성페이지로이동*/
+    }
+
+    function goToPostDetail(postId) {
+        window.location.href = `post_detail.html?postId=${postId}`;
+    }
+
+    // 게시글의 좋아요, 댓글, 조회수를 1000 이상일 때 '1k', 10000 이상일 때 '10k', 100000 이상일 때 '100k'로 표시하는 함수
+        function formatNumber(num) {
+            if (num >= 100000) {
+                return Math.floor(num / 1000) + "k";  // 100k 이상
+            } else if (num >= 10000) {
+                return Math.floor(num / 1000) + "k";  // 10k 이상
+            } else if (num >= 1000) {
+                return Math.floor(num / 1000) + "k";  // 1k 이상
+            }
+            return num;  // 1000 미만은 그대로 표시
+        }
+        // 게시글의 좋아요, 댓글, 조회수를 예시로 설정 (1000 이상일 때 'k' 표시)
+        document.getElementById("like1").innerText = formatNumber(1500);   // 좋아요
+        document.getElementById("comment1").innerText = formatNumber(50);   // 댓글
+        document.getElementById("views1").innerText = formatNumber(250000); // 조회수
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+    <title> 게시글 목록조회 </title>
+    <link rel="stylesheet" href = "postlist.css">  <!--외부 css 파일 연결-->
+</head>
+
+<body>
+    <div class = "header">
+        <div class= "space">  </div>
+        <h1> 아무 말 대잔치 </h1>  <!--아무말 대잔치 레이아웃-->
+        <a href = "accountEdit.html">
+        <img class="image1" src="profile_img.webp"/>
+        </a>
+    </div>
+
+    <div class = "container"> 
+        <h1>안녕하세요,<br>아무 말 대잔치 <span class="specialfont">게시판</span> 입니다.</h1>
+    </div>
+
+    <div class = "flexcont">
+        <button id= "postup" onclick="PostPage()">게시글 작성</button>
+    </div>
+    
+    <article>
+        <article id="postList"></article> <!-- 게시글 목록을 동적으로 추가할 위치 -->
+    </article>
+</body>
+
+<script>
+    function PostPage() {
+        window.location.href = 'post.html';     /*게시물작성페이지로이동*/
+    }
+
+    function goToPostDetail(postId) {
+        window.location.href = `post_detail.html?postId=${postId}`;
+    }
+
+    // 게시글의 좋아요, 댓글, 조회수를 1000 이상일 때 '1k', 10000 이상일 때 '10k', 100000 이상일 때 '100k'로 표시하는 함수
+        function formatNumber(num) {
+            if (num >= 100000) {
+                return Math.floor(num / 1000) + "k";  // 100k 이상
+            } else if (num >= 10000) {
+                return Math.floor(num / 1000) + "k";  // 10k 이상
+            } else if (num >= 1000) {
+                return Math.floor(num / 1000) + "k";  // 1k 이상
+            }
+            return num;  // 1000 미만은 그대로 표시
+        }
+
+    // JSON 데이터를 불러와 게시글 리스트를 동적으로 생성하는 함수
+    async function loadPosts() {
+        try {
+            const response = await fetch('posts.json');
+            const posts = await response.json();
+            
+            const postList = document.getElementById("postList");
+            posts.forEach(post => {
+                const postbox = document.createElement("div");
+                postbox.className = "postbox";
+                postbox.onclick = () => goToPostDetail(post.postid);
+
+                postbox.innerHTML = `
+                    <h1>${post.title}</h1>
+                    <div class="like">
+                        <p>좋아요 ${formatNumber(post.likes)}</p>
+                        <p>댓글 ${formatNumber(post.comments)}</p>
+                        <p>조회수 ${formatNumber(post.views)}</p>
+                        <p1>${post.date}</p1>
+                    </div>
+                    <hr>
+                    <div class="author">
+                        <img class="image" src="profile_img.webp"/>
+                        <p>${post.author}</p>
+                    </div>
+                `;
+                postList.appendChild(postbox);
+            });
+        } catch (error) {
+            console.error("게시글 데이터를 불러오는 데 실패했습니다:", error);
+        }
+    }
+
+    // 페이지 로드 시 게시글 데이터를 불러옵니다
+    loadPosts();
+</script>

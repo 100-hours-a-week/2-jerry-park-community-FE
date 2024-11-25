@@ -43,45 +43,9 @@
                 <input type="file" id="fileInput" name="fileInput">
             </div>
 
-            <button class="sujungButton" onclick="nextPage()"> 수정하기 </button>
+            <button class="sujungButton" onclick="updatePost(post_id)"> 수정하기 </button>
             </article>
     </section>
 </body>
 
-<script>
-    function nextPage() {
-    window.location.href = "post_detail.html"; //이동할 페이지
-    }   
-
-    // url에서 postid 파라미터 가져옴
-    const urlParams = new URLSearchParams(window.location.search);
-    const postid = urlParams.get('postid');
-
-    async function loadPostData(postid) {
-        try {
-            // await는 비동기 방식 (데이터 가져올 때 까지 대기)
-            const response = await fetch('posts.json');
-            const posts = await response.json();
-
-            // postid에 해당하는 게시물 찾아서 post 객체에 할당
-            const post = posts.find(p => p.postid == postid);
-
-            // 해당하는 post(postid)가 존재할 때 if문 실행하기 (위에서 post 객체 null 값이면 실행 X)
-            if(post) {
-                // 앞의 title은 html에서 넣을 id 부분, 뒤의 post.title은 json파일에서 가져올 것
-                document.getElementById('title').value = post.title;
-                document.getElementById('content').textContent = post.content;
-
-                
-            
-            } else {
-            console.error('게시물, 댓글이 없음 찾을 수 없음 (postid 확인)');
-        }
-        } catch (error) {
-            console.error('JSON 데이터 찾을 수 없음', error);
-        }
-    }
-    // 페이지 로드 시 데이터 로드 함수 실행
-    loadPostData(postid);
-
-</script>
+<script src = "edit_post.js"></script>

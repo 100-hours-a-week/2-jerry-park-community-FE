@@ -17,7 +17,7 @@
             <div id="dropdownMenu" class="dropdown-content">
                 <a href="#link1">회원정보수정</a>
                 <a href="passwordch.html">비밀번호수정</a>
-                <a href="main.html">로그아웃</a>
+                <a href="login.html">로그아웃</a>
             </div>
         </div>
     </div>
@@ -33,18 +33,18 @@
         <div class= "infoBox"> 
             <div class = "infoBox">
                 <div class = "email">이메일</div>
-                <div class = "emailinfo">startupcode@gmail.com</div>
+                <div class = "emailinfo" id="email" >startupcode@gmail.com</div>
                 <div class = "nickname">닉네임</div>
             </div>
             <div class = "nicknameBox">
-                <input type="text" class = "nicknameinput" placeholder="스타트업코드">
+                <input type="text" class = "nicknameinput" id='nickname' placeholder="스타트업코드" >
             </div>
             <div class="helpertextbox">
-                <p class="helperText">* helper text</p>
+                <!-- <p class="helperText">* helper text</p> -->
             </div>
             <div class = "buttonBox">
-                <button class="sujungButton" onclick="nextPage()"> 수정하기 </button>
-                <p> 회원 탈퇴 </p>
+                <button class="sujungButton" onclick="saveNickname()"> 수정하기 </button>
+                <p id="deleteAccount" style = "cursor:pointer;" onclick = "deleteAccount()"> 회원 탈퇴 </p>
                 <div id="toast" class="toast">수정 완료</div>
             </div>
 
@@ -54,45 +54,19 @@
 
         </div>
     </section>
+
+     <!-- 게시물 삭제 모달 -->
+     <div id="deleteModal" class="deletemodal">
+        <div class="modalcontent">
+            <h1>회원탈퇴 하시겠습니까?</h1>
+            <p1>삭제한 내용은 복구 할 수 없습니다.</p1>
+            <div class="modalbutton">
+            <button class="cancleButton" onclick = "closeModal()">취소</button>
+            <button class="confirmButton" onclick = "confirmDelete()">확인</button>
+            </div>  
+        </div>
+    </div>
 </body>
 
-<script>
 
-    function nextPage() {
-        const toast = document.getElementById("toast");
-        toast.classList.add("show");
-        // 일정 시간 후 토스트 메시지 숨기기
-        setTimeout(() => {
-            toast.classList.remove("show");
-    }, 2000); // 2초 후 사라짐
-    }
-    
-    function nextPage1(){
-        window.location.href = "postlist.html";
-    }
-
-
-
-    // 드롭다운
-    function toggleDropdown() {
-    const dropdownMenu = document.getElementById("dropdownMenu");
-    if (dropdownMenu.style.display === "block") {
-        dropdownMenu.style.display = "none";
-    } else {
-        dropdownMenu.style.display = "block";
-    }
-}
-
-// 페이지의 다른 부분을 클릭하면 드롭다운을 닫도록 이벤트 추가
-window.onclick = function(event) {
-    if (!event.target.matches('.image1')) {
-        const dropdowns = document.getElementsByClassName("dropdown-content");
-        for (let i = 0; i < dropdowns.length; i++) {
-            const openDropdown = dropdowns[i];
-            if (openDropdown.style.display === "block") {
-                openDropdown.style.display = "none";
-            }
-        }
-    }
-}
-</script>
+<script src = "accountEdit.js"></script>
