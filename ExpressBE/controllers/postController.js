@@ -3,10 +3,17 @@
 // 모델 가져오기 !
 const postModel = require('../models/postmodel');
 
+// 게시물 작성
 async function createPost(req, res) {
     // req.body는 클라가 보낸 데이터 본문 가져오는 객체
     const {title, content, user_id} = req.body;
     
+    console.log('클라로부터 받은 데이터 : ', req.body);
+
+    if (!title || !content || !user_id) {
+        return res.status(400).json({message : '제목, 내용, 사용자 id(로그인)은 필수입니다.'});
+    }
+
     try {
         // createPost 함수 호출, db에 게시글 저장, 게시글 id 반환
         const newPostId = await postModel.createPost({title, content, user_id});
@@ -25,7 +32,84 @@ async function createPost(req, res) {
     }
 }
 
+// 게시물 리스트 조회
+async function getPosts(req, res) {
+    try {
+        const posts = await postModel.getPosts();
+        res.status(200).json(posts);
+    } catch (err) {
+        console.error('게시글 읽는 중 오류 발생:', err.message);
+        res.status(500).json({ message: '서버 오류 발생', error: err.message });
+    }
+}
+
+// post_id 통한 게시물 상세조회
+async function getPostById(req, res) {
+    const post_id = req.query.post_id; // 요청 url에서 id 가져옴
+
+    
+    if(!post_id) {
+        // post_id 없다면 => 400
+        return res.status(400).json({error:'post_id가 필요'});
+    }
+    try {
+        // 모델에서 데이터 가져오기
+        const post = await postModel.getPostById(post_id);
+
+        if(!post){
+            // 해당 post_id에 게시물이 없으면 404
+            return res.status(404).json({error:'post_id에 따른 게시물이 없습니다'});
+        }
+        // 게시물 데이터를 json 형태로 응답
+        res.json(post);
+    } catch (err) {
+        console.error('게시물 상세 조회 중 에러 발생', err.message);
+        res.status(500).json({error: '서버 에러 발생'});
+    }
+} 
+
+async function updatePost(req, res) {
+    const post_id = req.query.post_id;
+    const {title, content} = req.body;
+
+    if(!title || !content) {
+        return res.status(400).json({success:false, message: '제목과 내용이 비어있음'});
+    }
+    try {
+        const result = await postModel.updatePost(post_id, {title,content});
+
+        res.status(200).json({success : true, message:'게시글 수정 완료'});
+
+    } catch(err) {
+        res.status(500).json({success:false, message:'게시글 수정 중 오류 발생'});
+    }
+}
+
+async function deletePost(req,res) {
+    const {post_id} = req.query; // URL post_id 쿼리 가져옴
+
+    if (!post_id) {
+        return res.status(400).json({success:false, message : 'post_id 없음'});
+    }
+
+    try {
+        const result = await postModel.deletePost(post_id);
+
+        if(result.affectedRows > 0) {
+            return res.status(200).json({success:true, message: '게시글 삭제 성공'});
+        } else {
+            return res.status(404).json({success:false, message: '게시글이 존재하지 않습니다.'});
+        }
+    } catch (err){
+        console.error('게시글 삭제 중 오류 발생', err.message);
+        return res.status(500).json({success:false, message: '게시글 삭제 중 오류 발생'})
+    }
+}
 // createPost 모듈 외부로 exports
 module.exports = {
     createPost,
+    getPosts,
+    getPostById,
+    updatePost,
+    deletePost,
 };
