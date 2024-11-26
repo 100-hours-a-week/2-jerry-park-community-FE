@@ -8,20 +8,30 @@ async function createPost(req, res) {
     // req.body는 클라가 보낸 데이터 본문 가져오는 객체
     const {title, content, user_id} = req.body;
     
-    console.log('클라로부터 받은 데이터 : ', req.body);
+    console.log('게시글 작성 클라로부터 받은 데이터 : ', req.body);
 
     if (!title || !content || !user_id) {
         return res.status(400).json({message : '제목, 내용, 사용자 id(로그인)은 필수입니다.'});
     }
 
+    // 이미지 파일 확인
+    let imagePath = null;
+    if (req.file) {
+        imagePath = `/uploads/${req.file.filename}`; // 이미지 경로
+    }
+
+
+    
+
     try {
         // createPost 함수 호출, db에 게시글 저장, 게시글 id 반환
-        const newPostId = await postModel.createPost({title, content, user_id});
+        const newPostId = await postModel.createPost({title, content, user_id, image: imagePath});
 
         // DB 삽입 성공여부 (201 성공)
         res.status(201).json({
             message: '게시글 작성 성공',
             post_id : newPostId,
+            image: imagePath,
         });
     } catch (err) {
         // (500 오류 interval server error)
@@ -105,6 +115,40 @@ async function deletePost(req,res) {
         return res.status(500).json({success:false, message: '게시글 삭제 중 오류 발생'})
     }
 }
+
+// 좋아요 증가
+async function likePost(req,res) {
+    const {post_id}= req.query;
+
+    if (!post_id){
+        return res.status(400).json({success:false, message:'post_id 없음'});
+    }
+    try {
+        const updatedLikes = await postModel.increseLikes(post_id);
+        res.json({success:true, likes:updatedLikes});
+    } catch (err) {
+        console.error('좋아요 증가 중 오류 : ',err);
+        res.status(500).json({success:false, message: '서버 오류로 좋아요수 증가 실패'});
+    }
+}
+
+// 조회수 증가
+async function increseViews(req,res) {
+    const {post_id} = req.query;
+
+    if (!post_id){
+        return res.status(400).json({success:false, message:'post_id 없음'});
+    }
+
+    try {
+        const updatedViews = await postModel.increseViews(post_id);
+        res.json({success: true, views:updatedViews});
+    } catch(err) {
+        console.error('조회수 증가 중 오류 : ', err);
+        res.status(500).json({success:false, message: '서버 오류로 좋아요 증가 실패'});
+    }
+}
+
 // createPost 모듈 외부로 exports
 module.exports = {
     createPost,
@@ -112,4 +156,6 @@ module.exports = {
     getPostById,
     updatePost,
     deletePost,
+    likePost,
+    increseViews,
 };

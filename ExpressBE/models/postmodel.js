@@ -2,7 +2,7 @@
 const jerrydb = require('../DBpools/jerryDBpool');
 
 // 게시글 새로 작성
-async function createPost({title, content, user_id}) {
+async function createPost({title, content, user_id, image}) {
 
     // // title, content, user_id가 undefined라면 null로 처리
     // if (title === undefined) title = null;
@@ -12,14 +12,14 @@ async function createPost({title, content, user_id}) {
     
     // 쿼리는 posts 테이블에 삽입
     const sql = `
-        INSERT INTO posts (title, content, user_id, likes, views, created_time)
-        VALUES (?,?,?,0,0,NOW())
+        INSERT INTO posts (title, content, user_id, likes, views, created_time, image)
+        VALUES (?,?,?,0,0,NOW(),?)
     `;
     // !!!!!!!!!!!!!!!!!!!! likes, views 구현 필요....
 
     try {
         // DB에 쿼리 실행
-        const[result] = await jerrydb.execute(sql, [title,content,user_id]);
+        const [result] = await jerrydb.execute(sql, [title,content,user_id,image]);
         // 삽입된 게시글의 고유 id 반환 (post_id)
         return result.insertId;
 
@@ -38,7 +38,7 @@ async function getPosts() {
 
     // user_id 통해 users에서 nickname 가져오기
     const sql = `
-        SELECT posts.*, users.nickname
+        SELECT posts.*, users.nickname, users.profile_img
         FROM posts
         INNER JOIN users ON posts.user_id = users.user_id
         ORDER BY posts.created_time DESC
@@ -56,7 +56,7 @@ async function getPosts() {
 // 게시물 상세 조회
 async function getPostById(post_id){
     const sql = `
-        SELECT posts.*, users.nickname
+        SELECT posts.*, users.nickname, users.profile_img
         FROM posts
         INNER JOIN users ON posts.user_id = users.user_id
         WHERE posts.post_id = ?
@@ -74,6 +74,7 @@ async function getPostById(post_id){
     }
 }
 
+// 게시물 수정
 async function updatePost(post_id, {title, content}) {
     const sql = `
         UPDATE posts
@@ -94,6 +95,7 @@ async function updatePost(post_id, {title, content}) {
     }
 }
 
+// 게시물 삭제
 async function deletePost(post_id) {
     const sql = `
         DELETE FROM posts WHERE post_id = ?
@@ -108,11 +110,41 @@ async function deletePost(post_id) {
     }
 }
 
-// 게시글추가 함수 createPost 내보내기
+// 좋아요 증가
+async function increseLikes(post_id) {
+    const sql = `UPDATE posts SET likes = likes+1 WHERE post_id = ? `;
+    const [result] = await jerrydb.execute(sql, [post_id]);
+
+    // 반영된 거 0이면
+    if (result.affectedRows === 0){
+        throw new Error('좋아요 증가할 게시물 찾을 수 없음');
+    }
+
+    // 업데이트 된 좋아요 수 반환
+    const [likesResult] = await jerrydb.query(`SELECT likes FROM posts WHERE post_id = ?`, [post_id]);
+    return likesResult[0].likes;
+}
+
+// 조회수
+async function increseViews(post_id) {
+    const sql = `UPDATE posts SET views = views + 1 WHERE post_id = ?`;
+    const [result] = await jerrydb.execute(sql,[post_id]);
+
+    if (result.affectedRows === 0) {
+        throw new Error('조회수 증가할 게시물 찾을 수 없음');
+    }
+    
+    // 증가 후 조회수 가져오기
+    const [updatedViews] = await jerrydb.query(`SELECT views FROM posts WHERE post_id = ?`, [post_id]);
+    return updatedViews[0].views;
+}
+
 module.exports = {
     createPost,
     getPosts,
     getPostById,
     updatePost,
     deletePost,
+    increseLikes,
+    increseViews,
 };

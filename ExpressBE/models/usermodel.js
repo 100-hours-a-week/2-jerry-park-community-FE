@@ -4,8 +4,8 @@ const jerrydb = require('../DBpools/jerryDBpool');
 
 // 유저 생성하는 createUser (쿼리문 삽입)
 // !!!!!!!!!!!!!유저 프로필 이미지 아직 없음
-async function createUser({nickname,email,password,profile_img}) {
-    profile_img = profile_img || null;
+async function createUser({nickname,email,password,profile_imgPath}) {
+    // profile_imgPath = profile_imgPath || null;
     const sql = `
         INSERT INTO users (nickname,email,password,profile_img)
         VALUES (?,?,?,?)
@@ -13,7 +13,7 @@ async function createUser({nickname,email,password,profile_img}) {
     
     try {
         // 쿼리 실행 후 결과 반환    execute 메서드는 ? 자리에 값을 대체함
-        const [result] = await jerrydb.execute(sql,[nickname,email,password,profile_img])
+        const [result] = await jerrydb.execute(sql,[nickname,email,password,profile_imgPath])
 
         // 삽입 데이터의 고유 ID 반환(user_id) (AI(Auto Increment))
         return result.insertId;
@@ -47,7 +47,7 @@ async function findUserByEmail(email) {
 
 // 회원정보수정페이지 유저정보 가져오기
 async function getUserById(user_id){
-    const sql = `SELECT email, nickname FROM users WHERE user_id = ?`;
+    const sql = `SELECT email, nickname, profile_img FROM users WHERE user_id = ?`;
     // pool 과 execute 차이
     const [rows] = await jerrydb.query(sql, [user_id]);
     return rows[0];

@@ -5,7 +5,7 @@ const jerrydb = require('../DBpools/jerryDBpool');
 // post_id 에 따라 댓글 가져오기
 async function getCommentsByPostId(post_id) {
     const sql = `
-        SELECT c.comment_id, c.content, c.created_time, c.user_id, u.nickname
+        SELECT c.comment_id, c.content, c.created_time, c.user_id, u.nickname, u.profile_img
         FROM comments c
         JOIN users u ON c.user_id = u.user_id
         WHERE c.post_id = ?

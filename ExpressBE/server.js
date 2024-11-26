@@ -9,7 +9,10 @@ const commentRoutes = require('./routes/commentRoutes'); // 댓글 route
 const app = express();
 const port = 3000;
 const cors = require('cors');
+const path = require('path');   // 이미지 정적 경로? 
 
+// uploads 폴더를 (이미지) 정적 파일로 제공하도록 설정
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // 모든 출처에서 오는 요청을 허용
 app.use(cors()); 

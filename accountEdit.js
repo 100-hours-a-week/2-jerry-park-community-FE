@@ -151,3 +151,34 @@ async function confirmDelete() {
         alert('서버 오류가 발생했습니다.');
     }
 }
+
+// localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
+async function loadloginProfileImage() {
+    const user_id = localStorage.getItem("user_id");
+
+    if (user_id){
+        try {
+            const response = await fetch(`http://localhost:3000/api/users/${user_id}`);
+
+            if(!response.ok) {
+                throw new Error('상단 유저프로필 이미지 불러오는 중 오류');
+            }
+
+            // 응답을 user로
+            const user = await response.json();
+
+            console.log(user.profile_img);
+            // 넣을 곳
+            const profile_img = document.getElementById("profile_imghead");
+            const profile_img1 = document.getElementById("profile_img");
+            profile_img.src = `http://localhost:3000${user.profile_img}`
+            profile_img1.src = `http://localhost:3000${user.profile_img}`
+        } catch(err) {
+            console.error('상단 유저 프로필 이미지 오류', err);
+        }
+    } else {
+        console.log('로그인 사용자정보 없음');
+    }
+}
+
+loadloginProfileImage();

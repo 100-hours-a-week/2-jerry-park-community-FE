@@ -35,6 +35,11 @@ router.patch('/post', postController.updatePost);
 // 게시물 삭제
 router.delete('/post', postController.deletePost);
 
+// 게시물 좋아요 증가
+router.put('/like',postController.likePost);
+
+// 게시물 조회수 증가
+router.put('/views', postController.increseViews);
 
 module.exports = router;
 // 이 라우터 모듈 내보냄

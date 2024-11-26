@@ -79,6 +79,7 @@ async function loadPosts() {
         // 클릭시 해당 게시글 상세 페이지로 이동
         postbox.onclick = () => goToPostDetail(post.post_id);
 
+        console.log ('이미지 값 : ', post.profile_img);
         // 게시글 내용을 HTML로 작성
         postbox.innerHTML = `
         <h1>${post.title}</h1> <!-- 게시글 제목 -->
@@ -89,11 +90,11 @@ async function loadPosts() {
         </div>
         <hr>
         <div class="author">
-            <img class="image" src="profile_img.webp"/> <!-- 프로필 이미지 -->
+            <img class="image" src="http://localhost:3000${post.profile_img}" > <!-- 프로필 이미지 -->
             <p>작성자: ${post.nickname}</p> <!-- 작성자 ID -->
         </div>
     `;
-    
+    // alt="profile_img.webp"/
     // 생성한 게시글 요소를 HTML 페이지의 'postList' 영역에 추가
     postList.appendChild(postbox);
     });
@@ -101,5 +102,38 @@ async function loadPosts() {
         console.error("게시글 데이터 불러오는 데 실패했습니다 : ", error);
     }
 }
+
+// localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
+async function loadloginProfileImage() {
+    const user_id = localStorage.getItem("user_id");
+
+    if (user_id){
+        try {
+            const response = await fetch(`http://localhost:3000/api/users/${user_id}`);
+
+            if(!response.ok) {
+                throw new Error('상단 유저프로필 이미지 불러오는 중 오류');
+            }
+
+            // 응답을 user로
+            const user = await response.json();
+
+            console.log(user.profile_img);
+            // 넣을 곳
+            const profile_img = document.getElementById("profile_img");
+            profile_img.src = `http://localhost:3000${user.profile_img}`
+        
+        } catch(err) {
+            console.error('상단 유저 프로필 이미지 오류', err);
+        }
+    } else {
+        console.log('로그인 사용자정보 없음');
+    }
+}
+
+
 // 페이지 로드 시 게시글 데이터를 불러옵니다
-loadPosts();
+window.onload = function() {
+    loadPosts();
+    loadloginProfileImage();
+};

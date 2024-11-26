@@ -6,15 +6,20 @@ const bcrypt = require('bcryptjs'); // bcrypt 라이브러리 가져오기 (비�
 // req(요청객체(닉네임,이메일,비밀번호 등)), res(응답객체)
 async function registerUser(req, res) {
     // 요청 본문에서 nickname, email, password를 추출해 변수에 할당
-    const { nickname, email, password,profile_img } = req.body;
+    const { nickname, email, password } = req.body;
+    let profile_imgPath = null;
 
+    // 이미지 업로드시 경로 저장
+    if (req.file) {
+        profile_imgPath = `/uploads/${req.file.filename}`;
+    }
     
     try {
         // 비밀번호 해시화
         const hashedPassword = await bcrypt.hash(password,10);
 
         // usermodel의 createUser 함수 호출해 새 사용자 추가
-        const newUserId = await usermodel.createUser({nickname, email, password: hashedPassword, profile_img});
+        const newUserId = await usermodel.createUser({nickname, email, password: hashedPassword, profile_imgPath});
 
         // 성공적으로 유저 생성되면 클라에 응답 (201성공)
         res.status(201).json({

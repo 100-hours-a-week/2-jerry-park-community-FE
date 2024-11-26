@@ -15,11 +15,12 @@
         <a href="login.html"><</a>
     </div>
 
-    <div class = "container">
+    <form class = "container" id = "registerForm" enctype="multipart/form-data">
         <h1>회원가입</h1>
         <div class = "profileinfo"> 프로필 사진
             <div class = "center">
-                <img class="image" id="profile_image" src="profile_img.webp"/>
+                <img class="image" id="profile_image" src="profile_img.webp" alt ="프로필 이미지 클릭해서 추가" style = "cursor: pointer;" onclick="document.getElementById('profile_img').click();">
+                <input type = "file" id="profile_img" name="profile_img" accept="image/*" style="display:none;" onchange="previewImage(event)">
             </div>  
         </div>
             <article>
@@ -44,12 +45,12 @@
                     <p class="helperText" name="nickname">*helper text</p>
                 </div>
                 <div class="buttons">
-                    <button id="signupBtn">회원 가입</button>
+                    <button type = "submit" id="signupBtn" >회원 가입</button>
                     <a href="login.html">로그인 하러가기</a>
                 </div>
             </article>
-    </div>
+    </form>
 
     <!-- js 연결 -->
-    <script type='module' src = "signup.js"></script>
+    <script src = "signup.js"></script>
 </body>

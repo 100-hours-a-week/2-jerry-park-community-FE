@@ -3,6 +3,10 @@ const titleInput = document.getElementById('title');
 const contentInput = document.getElementById('content');
 const compButton = document.getElementById('compb');
 
+// 폼 ID, 삽입할 이미 ID 가져오기
+const postForm = document.getElementById('postForm');
+const image = document.getElementById('image');
+
 // 입력 상태로 버튼 색상 바꾸기
 function updateButtonState() {
     if(titleInput.value.trim() !=='' && contentInput.value.trim()!==''){
@@ -44,11 +48,9 @@ async function uploadPost(event) {
         console.log(`${key}: ${value}`);
     })
 
-    // !!!!!!!!이미지 구현 필요
     // 이미지 파일 추가 (선택된 경우만)
-    const imageInput = document.getElementById('image');
-    if (imageInput.files.length > 0) {
-        formData.append('image', imageInput.files[0]);
+    if (image.files.length > 0) {
+        formData.append('image', image.files[0]);
     }
 
     try {
@@ -60,9 +62,9 @@ async function uploadPost(event) {
 
     //서버 응답 확인
     if (response.ok) {
-        const result = await response.json();
-        console.log('게시글 작성 성공');
+        console.log('게시글 작성찐성공페이지이동돼야함');
         window.location.href = 'postlist.html';
+        alert('게시글 작성 성공');
     } else {
         // 응답 상태 200 아니면 실패로 간주
         const errorData = await response.json();
@@ -75,3 +77,36 @@ async function uploadPost(event) {
 
 // 'submit' 이벤트에서 uploadPost 호출
 postForm.addEventListener('submit',uploadPost);
+
+// localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
+async function loadloginProfileImage() {
+    const user_id = localStorage.getItem("user_id");
+
+    if (user_id) {
+        try {
+            const response = await fetch(`http://localhost:3000/api/users/${user_id}`);
+
+            if(!response.ok) {
+                throw new Error('상단 유저프로필 이미지 불러오는 중 오류');
+            }
+
+            // 응답을 user로    
+            const user = await response.json();
+
+            console.log(user.profile_img);
+            // 넣을 곳
+            const profile_img = document.getElementById("profile_imghead");
+            profile_img.src = `http://localhost:3000${user.profile_img}`
+        
+        } catch(err) {
+            console.error('상단 유저 프로필 이미지 오류', err);
+        }
+    } else {
+        console.log('로그인 사용자정보 없음');
+    }
+}
+
+// 페이지 로드 시 게시글 데이터를 불러옵니다
+window.onload = function() {
+    loadloginProfileImage();
+};

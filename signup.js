@@ -7,6 +7,7 @@ var password = document.getElementById("pw").value;
 var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
 var confirmPassword = document.getElementById("pwck").value;
 var nickname = document.getElementById("nickname").value;
+var profile_img = document.getElementById("profile_img").files[0];
 
 var emailHelper = document.querySelector(".helperText[name='email']");
 var pwHelper = document.querySelector(".helperText[name='pw']");
@@ -62,21 +63,24 @@ if (!nickname) {
 }
 
 // 유효성 검사 성공 시
-const userData = {email, password, nickname, profile_image};
-sendSignupRequest(userData); // POST 요청 함수 호출
+const formData = new FormData();
+formData.append('email', email);
+formData.append('password', password);
+formData.append('nickname', nickname);
+if (profile_img) {
+    formData.append('profile_img', profile_img);
+}
+sendSignupRequest(formData); // POST 요청 함수 호출
 
 };  
 
 // 회원가입 post 요청
-async function sendSignupRequest(data) {
+async function sendSignupRequest(formData) {
     try {
         // fetch로 post 요청 
         const response = await fetch('http://localhost:3000/api/users/register', {
             method : 'POST',
-            headers : {
-                'Content-Type': 'application/json',
-            },
-            body : JSON.stringify(data),
+            body : formData,
         });
 
         if (response.ok){
@@ -84,6 +88,7 @@ async function sendSignupRequest(data) {
             alert(`회원가입 성공!`);
             // 유저아이디 왜 노출 ?
             window.location.href = "login.html"; // 성공 시 로그인 페이지로 이동
+            
         } else {
             const error = await response.json();
             // 서버 응답에서 오류가 발생한 경우
@@ -98,6 +103,19 @@ async function sendSignupRequest(data) {
         
     }
 
+// 이미지 미리보기 함수
+function previewImage(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader(); // 파일 리더 생성
 
+    reader.onload = function(e) {
+        // 파일이 로드되면 이미지 미리보기 업데이트
+        document.getElementById('profile_image').src = e.target.result;
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);  // 파일을 URL로 읽기
+    }
+}
 
 

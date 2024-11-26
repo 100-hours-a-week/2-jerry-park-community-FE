@@ -13,7 +13,6 @@ function confirmDelete() {
 }
 
 
-
 // 댓글 삭제 모달 여닫는 JS 함수
 function openCommentDeleteModal(comment_id) {
     document.getElementById('commentDeleteModal').style.display = 'flex'; // 댓글 삭제 모달 열기
@@ -26,6 +25,8 @@ function openCommentDeleteModal(comment_id) {
 function closeCommentDeleteModal() {
     document.getElementById('commentDeleteModal').style.display = 'none';
 }
+
+// 모달에서 삭제 버튼 확정시 (게시글 삭제)
 function confirmCommentDelete(comment_id) {
     console.log('삭제할 commentid : ', comment_id);
     fetch(`http://localhost:3000/api/posts/comments/${comment_id}`, {
@@ -70,8 +71,30 @@ commentInput.addEventListener('input',updateButtonState);
 const urlParams = new URLSearchParams(window.location.search);
 const post_id = urlParams.get('post_id'); // post_id 이름의 파라미터 가져옴
 
-// post_id 존재하는지 확인
-if (post_id){
+// post_id 존재하는지 확인하고 받아오기 (async function 추가하는 것이.,.,)
+if (post_id) {
+    // 페이지 로드 시 조회수 증가 API 호출
+    fetch(`http://localhost:3000/api/posts/views/?post_id=${post_id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        // 조회수 넣기
+        console.log("조회수데이터",data);
+        document.querySelector('.views').textContent = data.views;
+        if (data.success) {
+            console.log('조회수 증가 성공');
+        } else {
+            console.error('조회수 증가 실패');
+        }
+    })
+    .catch(error => {
+        console.error('조회수 증가 중 오류:', error);
+    });
+
     // post_id 있다면, fetch 요청
     fetch(`http://localhost:3000/api/posts/post?post_id=${post_id}`)
         .then(response => response.json())
@@ -80,10 +103,18 @@ if (post_id){
             // 클래스 title, h1태그 부분에
             document.querySelector('.title h1').textContent = data.title;
             document.querySelector('.content p').textContent = data.content;
-            document.querySelector('.likes').textContent = data.likes;
-            document.querySelector('.views').textContent = data.views;
+            // document.querySelector('.likes').textContent = data.likes;
+            
             document.querySelector('.userinfo p').textContent = data.nickname;
-
+            document.getElementById('profile_img').src = `http://localhost:3000${data.profile_img}`;
+            console.log(data)
+            // 게시물 이미지 있으면 이미지 표시
+            if (data.image){
+                document.getElementById('image3').src = `http://localhost:3000${data.image}`;
+            } else {
+                document.getElementById('image3').style.display = 'none'; // 이미지 없으면 없게
+            }
+            
             // 날짜 포맷 변경하기
             const created_time = data.created_time;
             const date = new Date(created_time);
@@ -98,8 +129,13 @@ if (post_id){
             });
             document.querySelector('.userinfo p1').textContent = formattedDate;
 
+            // 좋아요수 넣기
+            updateLikes(data.likes);
+
             // 댓글도 가져오기
             fetchComments(post_id);
+            // 상단 로그인한 유저 이미지도 가져오기
+            loadloginProfileImage();
         })
         .catch(error => {
             // 에러 출력
@@ -143,14 +179,16 @@ function addCommentToPage(comment){
         console.error("댓글 데이터가 부족합니다.", comment);
         return;
     }
-    
-    const commentBox = document.querySelector('.allcommentBox');
     // 댓글 추가할 클래스 allcommentBox
+    const commentBox = document.querySelector('.allcommentBox');
+    
+    // 댓글 작성 유저 프로필 이미지 받아오기
+    const profile_img = `http://localhost:3000${comment.profile_img}`;
 
     const commentHTML = `
         <div class="commentInfo" id="comment-${comment.comment_id}">
             <div class="comments">
-                <img class="image4" src="profile_img.webp" />
+                <img class="image4" src="${profile_img}" >
                 <div class="author">${comment.nickname}</div>
                 <div class="date">${formatDate(comment.created_time)}</div>
             </div>
@@ -245,6 +283,7 @@ function editComment(comment_id, content) {
     commentUpButton.onclick = () => updateComment(comment_id);
 }
 
+// 댓글 수정 함수
 function updateComment(comment_id) {
     const updatedContent = document.getElementById('comment').value.trim();
 
@@ -304,4 +343,61 @@ async function confirmDelete(post_id) {
         console.error('삭제 중 오류 발생 : ', error);
         alert('게시물 삭제 중 오류가 발생');
     }
+}
+
+// localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
+async function loadloginProfileImage() {
+    const user_id = localStorage.getItem("user_id");
+
+    if (user_id) {
+        try {
+            const response = await fetch(`http://localhost:3000/api/users/${user_id}`);
+
+            if(!response.ok) {
+                throw new Error('상단 유저프로필 이미지 불러오는 중 오류');
+            }
+
+            // 응답을 user로
+            const user = await response.json();
+
+            console.log(user.profile_img);
+            // 넣을 곳
+            const profile_img = document.getElementById("profile_imghead");
+            profile_img.src = `http://localhost:3000${user.profile_img}`
+        
+        } catch(err) {
+            console.error('상단 유저 프로필 이미지 오류', err);
+        }
+    } else {
+        console.log('로그인 사용자정보 없음');
+    }
+}
+
+// 좋아요 증가 함수
+function likePost() {
+    fetch(`http://localhost:3000/api/posts/like?post_id=${post_id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        if (data.success) {
+            updateLikes(data.likes);
+            alert('좋아요 !');
+
+        } else {
+            alert('좋아요 중 오류가 발생했습니다.');
+        }
+    })
+    .catch(err => {
+        console.error('좋아요 증가 중 오류 발생 : ', err);
+    });
+}
+
+function updateLikes(likes) {
+    const likesCount = document.getElementById('likes')
+    likesCount.textContent = likes;
 }
