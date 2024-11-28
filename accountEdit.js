@@ -16,7 +16,9 @@ async function saveNickname() {
         const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
             method : 'PUT',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ nickname }),
+            credentials: 'include', // 쿠키 전달 허용
+            body: JSON.stringify({ nickname })
+            
         });
 
         if (!response.ok) {
@@ -61,7 +63,9 @@ if (!event.target.matches('.image1')) {
     }
 }
 }
-if (user_id){
+
+// 페이지 로딩시 회원정보 가져오기 (post_id 있으면)
+if (user_id) {
     // users 정보 가져오기
     async function loadUserData() {
         console.log('로컬에 저장된 user_id', user_id);

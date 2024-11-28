@@ -51,17 +51,23 @@ function goToPostDetail(post_id) {
 //     }
 // }
 
+// 페이지 로딩시 게시물리스트 가져오기
 async function loadPosts() {
     try {
         // 서버에서 데이터 가져와 get 요청 실행 (게시글 api 주소)
-        const response = await fetch('http://localhost:3000/api/posts'); 
+        const offset = 0;
+        const limit = 6;
+
+        const response = await fetch(`http://localhost:3000/api/posts?offset=${offset}&limit=${limit}`); 
     // 응답 비정상시 에러 출력
     if (!response.ok) {
         throw new Error(`게시글 읽는 중 에러 발생 : ${response.status}`);
     }
     // 서버 변환 데이터 JSON 으로 변환
-    const posts = await response.json();
+    const data = await response.json();
     
+    const posts = data.data
+
     // HTML에서 게시글 목록 표시할 컨테이너 선택
     const postList = document.getElementById("postList");
 
@@ -69,7 +75,7 @@ async function loadPosts() {
     postList.innerHTML = "";
 
     // forEach는 배열의 각 요소에 대해 한 번 씩 콜백함수 실행
-    posts.forEach(post=>{   
+    posts.forEach(post => {   
         // 각 게시글 감싸는 div 요소 생성
         const postbox = document.createElement("div");
 

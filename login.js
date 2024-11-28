@@ -29,7 +29,8 @@ function submitForm() {
         headers: {
             'Content-Type':'application/json',
         },
-        body : JSON.stringify({email,password})
+        body : JSON.stringify({email,password}),
+        credentials: 'include' // 쿠키 전달 허용
     })
     .then(response => response.json())
     .then(data => {
