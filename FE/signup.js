@@ -87,7 +87,7 @@ async function sendSignupRequest(formData) {
             const result = await response.json();
             alert(`회원가입 성공!`);
             // 유저아이디 왜 노출 ?
-            window.location.href = "login.html"; // 성공 시 로그인 페이지로 이동
+            window.location.href = "index.html"; // 성공 시 로그인 페이지로 이동
             
         } else {
             const error = await response.json();

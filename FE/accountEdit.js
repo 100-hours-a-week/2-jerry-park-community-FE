@@ -145,7 +145,7 @@ async function confirmDelete() {
         if (response.ok) {
             alert('회원 탈퇴 완료');
             localStorage.removeItem('user_id');
-            window.location.href = 'login.html';
+            window.location.href = 'index.html';
         } else {
             alert(data.mesage || '회원 탈퇴에 실패했습니다.');
             console.log(data.message);
