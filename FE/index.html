@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <!--여러 기기에서 보기 쉽게 하는 태그-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+    <title> 로그인 </title>
+    <link rel="stylesheet" href = "index.css">  <!--외부 css 파일 연결-->
+</head>
+
+<body>
+        <div class = "header">
+            <h1> 아무 말 대잔치 </h1>  <!--아무말 대잔치 레이아웃-->
+        </div>
+
+        <div class = "logintext">
+            <h2> 로그인 </h2>
+        </div>
+
+        <div class = "centerflex">
+            
+            
+            <div class = "login_container">
+                <form class = "inputBox" onsubmit="return submitForm()">
+                    <label for="email"> 이메일 <br> </label>
+                    <input type="text" id="email" name="email" placeholder=" 이메일을 입력하세요"> <br>
+                
+                <div class = "inputBox">
+                    <label for="password">비밀번호<br></label>
+                    <input type="password" id="password" name="password" placeholder=" 비밀번호를 입력하세요" value="1Q2w3e4r!"> <!--임시 비번 1234-->
+                </div>
+                <div class = "loginbutton">
+                    
+                    <button type = "submit" id="login" name="login"> 로그인 </button>
+                    <a href="signup.html">회원가입</a>
+                </div>
+                </form>
+            </div>
+        </div>
+</body>
+
+<script src = "index.js"></script>
