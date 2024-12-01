@@ -1,20 +1,16 @@
 // 게시물 삭제 모달 여닫는 JS 함수임
-function openModal(type) {
+const openModal = (type) => {
     if (type === 'delete') {
         document.getElementById('deleteModal').style.display = 'flex';
     }
 }
-function closeModal() {
+const closeModal = () => {
     document.getElementById('deleteModal').style.display = 'none';
-}
-function confirmDelete() {
-    closeModal(); // 모달 닫기
-    alert("삭제되었습니다.");
 }
 
 
 // 댓글 삭제 모달 여닫는 JS 함수
-function openCommentDeleteModal(comment_id) {
+const openCommentDeleteModal = (comment_id) => {
     document.getElementById('commentDeleteModal').style.display = 'flex'; // 댓글 삭제 모달 열기
 
     // console.log('comment_id: ',comment_id);
@@ -27,7 +23,7 @@ function closeCommentDeleteModal() {
 }
 
 // 모달에서 삭제 버튼 확정시 (게시글 삭제)
-function confirmCommentDelete(comment_id) {
+const confirmCommentDelete = (comment_id) => {
     console.log('삭제할 commentid : ', comment_id);
     fetch(`http://localhost:3000/api/posts/comments/${comment_id}`, {
         method: 'DELETE',
@@ -57,7 +53,7 @@ const commentInput = document.getElementById('comment');
 const commentUpButton = document.getElementById('commentUp');
 
 // 입력 상태로 버튼 색상 바꾸기
-function updateButtonState() {
+const updateButtonState = () => {
     if(commentInput.value.trim() !==''){
         commentUpButton.classList.add('active');
     } else {
@@ -70,6 +66,7 @@ commentInput.addEventListener('input',updateButtonState);
 // 현재 페이지에서 특정 파라미터를 가져오도록 URLSeachParams 사용
 const urlParams = new URLSearchParams(window.location.search);
 const post_id = urlParams.get('post_id'); // post_id 이름의 파라미터 가져옴
+
 
 // post_id 존재하는지 확인하고 받아오기 (async function 추가하는 것이.,.,)
 if (post_id) {
@@ -147,7 +144,7 @@ if (post_id) {
 }
 
 // 댓글 가져오기 fetch
-function fetchComments(post_id){
+const fetchComments = (post_id) => {
     fetch(`http://localhost:3000/api/posts/comments?post_id=${post_id}`)
         .then(response => response.json())    // 응답을 json 형식으로 (Promise 반환)
         .then(data => {
@@ -174,7 +171,7 @@ function fetchComments(post_id){
 }
 
 // 댓글 가져오기
-function addCommentToPage(comment){
+const addCommentToPage = (comment) => {
     if(!comment.nickname || !comment.created_time || !comment.content){
         console.error("댓글 데이터가 부족합니다.", comment);
         return;
@@ -208,7 +205,7 @@ function addCommentToPage(comment){
 }
 
 // (댓글) 날짜 포맷팅 함수
-function formatDate(dateStr) {
+const formatDate = (dateStr) => {
     const date = new Date(dateStr);  // 날짜 문자열을 Date 객체로 변환
     return date.toLocaleString('ko-KR', {
         year: 'numeric',  // 연도
@@ -221,7 +218,7 @@ function formatDate(dateStr) {
 }
 
 // 댓글 작성하기 버튼 누르면 댓글 작성
-function commentUp() {
+const commentUp = () => {
     // 댓글 내용 가져오기 (앞뒤 공백 제거)
     const commentContent = document.getElementById('comment').value.trim();
 
@@ -272,7 +269,7 @@ function commentUp() {
 }
 
 // 댓글 수정 함수
-function editComment(comment_id, content) {
+const editComment = (comment_id, content) => {
     // 댓글 입력 창에 기존 댓글 내용을 설정
     const commentInput = document.getElementById('comment');
     commentInput.value = content;
@@ -284,7 +281,7 @@ function editComment(comment_id, content) {
 }
 
 // 댓글 수정 함수
-function updateComment(comment_id) {
+const updateComment = (comment_id) => {
     const updatedContent = document.getElementById('comment').value.trim();
 
     if (!updatedContent) {
@@ -313,12 +310,12 @@ function updateComment(comment_id) {
     });
 }
 
-function goToEditPage(post_id) {
+const goToEditPage = (post_id) => {
 
     window.location.href = `edit_post.html?post_id=${post_id}`;
 }
 
-async function confirmDelete(post_id) {
+const confirmDelete = async (post_id) => {
     try {
         const response = await fetch(`http://localhost:3000/api/posts/post?post_id=${post_id}`, {
             method: 'DELETE',
@@ -346,7 +343,7 @@ async function confirmDelete(post_id) {
 }
 
 // localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
-async function loadloginProfileImage() {
+const loadloginProfileImage = async () => {
     const user_id = localStorage.getItem("user_id");
 
     if (user_id) {
@@ -374,7 +371,7 @@ async function loadloginProfileImage() {
 }
 
 // 좋아요 증가 함수
-function likePost() {
+const likePost = () => {
     fetch(`http://localhost:3000/api/posts/like?post_id=${post_id}`, {
         method: 'PUT',
         headers: {
@@ -397,7 +394,7 @@ function likePost() {
     });
 }
 
-function updateLikes(likes) {
+const updateLikes = (likes) => {
     const likesCount = document.getElementById('likes')
     likesCount.textContent = likes;
 }

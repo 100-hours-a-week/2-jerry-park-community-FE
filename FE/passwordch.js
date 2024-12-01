@@ -1,4 +1,4 @@
-function nextPage(){
+const nextPage = () => {
     const newPassword = document.querySelector('.passwordInputBox').value;
     const confirmPassword = document.querySelector('.passwordInputBox1').value;
 

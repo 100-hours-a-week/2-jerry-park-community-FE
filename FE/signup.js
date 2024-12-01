@@ -75,7 +75,7 @@ sendSignupRequest(formData); // POST 요청 함수 호출
 };  
 
 // 회원가입 post 요청
-async function sendSignupRequest(formData) {
+const sendSignupRequest = async (formData) => {
     try {
         // fetch로 post 요청 
         const response = await fetch('http://localhost:3000/api/users/register', {
@@ -104,7 +104,7 @@ async function sendSignupRequest(formData) {
     }
 
 // 이미지 미리보기 함수
-function previewImage(event) {
+const previewImage = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader(); // 파일 리더 생성
 

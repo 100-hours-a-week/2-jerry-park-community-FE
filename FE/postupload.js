@@ -19,7 +19,7 @@ function updateButtonState() {
 titleInput.addEventListener('input',updateButtonState);
 content.addEventListener('input',updateButtonState);
 
-async function uploadPost(event) {
+const uploadPost = async (event) => {
     event.preventDefault(); // 폼 기본 동작 방지
 
     // 제목, 내용 안 비었는지 검사
@@ -79,7 +79,7 @@ async function uploadPost(event) {
 postForm.addEventListener('submit',uploadPost);
 
 // localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
-async function loadloginProfileImage() {
+const loadloginProfileImage = async () => {
     const user_id = localStorage.getItem("user_id");
 
     if (user_id) {

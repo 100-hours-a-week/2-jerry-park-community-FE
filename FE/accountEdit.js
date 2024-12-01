@@ -2,7 +2,7 @@
 const user_id = localStorage.getItem('user_id');
 
 // 닉네임 변경 (회원정보)
-async function saveNickname() {
+const saveNickname = async () => {
     // 텍스트 상자에서 nickname 가져옴
     const nickname = document.getElementById('nickname').value;
     console.log('클라에서 수정할 닉넴 : ', nickname);
@@ -36,12 +36,12 @@ async function saveNickname() {
     }
 }
 
-function nextPage1(){
+const nextPage1 = () => {
     window.location.href = "postlist.html";
 }
 
 // 드롭다운
-function toggleDropdown() {
+const toggleDropdown = () => {
 const dropdownMenu = document.getElementById("dropdownMenu");
 if (dropdownMenu.style.display === "block") {
     dropdownMenu.style.display = "none";
@@ -88,7 +88,7 @@ if (user_id) {
 }
 
 // 비밀번호 변경
-async function savePassword() {
+const savePassword = async () => {
     try {
         const response = await fetch(`http://localhost:3000/api/users/${user_id}/password`, {
             method : 'PUT',
@@ -113,7 +113,7 @@ async function savePassword() {
 }
 
 // 회원 탈퇴
-async function deleteAccount() {
+const deleteAccount = async () => {
     if (!user_id) {
         console('사용자 id 없음 (탈퇴)');
         return;
@@ -123,15 +123,15 @@ async function deleteAccount() {
 }
 
 // 모달 여닫는 JS 함수임 (css 도 가져오세요)
-function openModal(type) {
+const openModal = (type) => {
     if (type === 'delete') {
         document.getElementById('deleteModal').style.display = 'flex';
     }
 }
-function closeModal() {
+const closeModal = () => {
     document.getElementById('deleteModal').style.display = 'none';
 }
-async function confirmDelete() {
+const confirmDelete = async () => {
     closeModal(); // 모달 닫기
     try {
         const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
@@ -157,7 +157,7 @@ async function confirmDelete() {
 }
 
 // localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
-async function loadloginProfileImage() {
+const loadloginProfileImage = async () => {
     const user_id = localStorage.getItem("user_id");
 
     if (user_id){

@@ -7,7 +7,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const post_id = urlParams.get('post_id');
 
 // 서버에서 게시물 데이터 가져오기
-async function loadPostData(post_id) {
+const loadPostData = async (post_id) => {
     try {
         const response = await fetch(`http://localhost:3000/api/posts/post?post_id=${post_id}`);
 
@@ -24,7 +24,7 @@ async function loadPostData(post_id) {
     }
 }
 
-async function updatePost(post_id){
+const updatePost = async (post_id) => {
     console.log(post_id); //!!!!!!!!!언디파인 뜸
     const updatedTitle = document.getElementById('title').value.trim();
     const updatedContent = document.getElementById('content').value.trim();
@@ -58,7 +58,7 @@ async function updatePost(post_id){
 
 
 // localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
-async function loadloginProfileImage() {
+const loadloginProfileImage = async () => {
     const user_id = localStorage.getItem("user_id");
 
     if (user_id) {

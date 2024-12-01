@@ -1,63 +1,31 @@
-function PostPage() {
+const PostPage = () => {
     window.location.href = 'postupload.html';     /*게시물작성페이지로이동*/
 }
 
-function goToPostDetail(post_id) {
+const goToPostDetail = (post_id) => {
     window.location.href = `post_detail.html?post_id=${post_id}`;
 }
 
 // 게시글의 좋아요, 댓글, 조회수를 1000 이상일 때 '1k', 10000 이상일 때 '10k', 100000 이상일 때 '100k'로 표시하는 함수
-    function formatNumber(num) {
-        if (num >= 100000) {
-            return Math.floor(num / 1000) + "k";  // 100k 이상
-        } else if (num >= 10000) {
-            return Math.floor(num / 1000) + "k";  // 10k 이상
-        } else if (num >= 1000) {
-            return Math.floor(num / 1000) + "k";  // 1k 이상
-        }
-        return num;  // 1000 미만은 그대로 표시
+const formatNumber = (num) => {
+    if (num >= 100000) {
+        return Math.floor(num / 1000) + "k";  // 100k 이상
+    } else if (num >= 10000) {
+        return Math.floor(num / 1000) + "k";  // 10k 이상
+    } else if (num >= 1000) {
+        return Math.floor(num / 1000) + "k";  // 1k 이상
     }
-
-// JSON 데이터를 불러와 게시글 리스트를 동적으로 생성하는 함수
-// async function loadPosts() {
-//     try {
-//         const response = await fetch('posts.json');
-//         const posts = await response.json();
-        
-//         const postList = document.getElementById("postList");
-//         posts.forEach(post => {
-//             const postbox = document.createElement("div");
-//             postbox.className = "postbox";
-//             postbox.onclick = () => goToPostDetail(post.postid);
-
-//             postbox.innerHTML = `
-//                 <h1>${post.title}</h1>
-//                 <div class="like">
-//                     <p>좋아요 ${formatNumber(post.likes)}</p>
-//                     <p>댓글 ${formatNumber(post.comments)}</p>
-//                     <p>조회수 ${formatNumber(post.views)}</p>
-//                     <p1>${post.date}</p1>
-//                 </div>
-//                 <hr>
-//                 <div class="author">
-//                     <img class="image" src="profile_img.webp"/>
-//                     <p>${post.author}</p>
-//                 </div>
-//             `;
-//             postList.appendChild(postbox);
-//         });
-//     } catch (error) {
-//         console.error("게시글 데이터를 불러오는 데 실패했습니다:", error);
-//     }
-// }
+    return num;  // 1000 미만은 그대로 표시
+}
 
 // 페이지 로딩시 게시물리스트 가져오기
-async function loadPosts() {
+const loadPosts = async () => {
     try {
         // 서버에서 데이터 가져와 get 요청 실행 (게시글 api 주소)
         const offset = 0;
         const limit = 6;
 
+        // 페이징 적용 !
         const response = await fetch(`http://localhost:3000/api/posts?offset=${offset}&limit=${limit}`); 
     // 응답 비정상시 에러 출력
     if (!response.ok) {
@@ -100,6 +68,7 @@ async function loadPosts() {
             <p>작성자: ${post.nickname}</p> <!-- 작성자 ID -->
         </div>
     `;
+    // console.log('프로필이미지 주소 : ', post.profile_img);
     // alt="profile_img.webp"/
     // 생성한 게시글 요소를 HTML 페이지의 'postList' 영역에 추가
     postList.appendChild(postbox);
@@ -110,7 +79,7 @@ async function loadPosts() {
 }
 
 // localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
-async function loadloginProfileImage() {
+const loadloginProfileImage = async () => {
     const user_id = localStorage.getItem("user_id");
 
     if (user_id){
