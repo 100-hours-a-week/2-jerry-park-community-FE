@@ -1,3 +1,78 @@
+let offset = 0; // 현재 데이터의 시작점
+const limit = 6; // 한 번에 불러올 데이터 개수
+let isLoading = false; // 중복 로딩 방지
+let hasMoreData = true; // 서버에서 추가 데이터 있는지
+
+// 페이지 로딩시 게시물리스트 가져오기
+const loadPosts = async () => {
+    try {
+        if (isLoading) return; // 로딩 중이면 중단
+        isLoading = true;
+
+        // 서버에서 데이터 가져와 get 요청 실행 (게시글 api 주소)
+        const response = await fetch(`http://localhost:3000/api/posts?offset=${offset}&limit=${limit}`); 
+        // 응답 비정상시 에러 출력
+        if (!response.ok) {
+            throw new Error(`게시글 읽는 중 에러 발생 : ${response.status}`);
+        }
+        // 서버 변환 데이터 JSON 으로 변환
+        const data = await response.json();
+        console.log('첫번째 가져오는지 ?:', data); // 첫 번째 게시물 가져오니 ?
+        const posts = data.data
+
+        // HTML에서 게시글 목록 표시할 컨테이너 선택
+        const postList = document.getElementById("postList");
+
+        // forEach는 배열의 각 요소에 대해 한 번 씩 콜백함수 실행
+        posts.forEach(post => {   
+            // 각 게시글 감싸는 div 요소 생성
+            const postbox = document.createElement("div");
+
+            // 생선한 div 요소에 클래스 이름 지정(css 적용 위해) 
+            postbox.className = "postbox";
+            
+            // 클릭시 해당 게시글 상세 페이지로 이동
+            postbox.onclick = () => goToPostDetail(post.post_id);
+
+            console.log ('이미지 값 : ', post.profile_img);
+            // 게시글 내용을 HTML로 작성
+            postbox.innerHTML = `
+            <h1>${post.title}</h1> <!-- 게시글 제목 -->
+            <div class="like">
+                <p>좋아요 ${formatNumber(post.likes)}</p> <!-- 좋아요 수 -->
+                <p>조회수 ${formatNumber(post.views)}</p> <!-- 조회수 -->
+                <p>작성일: ${new Date(post.created_time).toLocaleDateString()}</p> <!-- 작성일 -->
+            </div>
+            <hr>
+            <div class="author">
+                <img class="image" src="http://localhost:3000${post.profile_img}" > <!-- 프로필 이미지 -->
+                <p>작성자: ${post.nickname}</p> <!-- 작성자 ID -->
+            </div>
+        `;
+            // console.log('프로필이미지 주소 : ', post.profile_img);
+            // alt="profile_img.webp"/
+            // 생성한 게시글 요소를 HTML 페이지의 'postList' 영역에 추가
+            postList.appendChild(postbox);
+        });
+
+        console.log('offset', offset);
+        offset += limit; // offset 증가
+        isLoading = false;
+    } catch(error) {
+        console.error("게시글 데이터 불러오는 데 실패했습니다 : ", error);
+        isLoading = false;
+    }
+}
+
+// 스크롤 이벤트 핸들러
+const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    // 스크롤이 끝에 도달하면 데이터를 추가로 로드
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+        loadPosts();
+    }
+}
 const PostPage = () => {
     window.location.href = 'postupload.html';     /*게시물작성페이지로이동*/
 }
@@ -16,66 +91,6 @@ const formatNumber = (num) => {
         return Math.floor(num / 1000) + "k";  // 1k 이상
     }
     return num;  // 1000 미만은 그대로 표시
-}
-
-// 페이지 로딩시 게시물리스트 가져오기
-const loadPosts = async () => {
-    try {
-        // 서버에서 데이터 가져와 get 요청 실행 (게시글 api 주소)
-        const offset = 0;
-        const limit = 6;
-
-        // 페이징 적용 !
-        const response = await fetch(`http://localhost:3000/api/posts?offset=${offset}&limit=${limit}`); 
-    // 응답 비정상시 에러 출력
-    if (!response.ok) {
-        throw new Error(`게시글 읽는 중 에러 발생 : ${response.status}`);
-    }
-    // 서버 변환 데이터 JSON 으로 변환
-    const data = await response.json();
-    
-    const posts = data.data
-
-    // HTML에서 게시글 목록 표시할 컨테이너 선택
-    const postList = document.getElementById("postList");
-
-    // 이전에 표시된 게시글 목록 초기화
-    postList.innerHTML = "";
-
-    // forEach는 배열의 각 요소에 대해 한 번 씩 콜백함수 실행
-    posts.forEach(post => {   
-        // 각 게시글 감싸는 div 요소 생성
-        const postbox = document.createElement("div");
-
-        // 생선한 div 요소에 클래스 이름 지정(css 적용 위해) 
-        postbox.className = "postbox";
-        
-        // 클릭시 해당 게시글 상세 페이지로 이동
-        postbox.onclick = () => goToPostDetail(post.post_id);
-
-        console.log ('이미지 값 : ', post.profile_img);
-        // 게시글 내용을 HTML로 작성
-        postbox.innerHTML = `
-        <h1>${post.title}</h1> <!-- 게시글 제목 -->
-        <div class="like">
-            <p>좋아요 ${formatNumber(post.likes)}</p> <!-- 좋아요 수 -->
-            <p>조회수 ${formatNumber(post.views)}</p> <!-- 조회수 -->
-            <p>작성일: ${new Date(post.created_time).toLocaleDateString()}</p> <!-- 작성일 -->
-        </div>
-        <hr>
-        <div class="author">
-            <img class="image" src="http://localhost:3000${post.profile_img}" > <!-- 프로필 이미지 -->
-            <p>작성자: ${post.nickname}</p> <!-- 작성자 ID -->
-        </div>
-    `;
-    // console.log('프로필이미지 주소 : ', post.profile_img);
-    // alt="profile_img.webp"/
-    // 생성한 게시글 요소를 HTML 페이지의 'postList' 영역에 추가
-    postList.appendChild(postbox);
-    });
-    } catch(error) {
-        console.error("게시글 데이터 불러오는 데 실패했습니다 : ", error);
-    }
 }
 
 // localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
@@ -111,4 +126,5 @@ const loadloginProfileImage = async () => {
 window.onload = function() {
     loadPosts();
     loadloginProfileImage();
+    window.addEventListener("scroll", handleScroll); // 스크롤 이벤트 추가
 };
