@@ -17,7 +17,6 @@ const loadPosts = async () => {
         }
         // 서버 변환 데이터 JSON 으로 변환
         const data = await response.json();
-        console.log('첫번째 가져오는지 ?:', data); // 첫 번째 게시물 가져오니 ?
         const posts = data.data
 
         // HTML에서 게시글 목록 표시할 컨테이너 선택
@@ -34,7 +33,7 @@ const loadPosts = async () => {
             // 클릭시 해당 게시글 상세 페이지로 이동
             postbox.onclick = () => goToPostDetail(post.post_id);
 
-            console.log ('이미지 값 : ', post.profile_img);
+            // console.log ('이미지 값 : ', post.profile_img);
             // 게시글 내용을 HTML로 작성
             postbox.innerHTML = `
             <h1>${post.title}</h1> <!-- 게시글 제목 -->
@@ -55,7 +54,7 @@ const loadPosts = async () => {
             postList.appendChild(postbox);
         });
 
-        console.log('offset', offset);
+        // console.log('offset', offset);
         offset += limit; // offset 증가
         isLoading = false;
     } catch(error) {
