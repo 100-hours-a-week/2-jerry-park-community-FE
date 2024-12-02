@@ -71,6 +71,7 @@ body {
 .image {
     width:149px;
     height:149px;
+    border-radius: 100px;
 }
 
 article {

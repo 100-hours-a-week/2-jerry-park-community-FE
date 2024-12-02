@@ -46,7 +46,8 @@ body {
 
 .logintext h2 { /*로그인 글씨*/
 
-    
+    width: 100%;
+    max-width: 363px;
     font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 32px;
@@ -88,7 +89,6 @@ body {
     flex-direction: column;
     row-gap: 8px;
     width: 100%;
-    position: relative;
     
 }
 
@@ -165,4 +165,22 @@ body {
     width: 86px;
     height: 77px;
     
+}
+
+.helperText1{
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.52px;
+    color : #FF0000;
+    margin-top : -24px;
+}
+
+.helperText2{
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.52px;
+    color : #FF0000;
+    margin-top: 3px;
 }
