@@ -241,26 +241,24 @@ body {
     cursor: pointer;
 }
 
+.hidden {
+    display:none;
+}
+
 .dropdown-content {
-    display: none; /*처음에 숨김*/
     position: absolute;
     background-color: #f9f9f9;
     width: 115px;
     height: 105px;
-
-    /* 세로 가운데 정렬을 위한 Flexbox 설정 */
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     box-sizing: border-box; /* 패딩이 박스 크기에 영향을 주지 않음 */
     gap : 15px;
 }
 
 .dropdown-content a {
     color: black;
-
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;

@@ -53,28 +53,35 @@ const saveNickname = async () => {
     }
 }
 
+// 페이지 로드 시 드롭다운 숨기기
+document.addEventListener("DOMContentLoaded", () => {
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    if (dropdownMenu) {
+        dropdownMenu.style.display = "none"; // 페이지 로드 시 드롭다운 숨기기
+    }
+});
+
 // 드롭다운
 const toggleDropdown = () => {
-const dropdownMenu = document.getElementById("dropdownMenu");
-if (dropdownMenu.style.display === "block") {
-    dropdownMenu.style.display = "none";
-} else {
-    dropdownMenu.style.display = "block";
-}
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    dropdownMenu.classList.toggle("hidden"); // 클래스를 토글
+    if (dropdownMenu.style.display === "flex") {
+    } else {
+        dropdownMenu.style.display = "flex";
+    }
 }
 
 // 페이지의 다른 부분을 클릭하면 드롭다운을 닫도록 이벤트 추가
 window.onclick = function(event) {
-
-if (!event.target.matches('.image1')) {
-    const dropdowns = document.getElementsByClassName("dropdown-content");
-    for (let i = 0; i < dropdowns.length; i++) {
-        const openDropdown = dropdowns[i];
-        if (openDropdown.style.display === "block") {
-            openDropdown.style.display = "none";
+    if (!event.target.matches('.image1')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
         }
     }
-}
 }
 
 // 페이지 로딩시 회원정보 가져오기 (post_id 있으면)
