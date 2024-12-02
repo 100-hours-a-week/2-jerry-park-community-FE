@@ -26,7 +26,6 @@ const saveNickname = async () => {
         const checkNickname = await fetch(`http://localhost:3000/api/users/nicknamecheck/${nickname}`);
         if (checkNickname.ok){
             // 닉네임 변경 요청
-            console.log('checkData.ok');
             const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
                 method : 'PUT',
                 headers: {'Content-Type': 'application/json'},
@@ -46,7 +45,7 @@ const saveNickname = async () => {
                     toast.classList.remove("show");}, 2000); // 2초 후 사라짐
             }
         } else {
-            helperText1.innerText = checkData.message;
+            // helperText1.innerText = checkData.message;
         }
     } catch (error) {
         console.error('닉넹미 수정 오류:', error);
