@@ -18,6 +18,7 @@
     <form class = "container" id = "registerForm" enctype="multipart/form-data">
         <h1>회원가입</h1>
         <div class = "profileinfo"> 프로필 사진
+            <p class="helperText1" id = "helperText5"> * helper text </p>
             <div class = "center">
                 <img class="image" id="profile_image" src="profile_img.webp" alt ="프로필 이미지 클릭해서 추가" style = "cursor: pointer;" onclick="document.getElementById('profile_img').click();">
                 <input type = "file" id="profile_img" name="profile_img" accept="image/*" style="display:none;" onchange="previewImage(event)">
@@ -27,22 +28,22 @@
                 <div class="inputBox">
                     <label for="email">이메일*</label>
                     <input type="text" name="email" id="email" placeholder="이메일을 입력하세요">
-                    <p class="helperText" name="email" title="이메일은 영문과 @,.만 사용이 가능함">* helper text</p>
+                    <p class="helperText" id = 'helperText1'>* helper text</p>
                 </div>
                 <div class="inputBox">
                     <label for="pw">비밀번호*</label>
                     <input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요">
-                    <p class="helperText" name="pw">* helper text</p>
+                    <p class="helperText" id = 'helperText2' >* helper text</p>
                 </div>
                 <div class="inputBox">
                     <label for="pwck">비밀번호 확인*</label>
                     <input type="password" name="pw" id="pwck" placeholder="비밀번호를 한번 더 입력하세요">
-                    <p class="helperText" name="pwck">* helper text</p>
+                    <p class="helperText" id = 'helperText3'>* helper text</p>
                 </div>
                 <div class="inputBox">
                     <label for="nickname">닉네임*</label>
                     <input type="text" name="nickname" id="nickname" placeholder="닉네임을 입력해 주세요">
-                    <p class="helperText" name="nickname">*helper text</p>
+                    <p class="helperText" id = 'helperText4'>* helper text</p>
                 </div>
                 <div class="buttons">
                     <button type = "submit" id="signupBtn" >회원 가입</button>

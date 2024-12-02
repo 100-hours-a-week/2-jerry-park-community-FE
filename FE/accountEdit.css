@@ -214,7 +214,6 @@ body {
     transition: visibility 0s, opacity 0.5s ease;
     margin-top : 30px;
     text-align: center;
-
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 18px;
@@ -232,9 +231,6 @@ body {
     visibility: visible;
     opacity: 1;
 }
-
-
-
 
 .dropdown {
     position: relative;
@@ -273,4 +269,79 @@ body {
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+}
+
+/* 모달 배경 스타일 */
+.deletemodal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed; /* 고정 위치 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+    width: 100%; /* 전체 화면 너비 */
+    height: 100%; /*전체 화면 높이*/
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+}
+
+/* 모달 내용 스타일 */
+.modalcontent {
+    background-color:white; /*흰색 배경*/
+    margin: 15% auto; /* 화면 중앙에 위치 */
+    border-radius: 15px;
+    width: 408px; /* 너비 설정 */
+    height:242px;
+}
+
+.modalcontent {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalbutton {
+    width:100%;
+    height:44px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:20px;   /* 버튼사이의 간격 */
+    margin-top:20px;
+    
+}
+
+.modalbutton button {
+    width:127px;
+    height:44px;
+    border:none;
+    border-radius: 15px;
+
+    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23.87px;
+    text-align: center;
+
+    cursor: pointer; /* 포인터 변경 */
+    
+}
+.confirmButton {
+    background-color: #ACA0EB;
+    color:black;
+}
+.cancleButton{
+    background-color: black;
+    color:white;
+}
+.modalcontent h1 {
+    font-family: 'Pretendard-Regular';      /*게시물을삭제? 글씨*/
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28.64px;
+    text-align: center;
+}
+.modalcontent p1 {
+    font-family: 'Pretendard-Regular';      /* 삭제된 내용은~글씨 */
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23.87px;
+    text-align: center;
 }

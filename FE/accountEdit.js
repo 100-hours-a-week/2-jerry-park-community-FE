@@ -3,36 +3,53 @@ const user_id = localStorage.getItem('user_id');
 
 // 닉네임 변경 (회원정보)
 const saveNickname = async () => {
+    const helperText1 = document.getElementById('helperText1');
+    helperText1.innerText = "* helper text";
     // 텍스트 상자에서 nickname 가져옴
     const nickname = document.getElementById('nickname').value;
     console.log('클라에서 수정할 닉넴 : ', nickname);
     console.log('로컬에 저장된 user_id 수정', user_id);
 
+    // 닉네임 입력 공란
     if (!nickname.trim()) {
-        alert('닉네임을 입력해주세요.');
+        helperText1.innerText = "* 닉네임을 입력해주세요.";
         return;
     }
+    // 닉네임 11자 이상 작성시
+    if (nickname.length > 10) {
+        helperText1.innerText = "* 닉네임은 최대 10자 까지 작성 가능합니다.";
+        return
+    }
+    // 유효성 검사 성공시 try문 실행
     try {
-        const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
-            method : 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            credentials: 'include', // 쿠키 전달 허용
-            body: JSON.stringify({ nickname })
-            
-        });
+        // 닉네임 중복검사 get 요청
+        const checkNickname = await fetch(`http://localhost:3000/api/users/nicknamecheck/${nickname}`);
+        if (checkNickname.ok){
+            // 닉네임 변경 요청
+            console.log('checkData.ok');
+            const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
+                method : 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                credentials: 'include', // 쿠키 전달 허용
+                body: JSON.stringify({ nickname })    
+            });
+            if (!response.ok) {
+                throw new Error('닉네임 수정 실패');
+            }
 
-        if (!response.ok) {
-            throw new Error('닉네임 수정 실패');
+            // 수정 성공시 토스트 메시지
+            const toast = document.getElementById("toast");
+            // 일정 시간 후 토스트 메시지 숨기기
+            if (toast) {
+                toast.classList.add("show");
+                setTimeout(() => {
+                    toast.classList.remove("show");}, 2000); // 2초 후 사라짐
+            }
+        } else {
+            helperText1.innerText = checkData.message;
         }
-        // 수정 성공시
-        const toast = document.getElementById("toast");
-        toast.classList.add("show");
-        // 일정 시간 후 토스트 메시지 숨기기
-        setTimeout(() => {
-        toast.classList.remove("show");}, 2000); // 2초 후 사라짐
     } catch (error) {
         console.error('닉넹미 수정 오류:', error);
-        alert('닉네임 수정 중 오류 발생');
     }
 }
 
@@ -87,31 +104,6 @@ if (user_id) {
     console.error('user_id가 없습니다. user_id : ', user_id);
 }
 
-// 비밀번호 변경
-const savePassword = async () => {
-    try {
-        const response = await fetch(`http://localhost:3000/api/users/${user_id}/password`, {
-            method : 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                newPassword: newPassword,
-                confirmPassword: confirmPassword,
-            }),
-        });
-        const data = await response.json();
-
-        if (response.ok){
-            console.log(data.message);
-        }else {
-            console.log(data.message);
-        }
-    } catch (err) {
-        console.error('비밀번호 수정 오류:', err);
-    }
-}
-
 // 회원 탈퇴
 const deleteAccount = async () => {
     if (!user_id) {
@@ -122,7 +114,7 @@ const deleteAccount = async () => {
     
 }
 
-// 모달 여닫는 JS 함수임 (css 도 가져오세요)
+// 모달 여닫는 JS 함수임
 const openModal = (type) => {
     if (type === 'delete') {
         document.getElementById('deleteModal').style.display = 'flex';

@@ -5,18 +5,28 @@ const nextPage = () => {
     // localStorage에서 user_id 가져오기
     const user_id = localStorage.getItem('user_id');
 
-    // 비밀번호 확인 일치 (유효성)
-    if (newPassword !== confirmPassword) {
-        alert('비밀번호 일치 X');
+    // 비밀번호 비웠을시
+    if (!newPassword){
+        helperText1.innerText = "* 비밀번호를 입력해주세요";
         return;
     }
-
-    // 비밀번호 비웠을시
-    if (!newPassword || !confirmPassword){
-        alert('비밀번호를 입력해주세요.');
+    if (!confirmPassword) {
+        helperText2.innerText = "* 비밀번호를 한번 더 입력해주세요";
+        return;
+    }
+    // 비밀번호 확인 일치 (유효성)
+    if (newPassword !== confirmPassword) {
+        helperText1.innerText = "* 비밀번호 확인과 다릅니다.";
         return;
     }
     
+    // 비밀번호 유효성 검사
+    const passwordok = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+    if (!passwordok.test(newPassword)) {
+        helperText1.innerText = "* 비밀번호는 8자 이상, 20자 이하, 대문자, 소문자, 숫자, 특수문자를 각각 1개 이상 포함해야 합니다.";
+        return;
+    }
+
     fetch(`http://localhost:3000/api/users/${user_id}/password`, {
         method : 'PUT',
         headers: {
@@ -30,8 +40,14 @@ const nextPage = () => {
     .then(response => response.json())
     .then(data=> {
         if (data.message) {  // 응답의 message를 확인
-            alert(data.message);  // 메시지 출력
-            window.location.href = "accountEdit.html";  // 수정 완료 후 페이지 이동
+            // 수정 성공시 토스트 메시지
+            const toast = document.getElementById("toast");
+            // 일정 시간 후 토스트 메시지 숨기기
+            if (toast) {
+                toast.classList.add("show");
+                setTimeout(() => {
+                    toast.classList.remove("show");}, 2000); // 2초 후 사라짐
+            }
         } else {
             alert('비밀번호 수정에 실패했습니다.');
         }

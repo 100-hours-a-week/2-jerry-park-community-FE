@@ -40,22 +40,17 @@
                 <input type="text" class = "nicknameinput" id='nickname' placeholder="스타트업코드" >
             </div>
             <div class="helpertextbox">
-                <!-- <p class="helperText">* helper text</p> -->
+                <p class="helperText" id = 'helperText1'>* helper text</p>
             </div>
             <div class = "buttonBox">
                 <button class="sujungButton" onclick="saveNickname()"> 수정하기 </button>
                 <p id="deleteAccount" style = "cursor:pointer;" onclick = "deleteAccount()"> 회원 탈퇴 </p>
                 <div id="toast" class="toast">수정 완료</div>
             </div>
-
-            <!-- 토스트 메세지 -->
-            <div id="toast" class="toast">수정 완료</div>
-            
-
         </div>
     </section>
 
-     <!-- 게시물 삭제 모달 -->
+     <!-- 회원 삭제 모달 -->
      <div id="deleteModal" class="deletemodal">
         <div class="modalcontent">
             <h1>회원탈퇴 하시겠습니까?</h1>
