@@ -53,10 +53,6 @@ const saveNickname = async () => {
     }
 }
 
-const nextPage1 = () => {
-    window.location.href = "postlist.html";
-}
-
 // 드롭다운
 const toggleDropdown = () => {
 const dropdownMenu = document.getElementById("dropdownMenu");
