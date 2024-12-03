@@ -9,3 +9,4 @@ app.use(express.static('FE'));
 app.listen(port, () => {
     console.log(`프론트 서버 시작 : http://localhost:${port}`);
 });
+console.log('현재 작업 디렉토리:', process.cwd());
