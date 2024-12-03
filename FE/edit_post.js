@@ -1,10 +1,24 @@
-// function nextPage() {
-// window.location.href = "post_detail.html"; //이동할 페이지
-// }   
-
 // url에서 post_id 파라미터 가져옴
 const urlParams = new URLSearchParams(window.location.search);
 const post_id = urlParams.get('post_id');
+
+// 세션에서 user_id 가져오기
+const getUserid = async () => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/users/session`, {
+            method : 'GET',
+            credentials : 'include',
+        });
+        if (!response.ok) {
+            throw new Error('세션 정보 없음');
+        }
+        const sessionData = await response.json();
+        return sessionData.user_id;
+    } catch (err) {
+        console.error('세션 정보 오류', err);
+        throw err;
+    }
+} 
 
 // 서버에서 게시물 데이터 가져오기
 const loadPostData = async (post_id) => {
@@ -59,7 +73,8 @@ const updatePost = async (post_id) => {
 
 // localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
 const loadloginProfileImage = async () => {
-    const user_id = localStorage.getItem("user_id");
+    // 세션에서 user_id 가져오기
+    const user_id = await getUserid();  
 
     if (user_id) {
         try {
