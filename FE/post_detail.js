@@ -1,3 +1,21 @@
+// 세션에서 user_id 가져오기
+const getUserid = async () => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/users/session`, {
+            method : 'GET',
+            credentials : 'include',
+        });
+        if (!response.ok) {
+            throw new Error('세션 정보 없음');
+        }
+        const sessionData = await response.json();
+        return sessionData.user_id;
+    } catch (err) {
+        console.error('세션 정보 오류', err);
+        throw err;
+    }
+} 
+
 // 게시물 삭제 모달 여닫는 JS 함수임
 const openModal = (type) => {
     if (type === 'delete') {
@@ -7,7 +25,6 @@ const openModal = (type) => {
 const closeModal = () => {
     document.getElementById('deleteModal').style.display = 'none';
 }
-
 
 // 댓글 삭제 모달 여닫는 JS 함수
 const openCommentDeleteModal = (comment_id) => {
@@ -218,7 +235,7 @@ const formatDate = (dateStr) => {
 }
 
 // 댓글 작성하기 버튼 누르면 댓글 작성
-const commentUp = () => {
+const commentUp = async () => {
     // 댓글 내용 가져오기 (앞뒤 공백 제거)
     const commentContent = document.getElementById('comment').value.trim();
 
@@ -234,9 +251,8 @@ const commentUp = () => {
         return;
     }
 
-    // user_id 저장한 곳 어디더라.... getItem(user_id 저장된 키값이름)
-    // localStorage에 저장한 사용자 정보 가져오기
-    const user_id = localStorage.getItem('user_id');
+    // 세션에서 user_id 가져오기
+    const user_id = await getUserid();
 
     // 유저 아이디 없으면 알림 띄우고 함수 종료
     if (!user_id) {
@@ -344,7 +360,8 @@ const confirmDelete = async (post_id) => {
 
 // localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
 const loadloginProfileImage = async () => {
-    const user_id = localStorage.getItem("user_id");
+    // 세션에서 user_id 가져오기
+    const user_id = await getUserid();
 
     if (user_id) {
         try {
