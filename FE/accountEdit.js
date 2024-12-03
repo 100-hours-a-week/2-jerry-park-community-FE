@@ -37,7 +37,7 @@ const saveNickname = async () => {
             if (response.status === 401){
                 alert('로그인 후 닉네임 변경해주세요.');
             }
-            
+
             if (!response.ok) {
                 throw new Error('닉네임 수정 실패');
             }
@@ -139,6 +139,7 @@ const openModal = (type) => {
 const closeModal = () => {
     document.getElementById('deleteModal').style.display = 'none';
 }
+// 모달에서 회원탈퇴 확인 버튼 누를 시
 const confirmDelete = async () => {
     closeModal(); // 모달 닫기
     try {
