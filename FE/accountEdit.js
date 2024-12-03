@@ -114,6 +114,8 @@ async function loadUserData() {
         const profile_img1 = document.getElementById("profile_img");
         profile_img.src = `http://localhost:3000${userData.profile_img}`;
         profile_img1.src = `http://localhost:3000${userData.profile_img}`;
+        console.log('userData 값 :',userData);
+        console.log('userData.profile_img 값 : ',userData.profile_img);
     } catch(error) {
         console.error('사용자 정보 로드 오류 : ', error);
     }
