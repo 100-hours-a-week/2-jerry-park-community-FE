@@ -1,5 +1,20 @@
-// 로컬에서 user_id 가져오기
-const user_id = localStorage.getItem('user_id');
+// 세션에서 user_id 가져오기
+const getUserid = async () => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/users/session`, {
+            method : 'GET',
+            credentials : 'include',
+        });
+        if (!response.ok) {
+            throw new Error('세션 정보 없음');
+        }
+        const sessionData = await response.json();
+        return sessionData.user_id;
+    } catch (err) {
+        console.error('세션 정보 오류', err);
+        throw err;
+    }
+} 
 
 // 닉네임 변경 (회원정보)
 const saveNickname = async () => {
@@ -8,7 +23,9 @@ const saveNickname = async () => {
     // 텍스트 상자에서 nickname 가져옴
     const nickname = document.getElementById('nickname').value;
     console.log('클라에서 수정할 닉넴 : ', nickname);
-    console.log('로컬에 저장된 user_id 수정', user_id);
+    
+    // 세션에서 user_id 가져오기
+    const user_id = await getUserid();
 
     // 닉네임 입력 공란
     if (!nickname.trim()) {
@@ -94,6 +111,8 @@ window.onclick = function(event) {
 // users 정보 가져오기
 async function loadUserData() {
     try {
+        // 세션에서 user_id 가져오기
+        const user_id = await getUserid();
         const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
             method : 'GET',
             credentials: 'include',
@@ -114,8 +133,8 @@ async function loadUserData() {
         const profile_img1 = document.getElementById("profile_img");
         profile_img.src = `http://localhost:3000${userData.profile_img}`;
         profile_img1.src = `http://localhost:3000${userData.profile_img}`;
-        console.log('userData 값 :',userData);
-        console.log('userData.profile_img 값 : ',userData.profile_img);
+        // console.log('userData 값 :',userData);
+        // console.log('userData.profile_img 값 : ',userData.profile_img);
     } catch(error) {
         console.error('사용자 정보 로드 오류 : ', error);
     }
@@ -145,6 +164,9 @@ const closeModal = () => {
 const confirmDelete = async () => {
     closeModal(); // 모달 닫기
     try {
+        // 세션에서 user_id 가져오기
+        const user_id = await getUserid();
+
         const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
             method: 'DELETE',
             headers: {
