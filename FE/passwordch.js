@@ -1,9 +1,27 @@
-const nextPage = () => {
+// 세션에서 user_id 가져오기
+const getUserid = async () => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/users/session`, {
+            method : 'GET',
+            credentials : 'include',
+        });
+        if (!response.ok) {
+            throw new Error('세션 정보 없음');
+        }
+        const sessionData = await response.json();
+        return sessionData.user_id;
+    } catch (err) {
+        console.error('세션 정보 오류', err);
+        throw err;
+    }
+} 
+
+const nextPage = async () => {
     const newPassword = document.querySelector('.passwordInputBox').value;
     const confirmPassword = document.querySelector('.passwordInputBox1').value;
 
-    // localStorage에서 user_id 가져오기
-    const user_id = localStorage.getItem('user_id');
+    // 세션에서 user_id 가져오기
+    const user_id = await getUserid();
 
     // 비밀번호 비웠을시
     if (!newPassword){
@@ -60,7 +78,8 @@ const nextPage = () => {
 
 // localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
 const loadloginProfileImage = async () => {
-    const user_id = localStorage.getItem("user_id");
+    // 세션에서 user_id 가져오기
+    const user_id = await getUserid();
 
     if (user_id){
         try {
