@@ -6,6 +6,8 @@ const getUserid = async () => {
             credentials : 'include',
         });
         if (!response.ok) {
+            alert('로그인 후 이용해주세요 !');
+            window.location.href = 'index.html'
             throw new Error('세션 정보 없음');
         }
         const sessionData = await response.json();
