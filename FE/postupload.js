@@ -19,17 +19,34 @@ function updateButtonState() {
 titleInput.addEventListener('input',updateButtonState);
 content.addEventListener('input',updateButtonState);
 
+// 세션에서 user_id 가져오기
+const getUserid = async () => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/users/session`, {
+            method : 'GET',
+            credentials : 'include',
+        });
+        if (!response.ok) {
+            throw new Error('세션 정보 없음');
+        }
+        const sessionData = await response.json();
+        return sessionData.user_id;
+    } catch (err) {
+        console.error('세션 정보 오류', err);
+        throw err;
+    }
+} 
+
 const uploadPost = async (event) => {
     event.preventDefault(); // 폼 기본 동작 방지
-
     // 제목, 내용 안 비었는지 검사
     if (titleInput.value.trim() === '' || contentInput.value.trim()===''){
         alert("*제목, 내용을 모두 작성해주세요");
         return; //함수 종료
     }
 
-    // user_id 가져와서 로그인 한 경우만 글 작성할 수 있도록
-    const user_id = localStorage.getItem('user_id');
+    // 세션에서 user_id 가져오기
+	const user_id = await getUserid();
     // console.log('작성하려는 user_id :',user_id);
     if(!user_id){
         alert('로그인 후 글 작성해주세요');
@@ -80,7 +97,8 @@ postForm.addEventListener('submit',uploadPost);
 
 // localStorage 에서 user_id 가져와서 프로필 이미지 가져오기
 const loadloginProfileImage = async () => {
-    const user_id = localStorage.getItem("user_id");
+    // 세션에서 user_id 가져오기
+	const user_id = await getUserid();
 
     if (user_id) {
         try {
