@@ -20,9 +20,6 @@ const nextPage = async () => {
     const newPassword = document.querySelector('.passwordInputBox').value;
     const confirmPassword = document.querySelector('.passwordInputBox1').value;
 
-    // 세션에서 user_id 가져오기
-    const user_id = await getUserid();
-
     // 비밀번호 비웠을시
     if (!newPassword){
         helperText1.innerText = "* 비밀번호를 입력해주세요";
@@ -44,6 +41,9 @@ const nextPage = async () => {
         helperText1.innerText = "* 비밀번호는 8자 이상, 20자 이하, 대문자, 소문자, 숫자, 특수문자를 각각 1개 이상 포함해야 합니다.";
         return;
     }
+
+    // 세션에서 user_id 가져오기
+    const user_id = await getUserid();
 
     fetch(`http://localhost:3000/api/users/${user_id}/password`, {
         method : 'PUT',
