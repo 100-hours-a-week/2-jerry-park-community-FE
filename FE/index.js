@@ -52,7 +52,7 @@ const submitForm = () => {
         }
     })
     .catch((err) => {
-        console.error('로그인 요청 중 오류 발생: '.err);
+        console.error('로그인 요청 중 오류 발생: ',err);
         alert('로그인 오류 발생');
     });
 
