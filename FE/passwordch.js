@@ -23,15 +23,18 @@ const nextPage = async () => {
     // 비밀번호 비웠을시
     if (!newPassword){
         helperText1.innerText = "* 비밀번호를 입력해주세요";
+        helperText1.style.display = "block"; // Helper text 표시
         return;
     }
     if (!confirmPassword) {
         helperText2.innerText = "* 비밀번호를 한번 더 입력해주세요";
+        helperText2.style.display = "block"; // Helper text 표시
         return;
     }
     // 비밀번호 확인 일치 (유효성)
     if (newPassword !== confirmPassword) {
         helperText1.innerText = "* 비밀번호 확인과 다릅니다.";
+        helperText1.style.display = "block"; // Helper text 표시
         return;
     }
     
@@ -39,6 +42,7 @@ const nextPage = async () => {
     const passwordok = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
     if (!passwordok.test(newPassword)) {
         helperText1.innerText = "* 비밀번호는 8자 이상, 20자 이하, 대문자, 소문자, 숫자, 특수문자를 각각 1개 이상 포함해야 합니다.";
+        helperText1.style.display = "block"; // Helper text 표시
         return;
     }
 
