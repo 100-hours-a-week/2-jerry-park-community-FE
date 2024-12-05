@@ -27,13 +27,12 @@ const getUserid = async () => {
             credentials : 'include',
         });
         if (!response.ok) {
-            throw new Error('세션 정보 없음');
+            console.error('세션 정보 없음');
         }
         const sessionData = await response.json();
         return sessionData.user_id;
     } catch (err) {
         console.error('세션 정보 오류', err);
-        throw err;
     }
 } 
 
@@ -77,16 +76,16 @@ const uploadPost = async (event) => {
             body: formData,
         });
 
-    //서버 응답 확인
-    if (response.ok) {
-        console.log('게시글 작성찐성공페이지이동돼야함');
-        window.location.href = 'postlist.html';
-        alert('게시글 작성 성공');
-    } else {
-        // 응답 상태 200 아니면 실패로 간주
-        const errorData = await response.json();
-        console.log('게시글 작성 실패 :', errorData.message);
-    }
+        //서버 응답 확인
+        if (response.ok) {
+            console.log('게시글 작성찐성공페이지이동돼야함');
+            window.location.href = 'postlist.html';
+            alert('게시글 작성 성공');
+        } else {
+            // 응답 상태 200 아니면 실패로 간주
+            const errorData = await response.json();
+            console.log('게시글 작성 실패 :', errorData.message);
+        }
     }catch (error) {
         console.error('서버와 통신 실패', error);
     }   
