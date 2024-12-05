@@ -148,6 +148,8 @@ async function loadUserData() {
 
 // 회원 탈퇴
 const deleteAccount = async () => {
+    // 세션에서 user_id 가져오기
+    const user_id = await getUserid();
     if (!user_id) {
         console('사용자 id 없음 (탈퇴)');
         return;
