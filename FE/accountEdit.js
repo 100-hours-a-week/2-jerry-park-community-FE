@@ -43,8 +43,9 @@ const saveNickname = async () => {
     // 유효성 검사 성공시 try문 실행
     try {
         // 닉네임 중복검사 get 요청
-        const checkNickname = await fetch(`http://localhost:3000/api/users/nicknamecheck/${nickname}`);
-        if (checkNickname.ok){
+        const checkNicknameResponse = await fetch(`http://localhost:3000/api/users/nicknamecheck/${nickname}`);
+        const checkNicknameData = await checkNicknameResponse.json(); // 응답을 json으로
+        if (checkNicknameResponse.ok){
             // 닉네임 변경 요청
             const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
                 method : 'PUT',
@@ -71,7 +72,9 @@ const saveNickname = async () => {
                     toast.classList.remove("show");}, 2000); // 2초 후 사라짐
             }
         } else {
-            // helperText1.innerText = checkData.message;
+            // 닉네임 중복시 출력
+            console.log('checkNickname: ',checkNicknameData);
+            helperText1.innerText = checkNicknameData.message;
         }
     } catch (error) {
         console.error('닉넹미 수정 오류:', error);
