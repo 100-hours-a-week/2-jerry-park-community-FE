@@ -21,7 +21,6 @@ const getUserid = async () => {
 // 닉네임 변경 (회원정보)
 const saveNickname = async () => {
     const helperText1 = document.getElementById('helperText1');
-    helperText1.innerText = "* helper text";
     // 텍스트 상자에서 nickname 가져옴
     const nickname = document.getElementById('nickname').value;
     console.log('클라에서 수정할 닉넴 : ', nickname);
@@ -32,11 +31,13 @@ const saveNickname = async () => {
     // 닉네임 입력 공란
     if (!nickname.trim()) {
         helperText1.innerText = "* 닉네임을 입력해주세요.";
+        helperText1.style.display = "block"; // Helper text 표시
         return;
     }
     // 닉네임 11자 이상 작성시
     if (nickname.length > 10) {
         helperText1.innerText = "* 닉네임은 최대 10자 까지 작성 가능합니다.";
+        helperText1.style.display = "block"; // Helper text 표시
         return
     }
 
@@ -75,6 +76,7 @@ const saveNickname = async () => {
             // 닉네임 중복시 출력
             console.log('checkNickname: ',checkNicknameData);
             helperText1.innerText = checkNicknameData.message;
+            helperText1.style.display = "block"; // Helper text 표시
         }
     } catch (error) {
         console.error('닉넹미 수정 오류:', error);

@@ -142,6 +142,8 @@ body {
     
 }
 .helperText {
+    
+    display: none;
     color:#FF0000;
     font-family: 'Pretendard-Regular';
     font-weight: 400;
@@ -149,6 +151,7 @@ body {
     line-height: 14.52px;
 }
 .helpertextbox{
+    height: 33Px;
     margin-top: -25px;
     width:100%;
 }
