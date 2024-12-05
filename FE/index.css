@@ -167,6 +167,7 @@ body {
 }
 
 .helperText1{
+    display: none;
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
@@ -176,6 +177,7 @@ body {
 }
 
 .helperText2{
+    display: none;
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;

@@ -56,10 +56,16 @@ body {
 }
 
 .profileinfo {
+    position: relative;
     width: 360px;
     height: 206px;
     display: flex;
     flex-direction: column;
+    font-family: 'Pretendard-Regular';
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 17.9px;
+    /* text-align: center; */
 }
 
 .center {
@@ -69,9 +75,12 @@ body {
 }
 
 .image {
+    position: absolute;
+    top : 30%;
     width:149px;
     height:149px;
     border-radius: 100px;
+    
 }
 
 article {
@@ -154,15 +163,10 @@ button.disabled {
 
 }
 
-.profileinfo {
-    font-family: 'Pretendard-Regular';
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 17.9px;
-    /* text-align: center; */
-}
+
 
 #helperText1{
+    display: none;
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
@@ -171,6 +175,7 @@ button.disabled {
     margin-top : 0px;
 }
 #helperText2{
+    display: none;
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
@@ -179,6 +184,7 @@ button.disabled {
     margin-top : 0px;
 }
 #helperText3{
+    display: none;
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
@@ -187,6 +193,7 @@ button.disabled {
     margin-top : 0px;
 }
 #helperText4{
+    display: none;
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
@@ -195,6 +202,10 @@ button.disabled {
     margin-top : 0px;
 }
 #helperText5{
+    position: absolute;
+    top: 8%; /* 부모 요소의 아래로 배치 */
+    display: none;
+    height: 14px; /* 고정 높이 설정 */
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;

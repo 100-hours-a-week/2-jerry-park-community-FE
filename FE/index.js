@@ -8,27 +8,29 @@ const submitForm = () => {
     var emailHelper = document.getElementById('helperText1');
     var passwordHelper = document.getElementById('helperText2');
 
-    emailHelper.innerText = "* helper text";
-    passwordHelper.innerText = "* helper text";
-
     // 이메일 유효성 검사
     if(!email){
         emailHelper.innerText = "* 이메일을 입력해주세요.";
+        emailHelper.style.display = "block"; // Helper text 표시
         return false;
     }else if(email.length<5){
         emailHelper.innerText = ("* 이메일이 너무 짧습니다.");
+        emailHelper.style.display = "block"; // Helper text 표시
         return false;
     }else if(!emailPattern.test(email)){ //test() 정규표현식 메서드 매개변수 검사
         emailHelper.innerText = ("* 올바른 이메일 주소 형식을 입력해주세요.");
+        emailHelper.style.display = "block"; // Helper text 표시
         return false;
     } 
     
     // 비밀번호 유효성 검사
     if (!password) {
         passwordHelper.innerText = ("* 비밀번호를 입력해주세요");
+        passwordHelper.style.display = "block"; // Helper text 표시
         return false;
     } else if(!passwordPattern.test(password)){
         passwordHelper.innerText = ("* 비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.");
+        passwordHelper.style.display = "block"; // Helper text 표시
         return false;
     } 
     fetch('http://localhost:3000/api/users/login',{

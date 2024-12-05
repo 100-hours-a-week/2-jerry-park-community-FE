@@ -16,53 +16,78 @@ document.getElementById("signupBtn").onclick = function(event) {
     const pwckHelper = document.getElementById('helperText3');
     const nicknameHelper = document.getElementById('helperText4');
     const profileImgHelper = document.getElementById('helperText5');
-
-    // Helper Text 초기화
-    emailHelper.innerText = "* helper text";
-    pwHelper.innerText = "* helper text";
-    pwckHelper.innerText = "* helper text";
-    nicknameHelper.innerText = "* helper text";
-    profileImgHelper.innerText = "* helper text";
-
+    
     // 유효성 검사
+    let isValid = true;
+
     if (!email) {
         emailHelper.innerText = "* 이메일을 입력해주세요.";
-        return false;
+        emailHelper.style.display = "block"; // Helper text 표시
+        isValid = false;
     } else if (email.length < 5 || !emailPattern.test(email)) {
         emailHelper.innerText = "* 올바른 이메일 주소 형식을 입력해주세요. (예: example@example.com)";
-        return false;
+        emailHelper.style.display = "block"; // Helper text 표시
+        isValid = false;
+    } else { // 유효할 시 helpertext 다시 숨기기
+        emailHelper.style.display = "none";
     }
 
     if (!password) {
         pwHelper.innerText = "* 비밀번호를 입력해주세요.";
-        return false;
+        pwHelper.style.display = "block"; // Helper text 표시
+        isValid = false;
     } else if (!passwordPattern.test(password)) {
         pwHelper.innerText = "* 비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.";
-        return false;
+        pwHelper.style.display = "block"; // Helper text 표시
+        isValid = false;
+    } else { // 유효할 시 helpertext 다시 숨기기
+        pwHelper.style.display = "none";
     }
 
     if (!confirmPassword) {
         pwckHelper.innerText = "* 비밀번호를 한번 더 입력해주세요.";
-        return false;
+        pwckHelper.style.display = "block"; // Helper text 표시
+        isValid = false;
     } else if (password !== confirmPassword) {
         pwckHelper.innerText = "* 비밀번호가 다릅니다.";
-        return false;
+        pwckHelper.style.display = "block"; // Helper text 표시
+        isValid = false;
+    } else { // 유효할 시 helpertext 다시 숨기기
+        pwckHelper.style.display = "none";
     }
+
 
     if (!nickname) {
         nicknameHelper.innerText = "* 닉네임을 입력해주세요.";
-        return false;
+        nicknameHelper.style.display = "block"; // Helper text 표시
+        isValid = false;
     } else if (nickname.length > 10) {
         nicknameHelper.innerText = "* 닉네임은 최대 10자까지 작성 가능합니다.";
-        return false;
+        nicknameHelper.style.display = "block"; // Helper text 표시
+        isValid = false;
     } else if (/\s/.test(nickname)) {
         nicknameHelper.innerText = "* 띄어쓰기를 없애주세요.";
-        return false;
+        nicknameHelper.style.display = "block"; // Helper text 표시
+        isValid = false;
+    } else { // 유효할 시 helpertext 다시 숨기기
+        nicknameHelper.style.display = "none";
     }
+
+
     if (!profile_img) {
         profileImgHelper.innerText = "* 프로필 사진을 추가해주세요.";
+        profileImgHelper.style.display = "block"; // Helper text 표시
+        isValid = false;
+    } else { // 유효할 시 helpertext 다시 숨기기
+        profileImgHelper.style.display = "none";
+    }
+
+
+    // 하나라도 유효하지 않으면 폼 제출 X
+    if (!isValid) {
         return false;
     }
+
     // 유효성 검사 성공 시
     const formData = new FormData();
     formData.append('email', email);
