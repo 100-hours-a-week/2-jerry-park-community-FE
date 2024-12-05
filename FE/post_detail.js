@@ -38,7 +38,7 @@ function closeCommentDeleteModal() {
     document.getElementById('commentDeleteModal').style.display = 'none';
 }
 
-// 모달에서 삭제 버튼 확정시 (게시글 삭제)
+// 모달에서 삭제 버튼 확정시 (댓글 삭제)
 const confirmCommentDelete = (comment_id) => {
     console.log('삭제할 commentid : ', comment_id);
     fetch(`http://localhost:3000/api/posts/comments/${comment_id}`, {
