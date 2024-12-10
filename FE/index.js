@@ -44,8 +44,6 @@ const submitForm = () => {
         .then(response => response.json())
         .then(data => {
         if (data.message === '로그인 성공') {
-            // 성공시, user_id 를 localstorage에 저장
-            localStorage.setItem('user_id', data.user_id);
             // 로그인 성공 시, postlist.html으로 이동
             window.location.href = "postlist.html";
         } else {
