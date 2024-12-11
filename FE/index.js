@@ -18,26 +18,28 @@ const validateInputs = () => {
     // 이메일 유효성 검사
     if(!email){
         emailHelper.innerText = "* 이메일을 입력해주세요.";
-        emailHelper.style.display = "block"; // Helper text 표시
+        emailHelper.classList.add("visible"); // 헬퍼 텍스트 표시
     }else if(email.length<5){
         emailHelper.innerText = ("* 이메일이 너무 짧습니다.");
-        emailHelper.style.display = "block"; // Helper text 표시
+        emailHelper.classList.add("visible"); // 헬퍼 텍스트 표시
     }else if(!emailPattern.test(email)){ //test() 정규표현식 메서드 매개변수 검사
         emailHelper.innerText = ("* 올바른 이메일 주소 형식을 입력해주세요.");
-        emailHelper.style.display = "block"; // Helper text 표시
+        emailHelper.classList.add("visible"); // 헬퍼 텍스트 표시
     } else {
-        emailHelper.style.display = "none"; // 유효한 경우 메시지 숨김
+        emailHelper.innerText = ""; // 메시지 초기화
+        emailHelper.classList.remove("visible"); // 헬퍼 텍스트 숨김
         isEmailValid = true;
     }
     // 비밀번호 유효성 검사
     if (!password) {
         passwordHelper.innerText = ("* 비밀번호를 입력해주세요");
-        passwordHelper.style.display = "block"; // Helper text 표시
+        passwordHelper.classList.add("visible"); // 헬퍼 텍스트 표시
     } else if(!passwordPattern.test(password)){
         passwordHelper.innerText = ("* 비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.");
-        passwordHelper.style.display = "block"; // Helper text 표시
+        passwordHelper.classList.add("visible");
     } else {
-        passwordHelper.style.display = "none"; // 유효한 경우 메시지 숨김
+        passwordHelper.innerText = "";
+        passwordHelper.classList.remove("visible"); // 헬퍼 텍스트 숨김
         isPasswordValid = true;
     }
     // 버튼 활성화/비활성화

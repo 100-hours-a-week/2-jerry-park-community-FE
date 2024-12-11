@@ -160,26 +160,36 @@ body {
 
 .header h2 {
     width: 86px;
-    height: 77px;
-    
+    height: 77px; 
 }
 
-.helperText1{
-    display: none;
+#helperText1{
+    height: 16px; /* 헬퍼 텍스트 높이를 고정 */
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
     line-height: 14.52px;
     color : #FF0000;
-    margin-top : -24px;
+    margin-top : -10px;
 }
 
-.helperText2{
-    display: none;
+#helperText2{
+    height: 16px; /* 헬퍼 텍스트 높이를 고정 */
     font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
     line-height: 14.52px;
     color : #FF0000;
     margin-top: 3px;
+}
+
+.hel1 {
+    height : 20px;
+}
+.hel2 {
+    height : 20px;
+}
+/* 헬퍼 텍스트가 표시될 때 */
+#helperText1.visible, #helperText2.visible {
+    display: block; /* 표시 */
 }
