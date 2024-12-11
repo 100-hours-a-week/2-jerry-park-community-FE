@@ -20,7 +20,7 @@
 
         <div class = "centerflex">
             
-            
+        <form id="loginForm">
             <div class = "login_container">
                 <form class = "inputBox" onsubmit="return submitForm()">
                     <label for="email"> 이메일 <br> </label>
@@ -32,13 +32,14 @@
                     <input type="password" id="password" name="password" placeholder=" 비밀번호를 입력하세요">
                     <p class="helperText2" id = "helperText2"> * helper text </p>
                 </div>
-                <div class = "loginbutton">
+                <div class="loginbutton">
                     
-                    <button type = "submit" id="login" name="login"> 로그인 </button>
+                    <button type = "submit" id="loginbutton1" name="login" disabled> 로그인 </button>
                     <a href="signup.html">회원가입</a>
                 </div>
                 </form>
             </div>
+        </form>
         </div>
 </body>
 
