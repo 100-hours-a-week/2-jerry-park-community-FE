@@ -65,7 +65,7 @@ body {
     font-weight: 700;
     font-size: 15px;
     line-height: 17.9px;
-    /* text-align: center; */
+    margin-bottom: 20px;
 }
 
 .center {
@@ -84,6 +84,7 @@ body {
 }
 
 article {
+    gap: 5px;
     width:100%;
     max-width:392px;
     height:406px;
@@ -103,7 +104,7 @@ article {
     display:flex;
     flex-direction: column;
     /* row-gap:8px; */
-    margin-bottom: 18px;
+    margin-bottom: 27px;
     padding-top:2px;
 }
 
@@ -146,6 +147,7 @@ button.disabled {
     background-color: #ACA0EB;
     cursor: not-allowed;
 }
+
 .buttons a{
     margin-top : 14px;
     text-decoration: none;

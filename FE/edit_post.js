@@ -39,7 +39,7 @@ const loadPostData = async (post_id) => {
 }
 
 const updatePost = async (post_id) => {
-    console.log(post_id); //!!!!!!!!!언디파인 뜸
+    // console.log(post_id);
     const updatedTitle = document.getElementById('title').value.trim();
     const updatedContent = document.getElementById('content').value.trim();
 
