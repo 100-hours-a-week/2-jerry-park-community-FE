@@ -161,6 +161,8 @@ document.getElementById("signupBtn").addEventListener("click", async (event) => 
 
 // 회원가입 post 요청
 const sendSignupRequest = async (formData) => {
+    const helperText = document.getElementById('helper-text');
+
     try {
         // fetch로 post 요청 
         const response = await fetch('http://localhost:3000/api/users/register', {
@@ -168,19 +170,18 @@ const sendSignupRequest = async (formData) => {
             body : formData,
         });
 
-        if (response.ok){
-            const result = await response.json();
+        const result = await response.json();
+
+        if (response.ok){    
             alert(`회원가입 성공!`);
             window.location.href = "index.html"; // 성공 시 로그인 페이지로 이동
         } else {
-            const error = await response.json();
             // 서버 응답에서 오류가 발생한 경우
-            alert(`회원가입 실패: ${error.message}`);
+            alert(`${result.message}`);
         }
     } catch (err) {
         // 네트워크 오류 등 서버에 접근하지 못한 경우
         console.error('회원가입오류',err);
-        alert('서버와의 통신 중 오류가 발생했습니다. 다시 시도해주세요.');
     }   
 }
 
