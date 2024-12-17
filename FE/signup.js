@@ -145,7 +145,6 @@ document.getElementById("signupBtn").addEventListener("click", async (event) => 
     event.preventDefault();
 
     // 폼 데이터 생성
-    const formData = new FormData();
     const email = document.getElementById("email").value;
     const password = document.getElementById("pw").value;
     const nickname = document.getElementById("nickname").value;
@@ -165,6 +164,7 @@ document.getElementById("signupBtn").addEventListener("click", async (event) => 
         return;
     }
 
+    const formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
     formData.append('nickname', nickname);
