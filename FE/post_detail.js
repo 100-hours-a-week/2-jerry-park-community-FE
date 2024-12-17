@@ -19,15 +19,18 @@ const getUserid = async () => {
 const openModal = (type) => {
     if (type === 'delete') {
         document.getElementById('deleteModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';  // 스크롤 방지
     }
 }
 const closeModal = () => {
     document.getElementById('deleteModal').style.display = 'none';
+    document.body.style.overflow = '';  // 스크롤 허용
 }
 
 // 댓글 삭제 모달 여닫는 JS 함수
 const openCommentDeleteModal = (comment_id) => {
     document.getElementById('commentDeleteModal').style.display = 'flex'; // 댓글 삭제 모달 열기
+    document.body.style.overflow = 'hidden';  // 스크롤 방지
 
     // console.log('comment_id: ',comment_id);
     // 삭제 버튼 클릭 시 해당 댓글 삭제 처리
@@ -36,9 +39,10 @@ const openCommentDeleteModal = (comment_id) => {
 }
 function closeCommentDeleteModal() {
     document.getElementById('commentDeleteModal').style.display = 'none';
+    document.body.style.overflow = '';  // 스크롤 허용
 }
 
-// 모달에서 삭제 버튼 확정시 (댓글 삭제)
+// 댓글 모달에서 삭제 버튼 확정시 (댓글 삭제)
 const confirmCommentDelete = (comment_id) => {
     console.log('삭제할 commentid : ', comment_id);
     fetch(`http://localhost:3000/api/posts/comments/${comment_id}`, {

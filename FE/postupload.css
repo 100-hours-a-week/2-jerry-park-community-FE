@@ -189,7 +189,7 @@ p {
     justify-content: center;
 }
 
-#compb {
+#submitButton {
     margin-top: 10px;
     
     max-width:355px;
@@ -210,11 +210,12 @@ p {
 }
 
 /* 버튼 활성화시 */
-#compb.active{
+#submitButton.active{
     background-color: #7F6AEE;
 }
 
-.helperText {
+#helperText {
+    display:none;
     color:#FF0000;
     font-family: 'Pretendard-Regular';
     font-weight: 400;
@@ -222,6 +223,7 @@ p {
     line-height: 14.52px;
     margin-left:-8px;
 }
+
 .helpertextbox{
     margin-top: -3px;
     width:100%;

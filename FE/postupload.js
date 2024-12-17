@@ -1,23 +1,48 @@
 // 제목, 내용 받아오기
 const titleInput = document.getElementById('title');
 const contentInput = document.getElementById('content');
-const compButton = document.getElementById('compb');
+const submitButton = document.getElementById('submitButton');
+const helperText = document.getElementById('helperText');
 
-// 폼 ID, 삽입할 이미 ID 가져오기
+// 폼 ID, 삽입할 이미지 ID 가져오기
 const postForm = document.getElementById('postForm');
 const image = document.getElementById('image');
 
+
+// 초기 상태 설정: 버튼 비활성화, 헬퍼 텍스트 숨김
+function initializeState() {
+    submitButton.classList.remove('active');
+    submitButton.disabled = true;
+}
+
 // 입력 상태로 버튼 색상 바꾸기
 function updateButtonState() {
-    if(titleInput.value.trim() !=='' && contentInput.value.trim()!==''){
-        compButton.classList.add('active');
+    const titleFilled = titleInput.value.trim() !== '';
+    const contentFilled = contentInput.value.trim() !== '';
+    
+    if (titleFilled && contentFilled) {
+        submitButton.classList.add('active');
+        submitButton.disabled = false;
+        helperText.style.display = 'none'; // 유효한 입력 시 헬퍼 텍스트 숨기기
     } else {
-        compButton.classList.remove('active');
+        submitButton.classList.remove('active');
+        submitButton.disabled = true;
     }
 }
 
+// 버튼 클릭 시 비활성화 상태면 헬퍼텍스트 표시
+submitButton.addEventListener('click', (event) => {
+    console.log('버튼 클릭됨');
+    if (submitButton.disabled) {
+        event.preventDefault(); // 폼 제출 막기
+        helperText.style.display = 'block';
+        helperText.innerText = '* 제목, 내용을 모두 작성해주세요';
+    }
+});
+
+// 입력 이벤트 리스너
 titleInput.addEventListener('input',updateButtonState);
-content.addEventListener('input',updateButtonState);
+contentInput.addEventListener('input',updateButtonState);
 
 // 세션에서 user_id 가져오기
 const getUserid = async () => {
@@ -36,12 +61,12 @@ const getUserid = async () => {
     }
 } 
 
-const uploadPost = async (event) => {
+// 'submit' 이벤트에서 uploadPost 호출
+postForm.addEventListener('submit',async (event) => {
     event.preventDefault(); // 폼 기본 동작 방지
-    // 제목, 내용 안 비었는지 검사
-    if (titleInput.value.trim() === '' || contentInput.value.trim()===''){
-        alert("*제목, 내용을 모두 작성해주세요");
-        return; //함수 종료
+
+    if (submitButton.disabled) {
+        return; // 비활성화된 상태에서 제출 막기
     }
 
     // 세션에서 user_id 가져오기
@@ -51,25 +76,26 @@ const uploadPost = async (event) => {
         alert('로그인 후 글 작성해주세요');
         return;
     }
-    // FormData 객체 생성
-    // FormData는 폼 데이터를 서버로 보낼 때 사용하는 객체. (텍스트와 파일을 한 번에 서버로 전송)
-    const formData = new FormData();
 
-    // 제목과 내용을 FromData에 추가
-    formData.append('title',titleInput.value); 
-    formData.append('content', contentInput.value);
-    formData.append('user_id',user_id);
-
-    formData.forEach((value,key)=> {
-        console.log(`${key}: ${value}`);
-    })
-
-    // 이미지 파일 추가 (선택된 경우만)
-    if (image.files.length > 0) {
-        formData.append('image', image.files[0]);
-    }
-
+    // 버튼 비활성화 아니고 세션 확인 후 업로드 POST 요청
     try {
+        // FormData 객체 생성
+        // FormData는 폼 데이터를 서버로 보낼 때 사용하는 객체. (텍스트와 파일을 한 번에 서버로 전송)
+        const formData = new FormData();
+        // 제목과 내용, user_id를 FormData에 추가
+        formData.append('title',titleInput.value); 
+        formData.append('content', contentInput.value);
+        formData.append('user_id',user_id);
+
+        formData.forEach((value,key)=> {
+            console.log(`${key}: ${value}`);
+        })
+
+        // 이미지 파일 추가 (선택된 경우만)
+        if (image.files.length > 0) {
+            formData.append('image', image.files[0]);
+        }
+
         // 서버에 POST 요청 fetch 로 보내기
         const response = await fetch('http://localhost:3000/api/posts', {
             method : 'POST',
@@ -85,14 +111,12 @@ const uploadPost = async (event) => {
             // 응답 상태 200 아니면 실패로 간주
             const errorData = await response.json();
             console.log('게시글 작성 실패 :', errorData.message);
-        }
-    }catch (error) {
-        console.error('서버와 통신 실패', error);
-    }   
-}
+    }
+    } catch (err){
+        console.error('업로드 중 서버와 통신 실패 ', err);
+    }
 
-// 'submit' 이벤트에서 uploadPost 호출
-postForm.addEventListener('submit',uploadPost);
+});
 
 // 세션에서 user_id 가져와서 프로필 이미지 가져오기 (상단)
 const loadloginProfileImage = async () => {
@@ -120,6 +144,9 @@ const loadloginProfileImage = async () => {
         console.error('상단 유저 프로필 이미지 오류', err);
     }
 }
+
+// 초기 상태 업데이트
+initializeState();
 
 // 페이지 로드 시 게시글 데이터를 불러옵니다
 window.onload = function() {

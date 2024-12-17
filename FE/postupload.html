@@ -36,7 +36,7 @@
             <textarea type="text" name="content" id="content" placeholder="내용을 입력해주세요"></textarea>
             <hr class="topofphoto">
             <div class="helpertextbox">
-                <p class="helperText">* helper text</p>
+                <p class="helperText" id = "helperText">23</p>
             </div>
         </div>
 
@@ -44,17 +44,13 @@
             <label for="image">이미지</label>
             <div class ="filech">
             <input type="file" name="image" id="image" accept="image/*"> <p>파일을 선택해주세요.</p>
-            <!-- <p class="helperText" name="profile">
-                *프로필 사진을 추가해주세요.
-            </p> -->
             </div>
         </div>
 
         <div class ="comp">
-            <button type = "submit" id= "compb" class = "inactive">완료</button>
+            <button type = "submit" id= "submitButton" class = "inactive">완료</button>
         </div>
         </article>
     </form>
-
+    <script src = "postupload.js"></script>
 </body>
-<script src = "postupload.js"></script>
