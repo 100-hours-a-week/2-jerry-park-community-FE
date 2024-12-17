@@ -151,6 +151,20 @@ document.getElementById("signupBtn").addEventListener("click", async (event) => 
     const nickname = document.getElementById("nickname").value;
     const profile_img = document.getElementById("profile_img").files[0];
 
+    // 중복검사 api 요청
+    const checkResponse = await fetch('http://localhost:3000/api/users/register/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, nickname }),
+    });
+
+    // 중복일 시 ??
+    if (!checkResponse.ok){
+        const checkResult = await checkResponse.json();
+        alert(checkResult.message);
+        return;
+    }
+
     formData.append('email', email);
     formData.append('password', password);
     formData.append('nickname', nickname);
@@ -161,9 +175,8 @@ document.getElementById("signupBtn").addEventListener("click", async (event) => 
 
 // 회원가입 post 요청
 const sendSignupRequest = async (formData) => {
-    const helperText = document.getElementById('helper-text');
-
     try {
+        // 중복 아닐 시 회원가입 요청
         // fetch로 post 요청 
         const response = await fetch('http://localhost:3000/api/users/register', {
             method : 'POST',
