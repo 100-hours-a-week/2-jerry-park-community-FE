@@ -334,6 +334,7 @@ const goToEditPage = (post_id) => {
     window.location.href = `edit_post.html?post_id=${post_id}`;
 }
 
+// 게시물 삭제 모달 확인 클릭시 확인 요청
 const confirmDelete = async (post_id) => {
     try {
         const response = await fetch(`http://localhost:3000/api/posts/post?post_id=${post_id}`, {
@@ -388,29 +389,59 @@ const loadloginProfileImage = async () => {
     }
 }
 
-// 좋아요 증가 함수
-const likePost = () => {
-    fetch(`http://localhost:3000/api/posts/like?post_id=${post_id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
+// 좋아요 버튼 할당
+const likeButton = document.getElementById('likeButton');
+
+likeButton.addEventListener('click' , async () => {
+    const liked = !likeButton.classList.contains('active');
+    const newColor = liked ? '#D9D9D9' : '#ACA0EB'; // 활성(참) or 비활성(거짓) 색상
+    console.log('좋아요리스너 liked', liked);
+    try {
+        // 서버에 좋아요 상태 요청
+        const response = await fetch(`http://localhost:3000/api/posts/like?post_id=${post_id}&liked=${liked}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+        });
+
+        const data = await response.json();
 
         if (data.success) {
-            updateLikes(data.likes);
-            alert('좋아요 !');
-
+            // 요청 응답 성공 시 버튼 색 변경
+            likeButton.style.backgroundColor = newColor;
+            likeButton.classList.toggle('active');
+            document.getElementById('likes').textContent = data.likes // 서버에서 온 좋아요 수
         } else {
-            alert('좋아요 중 오류가 발생했습니다.');
-        }
-    })
-    .catch(err => {
-        console.error('좋아요 증가 중 오류 발생 : ', err);
-    });
-}
+            alert('좋아요 실패');
+        } 
+    } catch (err) {
+        console.error('좋아요 토글 중 오류 발생 addEventLister', error)
+    }
+});
+
+
+// 좋아요 증가 함수
+// const likePost = () => {
+//     fetch(`http://localhost:3000/api/posts/like?post_id=${post_id}`, {
+//         method: 'PUT',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+
+//         if (data.success) {
+//             updateLikes(data.likes);
+//             alert('좋아요 !');
+
+//         } else {
+//             alert('좋아요 중 오류가 발생했습니다.');
+//         }
+//     })
+//     .catch(err => {
+//         console.error('좋아요 증가 중 오류 발생 : ', err);
+//     });
+// }
 
 const updateLikes = (likes) => {
     const likesCount = document.getElementById('likes')

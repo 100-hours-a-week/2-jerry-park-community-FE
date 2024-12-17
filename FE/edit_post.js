@@ -33,10 +33,29 @@ const loadPostData = async (post_id) => {
 
         document.getElementById('title').value = postData.title;
         document.getElementById('content').value = postData.content;
+
+        // 기존 이미지 파일명 표시, 이미지 있다면
+        if (postData.image) {
+            const fileName = postData.image.split('/').pop(); // 경로에서 파일명 추출
+            document.getElementById('fileNameDisplay').textContent = fileName;
+        }
     } catch(error) {
         console.error('게시물 로드 오류 : ', error);
     }
 }
+
+// 파일 선택 이벤트 리스너
+const fileInput = document.getElementById('fileInput');
+fileInput.addEventListener('change',() => {
+    const selectedFile = fileInput.files[0]; // 첫번쨰 파일
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+
+    if (selectedFile){
+        fileNameDisplay.textContent = selectedFile.name; // 새 파일명
+    } else {
+        fileNameDisplay.textContent = '선택된 파일 없음'; // 초기 메시지
+    }
+});
 
 const updatePost = async (post_id) => {
     // console.log(post_id);
