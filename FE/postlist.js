@@ -10,7 +10,7 @@ const loadPosts = async () => {
         isLoading = true;
 
         // 서버에서 데이터 가져와 get 요청 실행 (게시글 api 주소)
-        const response = await fetch(`http://localhost:3000/api/posts?offset=${offset}&limit=${limit}`, {
+        const response = await fetch(`${BE_URL}/api/posts?offset=${offset}&limit=${limit}`, {
             method : 'GET',
             credentials: 'include',
         }); 
@@ -47,7 +47,7 @@ const loadPosts = async () => {
             </div>
             <hr>
             <div class="author">
-                <img class="image" src="http://localhost:3000${post.profile_img}" > <!-- 프로필 이미지 -->
+                <img class="image" src="${BE_URL}${post.profile_img}" > <!-- 프로필 이미지 -->
                 <p>작성자: ${post.nickname}</p> <!-- 작성자 ID -->
             </div>
         `;
