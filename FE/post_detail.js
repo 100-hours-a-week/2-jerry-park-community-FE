@@ -393,12 +393,12 @@ const loadloginProfileImage = async () => {
 const likeButton = document.getElementById('likeButton');
 
 likeButton.addEventListener('click' , async () => {
-    const liked = !likeButton.classList.contains('active');
+    const liked = likeButton.classList.contains('active');
     const newColor = liked ? '#D9D9D9' : '#ACA0EB'; // 활성(참) or 비활성(거짓) 색상
     console.log('좋아요리스너 liked', liked);
     try {
         // 서버에 좋아요 상태 요청
-        const response = await fetch(`http://localhost:3000/api/posts/like?post_id=${post_id}&liked=${liked}`, {
+        const response = await fetch(`${BE_URL}/api/posts/like?post_id=${post_id}&liked=${liked}`, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
         });

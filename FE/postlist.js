@@ -98,12 +98,12 @@ const formatNumber = (num) => {
 // 세션에서 user_id 가져와서 프로필 이미지 가져오기 (상단)
 const loadloginProfileImage = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/users/session`, {
+        const response = await fetch(`${BE_URL}/api/users/session`, {
             method: 'GET',
             credentials: 'include',
         });
 
-        console.log('세션받아오기 response',response);
+        // console.log('세션받아오기 response',response);
         if(!response.ok) {
             throw new Error('상단 유저프로필 이미지 불러오는 중 오류');
         }
@@ -115,7 +115,7 @@ const loadloginProfileImage = async () => {
 
         // 넣을 곳
         const profile_img = document.getElementById("profile_img");
-        profile_img.src = `http://localhost:3000${user.profile_img}`;
+        profile_img.src = `${BE_URL}${user.profile_img}`;
     
     } catch(err) {
         console.error('상단 유저 프로필 이미지 오류', err);

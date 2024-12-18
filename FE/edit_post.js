@@ -5,7 +5,7 @@ const post_id = urlParams.get('post_id');
 // 세션에서 user_id 가져오기
 const getUserid = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/users/session`, {
+        const response = await fetch(`${BE_URL}/api/users/session`, {
             method : 'GET',
             credentials : 'include',
         });
@@ -23,7 +23,7 @@ const getUserid = async () => {
 // 서버에서 게시물 데이터 가져오기
 const loadPostData = async (post_id) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/posts/post?post_id=${post_id}`);
+        const response = await fetch(`${BE_URL}/api/posts/post?post_id=${post_id}`);
 
         if (!response.ok) {
             throw new Error('게시물 가져오는 데 실패했습니다.');
@@ -57,6 +57,7 @@ fileInput.addEventListener('change',() => {
     }
 });
 
+// PATCH 요청
 const updatePost = async (post_id) => {
     // console.log(post_id);
     const updatedTitle = document.getElementById('title').value.trim();
@@ -68,7 +69,7 @@ const updatePost = async (post_id) => {
         return;
     }
 
-    const response = await fetch(`http://localhost:3000/api/posts/post?post_id=${post_id}`, {
+    const response = await fetch(`${BE_URL}/api/posts/post?post_id=${post_id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -93,7 +94,7 @@ const updatePost = async (post_id) => {
 // 세션에서 user_id 가져와서 프로필 이미지 가져오기 (상단)
 const loadloginProfileImage = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/users/session`, {
+        const response = await fetch(`${BE_URL}/api/users/session`, {
             method: 'GET',
             credentials: 'include',
         });
@@ -110,7 +111,7 @@ const loadloginProfileImage = async () => {
 
         // 넣을 곳
         const profile_img = document.getElementById("profile_imghead");
-        profile_img.src = `http://localhost:3000${user.profile_img}`;
+        profile_img.src = `${BE_URL}${user.profile_img}`;
     
     } catch(err) {
         console.error('상단 유저 프로필 이미지 오류', err);

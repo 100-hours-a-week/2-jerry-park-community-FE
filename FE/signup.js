@@ -151,7 +151,7 @@ document.getElementById("signupBtn").addEventListener("click", async (event) => 
     const profile_img = document.getElementById("profile_img").files[0];
 
     // 중복검사 api 요청
-    const checkResponse = await fetch('http://localhost:3000/api/users/register/check', {
+    const checkResponse = await fetch(`${BE_URL}/api/users/register/check`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, nickname }),
@@ -178,7 +178,7 @@ const sendSignupRequest = async (formData) => {
     try {
         // 중복 아닐 시 회원가입 요청
         // fetch로 post 요청 
-        const response = await fetch('http://localhost:3000/api/users/register', {
+        const response = await fetch(`${BE_URL}/api/users/register`, {
             method : 'POST',
             body : formData,
         });

@@ -63,7 +63,7 @@ document.getElementById("loginForm").addEventListener("submit",(event) => {
     const email = emailInput.value;
     const password = passwordInput.value;
 
-    fetch('http://localhost:3000/api/users/login',{
+    fetch(`${BE_URL}/api/users/login`,{
         method:'POST',
         headers: {
             'Content-Type':'application/json',

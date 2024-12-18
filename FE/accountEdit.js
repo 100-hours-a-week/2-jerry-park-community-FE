@@ -1,7 +1,7 @@
 // 세션에서 user_id 가져오기
 const getUserid = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/users/session`, {
+        const response = await fetch(`${BE_URL}/api/users/session`, {
             method : 'GET',
             credentials : 'include',
         });
@@ -44,11 +44,11 @@ const saveNickname = async () => {
     // 유효성 검사 성공시 try문 실행
     try {
         // 닉네임 중복검사 get 요청
-        const checkNicknameResponse = await fetch(`http://localhost:3000/api/users/nicknamecheck/${nickname}`);
+        const checkNicknameResponse = await fetch(`${BE_URL}/api/users/nicknamecheck/${nickname}`);
         const checkNicknameData = await checkNicknameResponse.json(); // 응답을 json으로
         if (checkNicknameResponse.ok){
             // 닉네임 변경 요청
-            const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
+            const response = await fetch(`${BE_URL}/api/users/${user_id}`, {
                 method : 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include', // 쿠키 전달 허용
@@ -120,7 +120,7 @@ async function loadUserData() {
     try {
         // 세션에서 user_id 가져오기
         const user_id = await getUserid();
-        const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
+        const response = await fetch(`${BE_URL}/api/users/${user_id}`, {
             method : 'GET',
             credentials: 'include',
         });
@@ -138,8 +138,8 @@ async function loadUserData() {
         // 프로필 이미지 설정
         const profile_img = document.getElementById("profile_imghead");
         const profile_img1 = document.getElementById("profile_img");
-        profile_img.src = `http://localhost:3000${userData.profile_img}`;
-        profile_img1.src = `http://localhost:3000${userData.profile_img}`;
+        profile_img.src = `${BE_URL}${userData.profile_img}`;
+        profile_img1.src = `${BE_URL}${userData.profile_img}`;
         // console.log('userData 값 :',userData);
         // console.log('userData.profile_img 값 : ',userData.profile_img);
     } catch(error) {
@@ -176,7 +176,7 @@ const confirmDelete = async () => {
         // 세션에서 user_id 가져오기
         const user_id = await getUserid();
 
-        const response = await fetch(`http://localhost:3000/api/users/${user_id}`, {
+        const response = await fetch(`${BE_URL}/api/users/${user_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
