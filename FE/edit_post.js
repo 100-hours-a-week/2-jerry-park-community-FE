@@ -59,7 +59,10 @@ fileInput.addEventListener('change',() => {
 
 // PATCH 요청
 const updatePost = async (post_id) => {
+    event.preventDefault();
     // console.log(post_id);
+    const form = document.getElementById('editPostForm');
+    const formData = new FormData(form); // 폼 데이터 수집
     const updatedTitle = document.getElementById('title').value.trim();
     const updatedContent = document.getElementById('content').value.trim();
 
@@ -71,13 +74,7 @@ const updatePost = async (post_id) => {
 
     const response = await fetch(`${BE_URL}/api/posts/post?post_id=${post_id}`, {
         method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            title: updatedTitle,
-            content: updatedContent,
-        }),
+        body: formData,
     });
 
     const data = await response.json();
