@@ -22,6 +22,7 @@ const loadPosts = async () => {
         const data = await response.json();
         const posts = data.data
 
+        console.log('12112,posts',posts);
         // HTML에서 게시글 목록 표시할 컨테이너 선택
         const postList = document.getElementById("postList");
 
@@ -41,9 +42,12 @@ const loadPosts = async () => {
             postbox.innerHTML = `
             <h1>${post.title}</h1> <!-- 게시글 제목 -->
             <div class="like">
+                <div class = "su1"> 
                 <p>좋아요 ${formatNumber(post.likes)}</p> <!-- 좋아요 수 -->
+                <p>댓글수 ${formatNumber(post.comment_count)}</p> <!-- 댓글수 -->
                 <p>조회수 ${formatNumber(post.views)}</p> <!-- 조회수 -->
-                <p>작성일: ${new Date(post.created_time).toLocaleDateString()}</p> <!-- 작성일 -->
+                </div>
+                <p>${new Date(post.created_time).toLocaleDateString()}</p> <!-- 작성일 -->
             </div>
             <hr>
             <div class="author">

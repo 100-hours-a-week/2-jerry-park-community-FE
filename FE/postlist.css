@@ -202,3 +202,7 @@ article {
 hr {
     margin-top: 25px;
 }
+
+.su1 {
+    display:flex;
+}
