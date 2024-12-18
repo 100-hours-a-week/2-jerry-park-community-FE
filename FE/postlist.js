@@ -47,7 +47,7 @@ const loadPosts = async () => {
                 <p>댓글수 ${formatNumber(post.comment_count)}</p> <!-- 댓글수 -->
                 <p>조회수 ${formatNumber(post.views)}</p> <!-- 조회수 -->
                 </div>
-                <p>${new Date(post.created_time).toLocaleDateString()}</p> <!-- 작성일 -->
+                <p>${formatDate(post.created_time)}</p> <!-- 작성일 -->
             </div>
             <hr>
             <div class="author">
@@ -98,6 +98,19 @@ const formatNumber = (num) => {
     }
     return num;  // 1000 미만은 그대로 표시
 }
+
+// 날짜 포맷 함수
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
+
 
 // 세션에서 user_id 가져와서 프로필 이미지 가져오기 (상단)
 const loadloginProfileImage = async () => {
