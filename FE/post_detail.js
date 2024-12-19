@@ -87,6 +87,10 @@ commentInput.addEventListener('input',updateButtonState);
 const urlParams = new URLSearchParams(window.location.search);
 const post_id = urlParams.get('post_id'); // post_id 이름의 파라미터 가져옴
 
+// 줄 바꿈 유지 함수
+const formatContent = (content) => {
+    return content.replace(/\n/g, '<br>');
+}
 
 // post_id 존재하는지 확인하고 받아오기 (async function 추가하는 것이.,.,)
 if (post_id) {
@@ -119,7 +123,7 @@ if (post_id) {
             // 서버에서 받은 데이터로 페이지에 데이터 표시 
             // 클래스 title, h1태그 부분에
             document.querySelector('.title h1').textContent = data.title;
-            document.querySelector('.content p').textContent = data.content;
+            document.querySelector('.content p').innerHTML = formatContent(data.content);
             // document.querySelector('.likes').textContent = data.likes;
             
             document.querySelector('.userinfo p').textContent = data.nickname;
