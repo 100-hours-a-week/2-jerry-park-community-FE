@@ -1,7 +1,7 @@
 // 세션에서 user_id 가져오기
 const getUserid = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/users/session`, {
+        const response = await fetch(`${BE_URL}/api/users/session`, {
             method : 'GET',
             credentials : 'include',
         });
@@ -93,7 +93,7 @@ const passwordChange = async () => {
     // 세션에서 user_id 가져오기
     const user_id = await getUserid();
 
-    fetch(`http://localhost:3000/api/users/${user_id}/password`, {
+    fetch(`${BE_URL}/api/users/${user_id}/password`, {
         method : 'PUT',
         headers: {
             'Content-Type': 'application/json',

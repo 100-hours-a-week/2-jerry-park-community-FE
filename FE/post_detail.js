@@ -1,7 +1,7 @@
 // 세션에서 user_id 가져오기
 const getUserid = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/users/session`, {
+        const response = await fetch(`${BE_URL}/api/users/session`, {
             method : 'GET',
             credentials : 'include',
         });
@@ -45,7 +45,7 @@ function closeCommentDeleteModal() {
 // 댓글 모달에서 삭제 버튼 확정시 (댓글 삭제)
 const confirmCommentDelete = (comment_id) => {
     console.log('삭제할 commentid : ', comment_id);
-    fetch(`http://localhost:3000/api/posts/comments/${comment_id}`, {
+    fetch(`${BE_URL}/api/posts/comments/${comment_id}`, {
         method: 'DELETE',
         headers : {
             'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ const post_id = urlParams.get('post_id'); // post_id 이름의 파라미터 가�
 // post_id 존재하는지 확인하고 받아오기 (async function 추가하는 것이.,.,)
 if (post_id) {
     // 페이지 로드 시 조회수 증가 API 호출
-    fetch(`http://localhost:3000/api/posts/views/?post_id=${post_id}`, {
+    fetch(`${BE_URL}/api/posts/views/?post_id=${post_id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ if (post_id) {
     });
 
     // post_id 있다면, fetch 요청
-    fetch(`http://localhost:3000/api/posts/post?post_id=${post_id}`)
+    fetch(`${BE_URL}/api/posts/post?post_id=${post_id}`)
         .then(response => response.json())
         .then(data => {
             // 서버에서 받은 데이터로 페이지에 데이터 표시 
@@ -123,11 +123,11 @@ if (post_id) {
             // document.querySelector('.likes').textContent = data.likes;
             
             document.querySelector('.userinfo p').textContent = data.nickname;
-            document.getElementById('profile_img').src = `http://localhost:3000${data.profile_img}`;
+            document.getElementById('profile_img').src = `${BE_URL}${data.profile_img}`;
             console.log(data)
             // 게시물 이미지 있으면 이미지 표시
             if (data.image){
-                document.getElementById('image3').src = `http://localhost:3000${data.image}`;
+                document.getElementById('image3').src = `${BE_URL}${data.image}`;
             } else {
                 document.getElementById('image3').style.display = 'none'; // 이미지 없으면 없게
             }
@@ -165,7 +165,7 @@ if (post_id) {
 
 // 댓글 가져오기 fetch
 const fetchComments = (post_id) => {
-    fetch(`http://localhost:3000/api/posts/comments?post_id=${post_id}`)
+    fetch(`${BE_URL}/api/posts/comments?post_id=${post_id}`)
         .then(response => response.json())    // 응답을 json 형식으로 (Promise 반환)
         .then(data => {
             console.log(data);
@@ -200,7 +200,7 @@ const addCommentToPage = (comment) => {
     const commentBox = document.querySelector('.allcommentBox');
     
     // 댓글 작성 유저 프로필 이미지 받아오기
-    const profile_img = `http://localhost:3000${comment.profile_img}`;
+    const profile_img = `${BE_URL}${comment.profile_img}`;
 
     const commentHTML = `
         <div class="commentInfo" id="comment-${comment.comment_id}">
@@ -263,7 +263,7 @@ const commentUp = async () => {
         return;
     }
 
-    fetch(`http://localhost:3000/api/posts/comments`, {
+    fetch(`${BE_URL}/api/posts/comments`, {
         method: 'POST', 
         headers: {
             'Content-Type' : 'application/json',
@@ -307,7 +307,7 @@ const updateComment = (comment_id) => {
         alert('수정할 내용을 입력하세요');
         return;
     }
-    fetch(`http://localhost:3000/api/posts/comments/${comment_id}` , {
+    fetch(`${BE_URL}/api/posts/comments/${comment_id}` , {
         method : 'PUT',
         headers : {
             'Content-Type': 'application/json',
@@ -337,7 +337,7 @@ const goToEditPage = (post_id) => {
 // 게시물 삭제 모달 확인 클릭시 확인 요청
 const confirmDelete = async (post_id) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/posts/post?post_id=${post_id}`, {
+        const response = await fetch(`${BE_URL}/api/posts/post?post_id=${post_id}`, {
             method: 'DELETE',
             headers : {
                 'Content-Type': 'application/json',
@@ -365,7 +365,7 @@ const confirmDelete = async (post_id) => {
 // 세션에서 user_id 가져와서 프로필 이미지 가져오기 (상단)
 const loadloginProfileImage = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/users/session`, {
+        const response = await fetch(`${BE_URL}/api/users/session`, {
             method: 'GET',
             credentials: 'include',
         });
@@ -382,7 +382,7 @@ const loadloginProfileImage = async () => {
 
         // 넣을 곳
         const profile_img = document.getElementById("profile_imghead");
-        profile_img.src = `http://localhost:3000${user.profile_img}`;
+        profile_img.src = `${BE_URL}${user.profile_img}`;
     
     } catch(err) {
         console.error('상단 유저 프로필 이미지 오류', err);

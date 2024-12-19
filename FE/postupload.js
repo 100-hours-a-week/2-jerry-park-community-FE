@@ -47,7 +47,7 @@ contentInput.addEventListener('input',updateButtonState);
 // 세션에서 user_id 가져오기
 const getUserid = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/users/session`, {
+        const response = await fetch(`${BE_URL}/api/users/session`, {
             method : 'GET',
             credentials : 'include',
         });
@@ -97,7 +97,7 @@ postForm.addEventListener('submit',async (event) => {
         }
 
         // 서버에 POST 요청 fetch 로 보내기
-        const response = await fetch('http://localhost:3000/api/posts', {
+        const response = await fetch('${BE_URL}/api/posts', {
             method : 'POST',
             body: formData,
         });
