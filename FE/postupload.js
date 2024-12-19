@@ -145,6 +145,19 @@ const loadloginProfileImage = async () => {
     }
 }
 
+// 파일 선택 이벤트 리스너
+const fileInput = document.getElementById('image');
+const fileNameDisplay = document.getElementById('fileNameDisplay');
+
+fileInput.addEventListener('change',() => {
+    const selectedFile = fileInput.files[0]; // 첫번쨰 파일
+    if (selectedFile){
+        fileNameDisplay.textContent = selectedFile.name; // 새 파일명
+    } else {
+        fileNameDisplay.textContent = '파일을 선택해주세요.'; // 초기 메시지
+    }
+});
+
 // 초기 상태 업데이트
 initializeState();
 

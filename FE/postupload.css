@@ -228,3 +228,28 @@ p {
     margin-top: -3px;
     width:100%;
 }
+
+/* 파일 명 이름 텍스트 */
+.fileNameText {
+    margin-left : 17px;
+    font-family: 'Pretendard-Regular';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.71px;
+}
+
+.customFileButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #eee;
+    border: 1.7px solid black;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Pretendard-Regular';
+    color: black;
+    max-width: 68px;
+}

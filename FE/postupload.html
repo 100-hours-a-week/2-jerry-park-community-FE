@@ -43,7 +43,9 @@
         <div class="inputBox">
             <label for="image">이미지</label>
             <div class ="filech">
-            <input type="file" name="image" id="image" accept="image/*"> <p>파일을 선택해주세요.</p>
+                <input type="file" name="image" id="image" accept="image/*" style="display: none;">
+                <label for="image" id="fileInputLabel" class="customFileButton">파일 선택</label>
+                <p id="fileNameDisplay" class="fileNameText">파일을 선택해주세요.</p>
             </div>
         </div>
 
