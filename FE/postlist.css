@@ -197,6 +197,7 @@ article {
     width: 36px;
     height: 36px;
     padding-right: 10px;
+    border-radius: 100%;
 }
 
 hr {
