@@ -400,3 +400,8 @@ span su{
     line-height: 23.87px;
     text-align: center;
 }
+
+.content p {
+    word-wrap: break-word; /* 단어가 길 경우 강제로 줄 바꿈 */
+    word-break: break-word; 
+}
