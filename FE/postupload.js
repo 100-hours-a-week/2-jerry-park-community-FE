@@ -97,7 +97,7 @@ postForm.addEventListener('submit',async (event) => {
         }
 
         // 서버에 POST 요청 fetch 로 보내기
-        const response = await fetch('${BE_URL}/api/posts', {
+        const response = await fetch(`${BE_URL}/api/posts`, {
             method : 'POST',
             body: formData,
         });
