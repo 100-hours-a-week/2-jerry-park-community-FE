@@ -213,16 +213,19 @@ const addCommentToPage = (comment) => {
                 <div class="author">${comment.nickname}</div>
                 <div class="date">${formatDate(comment.created_time)}</div>
             </div>
-            <div class="commentcontent">
-                ${comment.content}
+            <div class="commentBody">
+                <div class="commentcontent">
+                    ${comment.content}
+                </div>
+                <div class="editdelete">
+                    <div class="editdelB">
+                        <button onclick="editComment(${comment.comment_id}, '${comment.content}')">수정</button>
+                        <button onclick="openCommentDeleteModal(${comment.comment_id})">삭제</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="editdelete">
-            <div class="editdelB">
-                <button onclick="editComment(${comment.comment_id}, '${comment.content}')">수정</button>
-                <button onclick="openCommentDeleteModal(${comment.comment_id})">삭제</button>
-            </div>
-        </div>
+        
     `;
     commentBox.insertAdjacentHTML('beforeend', commentHTML);
     // 위의 HTML을 .allcommentBox에 추가
