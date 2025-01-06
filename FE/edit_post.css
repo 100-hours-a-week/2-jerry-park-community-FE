@@ -218,3 +218,8 @@ hr{
     font-size: 14px;
     line-height: 16.71px;
 }
+
+.sujungButtonbox {
+    display: flex;
+    justify-content: center;
+}
