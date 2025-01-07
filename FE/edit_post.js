@@ -66,24 +66,41 @@ const updatePost = async (post_id) => {
     const updatedTitle = document.getElementById('title').value.trim();
     const updatedContent = document.getElementById('content').value.trim();
 
+    // post_id를 FormData에 추가
+    formData.append('post_id', post_id);
+
+    // for (let pair of formData.entries()) {
+    //     console.log(pair[0], pair[1]); // 모든 FormData 키-값 쌍 출력
+    // }
     // 제목, 댓글 비었는지 검사
     if (!updatedTitle || !updatedContent){
         alert('제목과 내용을 모두 입력해주세요.');
         return;
     }
 
-    const response = await fetch(`${BE_URL}/api/posts/post?post_id=${post_id}`, {
-        method: 'PATCH',
-        body: formData,
-    });
+    try {
+        const response = await fetch(`${BE_URL}/api/posts/post?post_id=${post_id}`, {
+            method: 'PATCH',
+            body: formData,
+            credentials: 'include' // 쿠키 전달 허용
+        });
 
-    const data = await response.json();
+        if (!response.ok) {
+            const errorData = await response.json(); // 서버 응답 메시지 파싱
+            alert(`${errorData.message || '알 수 없는 오류 발생 updatePost에서'}`);
+            return;
+        }
+        const data = await response.json();
 
-    if(data.success) {
-        alert('게시글 수정 완료!');
-        window.location.href = `post_detail.html?post_id=${post_id}`;
-    } else {
-        alert('게시글 수정 중 오류 발생');
+        if(data.success) {
+            alert('게시글 수정 완료!');
+            window.location.href = `post_detail.html?post_id=${post_id}`;
+        } else {
+            alert('게시글 수정 중 오류 발생');
+        }
+    } catch (err) {
+        console.error('게시글 수정 오류 발생 updatePost', err);
+        alert('요청 처리 중 에러. 나중에 시도해주세요.');
     }
 }
 
