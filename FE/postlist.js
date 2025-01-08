@@ -22,7 +22,6 @@ const loadPosts = async () => {
         const data = await response.json();
         const posts = data.data
 
-        console.log('12112,posts',posts);
         // HTML에서 게시글 목록 표시할 컨테이너 선택
         const postList = document.getElementById("postList");
 
