@@ -349,13 +349,15 @@ const confirmDelete = async (post_id) => {
             headers : {
                 'Content-Type': 'application/json',
             },
+            credentials: 'include' // 쿠키 전달 허용
         });
+        const data = await response.json();
 
         if (!response.ok) {
-            throw new Error('게시물 삭제 실패');
+            // 서버에서 반환된 message 출력
+            alert(`오류: ${data.message || '게시물 삭제 실패'}`);
+            return;
         }
-
-        const data = await response.json();
 
         if(data.success) {
             alert('게시물이 삭제되었습니다.');
@@ -376,6 +378,12 @@ const loadloginProfileImage = async () => {
             method: 'GET',
             credentials: 'include',
         });
+
+        if (!response.ok) {
+            const errorData = await response.json(); // 서버 응답 메시지 파싱
+            alert(`${errorData.message || '알 수 없는 오류 발생 updatePost에서'}`);
+            return;
+        }
 
         console.log('세션받아오기 response',response);
         if(!response.ok) {
