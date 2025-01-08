@@ -44,22 +44,23 @@ function closeCommentDeleteModal() {
 
 // 댓글 모달에서 삭제 버튼 확정시 (댓글 삭제)
 const confirmCommentDelete = (comment_id) => {
-    console.log('삭제할 commentid : ', comment_id);
+    console.log('삭제할 comment_id : ', comment_id);
     fetch(`${BE_URL}/api/posts/comments/${comment_id}`, {
         method: 'DELETE',
         headers : {
             'Content-Type': 'application/json',
         },
+        credentials: 'include' // 쿠키 전달 허용
     })
     .then(response => response.json())
     .then(data => {
-        if(data.success){
-            alert('댓글이 삭제되었습니다.');
-            location.reload(); // 페이지 새로고침
-            closeCommentDeleteModal(); // 모달 닫기
-        } else {
-            alert('댓글 삭제 중 오류가 발생했습니다.');
+        if (!data.success) {
+            // 서버에서 받은 메시지 표시
+            alert(data.message || '댓글 삭제 중 오류가 발생했습니다.');
+            return;
         }
+        alert('댓글이 삭제되었습니다.');
+        location.reload(); // 페이지 새로고침
     })
     .catch(error => {
         console.error('댓글 삭제 오류 : ', error);
@@ -319,20 +320,22 @@ const updateComment = (comment_id) => {
         headers : {
             'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ content: updatedContent }),
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data); // 댓글 수정 응답 확인
-        if (data.message === '댓글 수정 완료') {
-            alert('댓글 수정 완료!');
-            location.reload(); // 페이지 새로고침하여 댓글 반영
-        } else {
-            alert('댓글 수정 중 오류 발생');
+        if (!data.success) {
+            // 서버에서 받은 메시지 표시
+            alert(data.message || '댓글 수정 중 오류가 발생했습니다.');
+            return;
         }
+        alert('댓글 수정 완료!');
+        location.reload(); // 페이지 새로고침
     })
     .catch(error => {
         console.error('댓글 수정 중 오류 발생 : ', error);
+        alert('댓글 수정 중 오류가 발생했습니다.');
     });
 }
 
