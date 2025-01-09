@@ -193,10 +193,13 @@ article {
     line-height: 19.5px;
 }
 
+.author p {
+    padding-left : 10px;
+}
+
 .image {
     width: 36px;
     height: 36px;
-    padding-right: 10px;
     border-radius: 100%;
 }
 
