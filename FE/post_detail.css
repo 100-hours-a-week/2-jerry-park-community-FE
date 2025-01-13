@@ -58,8 +58,8 @@ body {
 .image1 {
     /* position :absolute;
     right:20px; */
-    max-width:36px;         /* 아무말 대잔치 오른쪽사진*/
-    max-height:36px;
+    width:36px;         /* 아무말 대잔치 오른쪽사진*/
+    height:36px;
     border-radius:100px;
 }
 
