@@ -385,6 +385,7 @@ const loadloginProfileImage = async () => {
         if (!response.ok) {
             const errorData = await response.json(); // 서버 응답 메시지 파싱
             alert(`${errorData.message || '알 수 없는 오류 발생 updatePost에서'}`);
+            window.location.href = './index.html';
             return;
         }
 
