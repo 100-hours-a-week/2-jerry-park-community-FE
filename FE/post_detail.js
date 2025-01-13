@@ -438,30 +438,6 @@ likeButton.addEventListener('click' , async () => {
 });
 
 
-// 좋아요 증가 함수
-// const likePost = () => {
-//     fetch(`http://localhost:3000/api/posts/like?post_id=${post_id}`, {
-//         method: 'PUT',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-
-//         if (data.success) {
-//             updateLikes(data.likes);
-//             alert('좋아요 !');
-
-//         } else {
-//             alert('좋아요 중 오류가 발생했습니다.');
-//         }
-//     })
-//     .catch(err => {
-//         console.error('좋아요 증가 중 오류 발생 : ', err);
-//     });
-// }
-
 const updateLikes = (likes) => {
     const likesCount = document.getElementById('likes')
     likesCount.textContent = likes;
