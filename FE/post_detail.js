@@ -308,35 +308,39 @@ const editComment = (comment_id, content) => {
 }
 
 // 댓글 수정 함수
-const updateComment = (comment_id) => {
+const updateComment = async (comment_id) => {
     const updatedContent = document.getElementById('comment').value.trim();
 
     if (!updatedContent) {
         alert('수정할 내용을 입력하세요');
         return;
     }
-    fetch(`${BE_URL}/api/posts/comments/${comment_id}` , {
-        method : 'PUT',
-        headers : {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ content: updatedContent }),
-    })
-    .then(response => response.json())
-    .then(data => {
+    
+    try {
+        const response = await fetch(`${BE_URL}/api/posts/comments/${comment_id}` , {
+            method : 'PUT',
+            headers : {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({ content: updatedContent }),
+        });
+        
+        const data = await response.json();
+        console.log('서버 응답:', data); // 응답 데이터 확인
         if (!data.success) {
             // 서버에서 받은 메시지 표시
             alert(data.message || '댓글 수정 중 오류가 발생했습니다.');
             return;
         }
         alert('댓글 수정 완료!');
-        location.reload(); // 페이지 새로고침
-    })
-    .catch(error => {
-        console.error('댓글 수정 중 오류 발생 : ', error);
+        console.log('수정후 페이지새로곷미시도');
+        location.reload(); // 새로고침
+
+    } catch(err) {
+        console.error('댓글 수정 중 오류 발생 : ', err);
         alert('댓글 수정 중 오류가 발생했습니다.');
-    });
+    }
 }
 
 const goToEditPage = (post_id) => {
