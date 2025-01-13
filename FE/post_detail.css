@@ -95,6 +95,7 @@ article {
 .image2{
     width:36px;
     height:36px;
+    border-radius: 100px;
 }
 
 .userinfo {
