@@ -362,8 +362,10 @@ span su{
     display: none; /* 기본적으로 숨김 */
     position: fixed; /* 고정 위치 */
     z-index: 1000; /* 다른 요소 위에 표시 */
-    width: 100%; /* 전체 화면 너비 */
-    height: 100%; /*전체 화면 높이*/
+    top:0;
+    left:0;
+    width: 100vw; /* 전체 화면 너비 */
+    height: 100vh; /*전체 화면 높이*/
     background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
 }
 
