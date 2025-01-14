@@ -2,7 +2,7 @@
 
 <!-- logo -->
 <img src="https://user-images.githubusercontent.com/80824750/208554558-490845c9-959a-4823-9003-350ec4d221bf.png" width="400"/>
-<img ![kitty](src="https://github.com/user-attachments/assets/cdf4a0da-03dc-41cd-bf2a-c7834330c4cc")/>
+<img src="https://github.com/user-attachments/assets/cdf4a0da-03dc-41cd-bf2a-c7834330c4cc"/>
 
 ### Jerry's Community 🖍
 
@@ -12,7 +12,7 @@
 </div> 
 
 ## 📝 소개
-Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
+Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
 
 다음과 같은 내용을 작성할 수 있습니다.
 - 프로젝트 소개
