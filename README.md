@@ -31,6 +31,7 @@ Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
 |로그인, 회원가입 수행가능한 접속 시 페이지입니다.|
 
 
+
 |회원가입|
 |:---:|
 |<img width="1493" alt="image" src="https://github.com/user-attachments/assets/90938bf4-b7ce-4451-ab87-4860610fa14b" />|
