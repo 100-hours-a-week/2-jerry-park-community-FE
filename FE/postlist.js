@@ -48,7 +48,7 @@ const loadPosts = async () => {
                 </div>
                 <p>${formatDate(post.created_time)}</p> <!-- 작성일 -->
             </div>
-            <hr>
+            <hr class ="posthr">
             <div class="author">
                 <img class="image" src="${BE_URL}${post.profile_img}" > <!-- 프로필 이미지 -->
                 <p>작성자: ${post.nickname}</p> <!-- 작성자 ID -->

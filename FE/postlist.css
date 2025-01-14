@@ -167,8 +167,18 @@ article {
 .postbox {
     width:600px;
     margin-bottom: 40px;
-    
+    padding: 16px; /* 내부 여백 추가 */
+    padding-top: 1px;
     cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    border: 2px solid #4588cb; /* 테두리 색상 */
+    border-radius: 15px; /* 둥근 테두리 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* hover 효과를 위한 부드러운 애니메이션 */
+}
+
+.postbox:hover {
+    transform: translateY(-5px); /* 마우스를 올렸을 때 살짝 떠오르는 효과 */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* 그림자 강도 증가 */
 }
 
 /* 게시글 제목 공간 (26자 제한) */
@@ -214,7 +224,11 @@ article {
 
 hr {
     margin-top: 25px;
+    background-color: #4588cb; /* 원하는 색상 */
+    border: 0;
+    height: 1.7px;
 }
+
 
 .su1 {
     display:flex;
