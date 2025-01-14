@@ -9,15 +9,17 @@
 <br/> [<img src="https://img.shields.io/badge/프로젝트 기간-2024.11.01~2025.01.15-fab2ac?style=flat&logo=&logoColor=white" />]()
 
 </div> 
-
-## 📝 소개
-Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
-
+<hr>
 ## 📚 목차
 - 프로젝트 소개
 - 프로젝트 화면 구성
 - 사용한 기술 스택
 - 기술적 이슈와 해결 과정
+<hr>
+## 📝 소개
+Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
+
+
 
 <br />
 
