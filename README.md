@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- logo -->
-<img src="https://github.com/user-attachments/assets/cdf4a0da-03dc-41cd-bf2a-c7834330c4cc" width="400"/>
+<img src="https://github.com/user-attachments/assets/cdf4a0da-03dc-41cd-bf2a-c7834330c4cc" width="100"/>
 
 ### Jerry's Community 🖍
 
