@@ -9,7 +9,6 @@
 <br/> [<img src="https://img.shields.io/badge/프로젝트 기간-2024.11.01~2025.01.15-fab2ac?style=flat&logo=&logoColor=white" />]()
 
 </div> 
-<hr>
 
 ## 📚 목차
 - 프로젝트 소개
