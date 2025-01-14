@@ -5,18 +5,36 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
     /* width: 1920px; */
+    font-family: 'CookieRun-Regular';
     width: 100vw; 
     width: 100%;
     margin: 0;
     padding: 0;
 }
 body {
+    font-family: 'CookieRun-Regular';
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+button {
+    background-color: #0066CC; /* 파란색 버튼 */
+    font-family: 'CookieRun-Regular';
+}
+
+textarea {
+    font-family: 'CookieRun-Regular';
 }
 
 .header { /*아무말 대잔치 레이아웃*/
@@ -39,7 +57,6 @@ body {
     width:206px;
     height:32px;
     
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 32px;
     line-height: 32px;
@@ -61,6 +78,7 @@ body {
     width:36px;         /* 아무말 대잔치 오른쪽사진*/
     height:36px;
     border-radius:100px;
+    cursor: pointer; /* 마우스 커서 포인터 표시 */
 }
 
 .wrap {
@@ -85,7 +103,7 @@ article {
     width:59px;
     height:31px;
     width: 100%;
-    font-family: 'Pretendard-Regular';
+
     font-weight: 700;
     font-size: 24px;
     line-height: 31.2px;
@@ -106,15 +124,14 @@ article {
 p {
     padding-left: 14px;
     padding-right: 16px;
-
-    font-family: 'Pretendard-Regular';      /* 더미 작성자 1 글씨 */
+    /* 더미 작성자 1 글씨 */
     font-weight: 700;
     font-size: 15px;
     line-height: 19.5px;
 }
 
 p1 {
-    font-family: 'Pretendard-Regular';      /* 더미 작성자 1 글씨 */
+    /* 더미 작성자 1 글씨 */
     font-weight: 400;
     font-size: 14px;
     line-height: 18.2px;
@@ -122,6 +139,7 @@ p1 {
 }
 
 .editdel{
+    font-family: 'CookieRun-Regular';
     margin-left:auto;       /* 왼쪽요소 빼고 오른쪽으로 정렬 */
     text-align:right;
 }
@@ -131,7 +149,7 @@ p1 {
     height: 28px;
 
     background-color: white;
-    border: 2px solid#ACA0EB;
+    border: 2px solid#0066CC;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -158,7 +176,7 @@ p1 {
     padding:0px;
     margin-bottom:0px;
 
-    font-family: 'Pretendard-Regular';      /* 게시글 글씨 */
+    /* 게시글 글씨 */
     font-weight: 400;
     font-size: 15px;
     line-height: 21.5px;
@@ -190,7 +208,7 @@ p1 {
     
 }
 .likesu {
-    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    /* 123 글씨 */
     font-weight: 700;
     font-size: 20px;
     line-height: 26px;
@@ -198,7 +216,7 @@ p1 {
 }
 
 span su{
-    font-family: 'Pretendard-Regular';      /* 좋아요,조회수,댓글 글씨 */
+    /* 좋아요,조회수,댓글 글씨 */
     font-weight: 700;
     font-size: 16px;
     line-height: 25.04px;
@@ -234,10 +252,10 @@ span su{
     height: 39px;
     border-radius:15px;
     border:none;
-    background-color: #ACA0EB;
+    background-color: #0066CC; /* 파란색 버튼 */
     
     color:white;
-    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    /* 123 글씨 */
     font-weight: 700;
     font-size: 16px;
     line-height: 25.04px;
@@ -248,7 +266,7 @@ span su{
 
 /* 버튼 활성화시 */
 .commentUp button.active{
-    background-color: #7F6AEE;
+    background-color: #0066CC;
 }
 
 .comments {
@@ -266,6 +284,7 @@ span su{
 }
 
 .commentInfo {
+    font-family: 'CookieRun-Regular' !important;
     display:flex;
     flex-direction: column;
 }
@@ -280,14 +299,14 @@ span su{
     margin-left:51px;
     margin-top:13px;
     margin-bottom: 19px;
-    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    /* 123 글씨 */
     font-weight: 400;
     font-size: 15px;
     line-height: 21.15px;
 }
 
 .author {
-    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    /* 123 글씨 */
     font-weight: 700;
     font-size: 15px;
     line-height: 19.5px;
@@ -296,7 +315,7 @@ span su{
 }
 
 .date {
-    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    /* 123 글씨 */
     font-weight: 400;
     font-size: 14px;
     line-height: 18.02px;
@@ -331,7 +350,7 @@ span su{
     width: 50px;            /* 수정 삭제 버튼 조절*/
     height: 28px;
     background-color: white;
-    border: 2px solid#ACA0EB;
+    border: 2px solid #0066CC;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -381,7 +400,7 @@ span su{
     border:none;
     border-radius: 15px;
 
-    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    /* 123 글씨 */
     font-weight: 400;
     font-size: 20px;
     line-height: 23.87px;
@@ -391,7 +410,7 @@ span su{
     
 }
 .confirmButton {
-    background-color: #ACA0EB;
+    background-color:#0066CC;
     color:black;
 }
 .cancleButton{
@@ -399,14 +418,14 @@ span su{
     color:white;
 }
 .modalcontent h1 {
-    font-family: 'Pretendard-Regular';      /*게시물을삭제? 글씨*/
+    /*게시물을삭제? 글씨*/
     font-weight: 700;
     font-size: 24px;
     line-height: 28.64px;
     text-align: center;
 }
 .modalcontent p1 {
-    font-family: 'Pretendard-Regular';      /* 삭제된 내용은~글씨 */
+    /* 삭제된 내용은~글씨 */
     font-weight: 400;
     font-size: 20px;
     line-height: 23.87px;
@@ -439,7 +458,7 @@ span su{
 .dropdown-content a {
     display: block;
     color: black;
-    font-family: 'Pretendard-Regular';
+
     font-weight: 400;
     font-size: 12px;
     line-height: 14.52px;
@@ -452,3 +471,4 @@ span su{
 .dropdown-content.show {
     display: flex; /* 드롭다운 활성화 시 보이도록 설정 */
 }
+

@@ -5,7 +5,15 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
+    font-family: 'CookieRun-Regular';
     /* width: 1920px; */
     width: 100vw; 
     width: 100%;
@@ -13,12 +21,16 @@ html {
     padding: 0;
 }
 body {
+    font-family: 'CookieRun-Regular';
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+input {
+    font-family: 'CookieRun-Regular';
+}
 .header { /*아무말 대잔치 레이아웃*/
     display:flex;
     justify-items: center;
@@ -39,7 +51,6 @@ body {
     width:206px;
     height:32px;
     
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 32px;
     line-height: 32px;
@@ -59,6 +70,7 @@ body {
     width:36px;         /* 아무말 대잔치 오른쪽사진*/
     height:36px;
     border-radius:100px;
+    cursor: pointer; /* 마우스 커서 포인터 표시 */
 }
 
 .wrap {
@@ -72,7 +84,6 @@ body {
     max-width:392px;
 }
 .wrap h1 {
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 32px;
     line-height: 38.19px;
@@ -80,7 +91,6 @@ body {
 }
 
 .profilephotoBox {
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 15px;
     line-height: 17.9px;
@@ -97,25 +107,21 @@ body {
 }
 
 .email{
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 15px;
     line-height: 17.9px;
 }
 .emailinfo {
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 14px;
     line-height: 16.71px;
 }
 .nickname {
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 15px;
     line-height: 17.9px;
 }
 .nicknameinput{
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 14px;
     line-height: 16.71px;
@@ -143,7 +149,6 @@ body {
     
     display: none;
     color:#FF0000;
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
     line-height: 14.52px;
@@ -157,12 +162,11 @@ body {
     margin-top: -20px;
     width: 355px;
     height: 33px;
-    background-color: #ACA0EB;
+    background-color: #6dabea;
     border:none;
     border-radius: 6px;
     color:white;
 
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 14px;
     line-height: 16.71px;
@@ -179,7 +183,6 @@ body {
 }
 
 .buttonBox p{
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 14px;
     line-height: 16.71px;
@@ -196,7 +199,6 @@ body {
     border-radius: 20px;
     color:white;
 
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 18px;
     line-height: 21.6px;
@@ -215,7 +217,7 @@ body {
     transition: visibility 0s, opacity 0.5s ease;
     margin-top : 30px;
     text-align: center;
-    font-family: 'Pretendard-Regular';
+
     font-weight: 400;
     font-size: 18px;
     line-height: 21.6px;
@@ -262,7 +264,6 @@ body {
 .dropdown-content a {
     display: block;
     color: black;
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
     line-height: 14.52px;
@@ -319,7 +320,7 @@ body {
     border:none;
     border-radius: 15px;
 
-    font-family: 'Pretendard-Regular';      /* 123 글씨 */
+    /* 123 글씨 */
     font-weight: 400;
     font-size: 20px;
     line-height: 23.87px;
@@ -337,14 +338,14 @@ body {
     color:white;
 }
 .modalcontent h1 {
-    font-family: 'Pretendard-Regular';      /*게시물을삭제? 글씨*/
+    /*게시물을삭제? 글씨*/
     font-weight: 700;
     font-size: 24px;
     line-height: 28.64px;
     text-align: center;
 }
 .modalcontent p1 {
-    font-family: 'Pretendard-Regular';      /* 삭제된 내용은~글씨 */
+    /* 삭제된 내용은~글씨 */
     font-weight: 400;
     font-size: 20px;
     line-height: 23.87px;

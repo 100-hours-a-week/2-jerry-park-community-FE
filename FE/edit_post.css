@@ -5,7 +5,15 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
+    font-family: 'CookieRun-Regular';
     /* width: 1920px; */
     width: 100vw; 
     width: 100%;
@@ -13,10 +21,14 @@ html {
     padding: 0;
 }
 body {
+    font-family: 'CookieRun-Regular';
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+input, textarea, button {
+    font-family: 'CookieRun-Regular';
 }
 
 .header { /*아무말 대잔치 레이아웃*/
@@ -58,6 +70,7 @@ body {
     width:36px;         /* 아무말 대잔치 오른쪽사진*/
     height:36px;
     border-radius:100px;
+    cursor: pointer; /* 마우스 커서 포인터 표시 */
 }
 
 .wrap {
@@ -82,7 +95,6 @@ article{
     align-items: center;
 }
 .wrap h1 {
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 24px;
     line-height: 31.2px;
@@ -98,13 +110,11 @@ article{
     
 }
 .titleBox label{
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size:16px;
     line-height: 20.8px; 
 }
 .titleBox input{
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 16px;
     line-height: 22.56px; 
@@ -143,7 +153,6 @@ hr{
     text-align: left;
     margin-bottom: 25px;
 
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 15px;
     line-height: 21.15px;
@@ -152,7 +161,6 @@ hr{
 .helperText {
     display: none;
     color:#FF0000;
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
     line-height: 14.52px;
@@ -175,12 +183,11 @@ hr{
     margin-top: 23px;
     width: 354px;
     height: 33px;
-    background-color: #7F6AEE;
+    background-color: #6dabea;
     border:none;
     border-radius: 5px;
     color:white;
 
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 14px;
     line-height: 16.71px;
@@ -198,7 +205,6 @@ hr{
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    font-family: 'Pretendard-Regular';
     color: black;
     max-width: 68px;
 }
@@ -211,7 +217,6 @@ hr{
 /* 파일 명 이름 텍스트 */
 .fileNameText {
     margin-left : 17px;
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 14px;
     line-height: 16.71px;
@@ -243,7 +248,6 @@ hr{
 .dropdown-content a {
     display: block;
     color: black;
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 12px;
     line-height: 14.52px;

@@ -417,7 +417,7 @@ const likeButton = document.getElementById('likeButton');
 
 likeButton.addEventListener('click' , async () => {
     const liked = likeButton.classList.contains('active');
-    const newColor = liked ? '#D9D9D9' : '#ACA0EB'; // 활성(참) or 비활성(거짓) 색상
+    const newColor = liked ? '#D9D9D9' : '#6dabea'; // 활성(참) or 비활성(거짓) 색상
     console.log('좋아요리스너 liked', liked);
     try {
         // 서버에 좋아요 상태 요청

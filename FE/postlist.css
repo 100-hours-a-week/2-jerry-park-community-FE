@@ -5,18 +5,28 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
     /* width: 1920px; */
+    font-family: 'CookieRun-Regular';
     width: 100vw; 
     width: 100%;
     margin: 0;
     padding: 0;
 }
 body {
+    font-family: 'CookieRun-Regular';
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* color: #003366; */
 }
 
 .header { /*아무말 대잔치 레이아웃*/
@@ -39,7 +49,7 @@ body {
     width:206px;
     height:32px;
     
-    font-family: 'Pretendard-Regular';
+    font-family: 'CookieRun-Regular';
     font-weight: 400;
     font-size: 32px;
     line-height: 32px;
@@ -59,6 +69,7 @@ body {
     width:36px;         /* 아무말 대잔치 오른쪽사진*/
     height:36px;
     border-radius:100px;
+    cursor: pointer; /* 마우스 커서 포인터 표시 */
 }
 
 .container {    
@@ -68,31 +79,32 @@ body {
 }
 .container h1 {
     margin-top:40px;
-    width:280px;
+    width: 310px;
     height:62px;
     /* letter-spacing: 2px; 글자간격 조절 */
     line-height: 41px;
 
-    font-family: 'Pretendard-Regular';
+    font-family: 'CookieRun-Regular';
     font-weight: 400;
     font-size: 24px;
     line-height: 31.2px;
     text-align: center;
 }
 .specialfont {
-    font-family: 'Pretendard-Regular'; /* 원하는 글꼴로 설정 */
+    font-family: 'CookieRun-Regular';
     font-size: 24px; /* 글자 크기 조절 */
     font-weight: 700;
     font-weight: bold; /* 글자 두께 조절 */
     color: black; /* 글자 색상 조절 */
 }
 #postup {
+    background-color: #4588cb; /* 파란색 버튼 */
     margin-top:14px;
 
     border-radius: 15px; /*버튼 둥글게*/
-    font-family: 'Pretendard-Regular';
-    font-weight: 700;
-    font-size: 16px;
+    font-family: 'CookieRun-Regular';
+    font-weight: 200;
+    font-size: 14px;
     line-height: 25.04px;
     text-align: center;
     color:white;
@@ -107,11 +119,10 @@ body {
     box-shadow: none; /* 그림자 제거 */
     border: none; /* 테두리 제거 */
     cursor: pointer; /* 마우스 커서를 포인터로 변경 */
-    background-color: #ACA0EB;
 }  
 
 #postup:hover{
-    background-color: #7F6AEE;
+    background-color: #1e75cd;
 }
 
 .flexcont {
@@ -142,7 +153,7 @@ article {
 .like p{
     margin-right:15px;   /*좋아요 간(p)간의 간격 조절*/
 
-    font-family: 'Pretendard-Regular';
+    font-family: 'CookieRun-Regular';
     font-weight: 400;
     font-size: 14px;
     line-height: 18.2px;
@@ -163,8 +174,8 @@ article {
 /* 게시글 제목 공간 (26자 제한) */
 .postbox h1 {      
     margin-bottom: 0px;
-    font-family: 'Pretendard-Regular';
-    font-weight: 700;
+    font-family: 'CookieRun-Regular';
+    font-weight: 400;
     font-size: 24px;
     line-height: 31.2px;
 
@@ -185,8 +196,8 @@ article {
     align-items: center;
     margin-top: 18px;
 
-    font-family: 'Pretendard-Regular';
-    font-weight: 700;
+    font-family: 'CookieRun-Regular';
+    font-weight: 200;
     font-size: 15px;
     line-height: 19.5px;
 }
@@ -231,7 +242,7 @@ hr {
 .dropdown-content a {
     display: block;
     color: black;
-    font-family: 'Pretendard-Regular';
+    font-family: 'CookieRun-Regular';
     font-weight: 400;
     font-size: 12px;
     line-height: 14.52px;

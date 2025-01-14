@@ -4,8 +4,14 @@
     font-weight: 400;
     font-style: normal;
 }
-
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 html {
+    font-family: 'CookieRun-Regular';
     /* width: 1920px; */
     width: 100vw; 
     width: 100%;
@@ -13,12 +19,24 @@ html {
     padding: 0;
 }
 body {
+    font-family: 'CookieRun-Regular';
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+button {
+    font-family: 'CookieRun-Regular';
+}
+
+textarea {
+    font-family: 'CookieRun-Regular';
+}
+
+input {
+    font-family: 'CookieRun-Regular';
+}
 .header { /*아무말 대잔치 레이아웃*/
     display:flex;
     justify-items: center;
@@ -28,18 +46,13 @@ body {
     width:1920px;
     height:104px;
     border-bottom: 1px solid black; /* 두께 2px, 검정색 실선 테두리 */
-
-    
     align-items: center;
-
-    
 }
 
 .header h1 { /*아무말 대잔치 글씨*/
     width:206px;
     height:32px;
     
-    font-family: 'Pretendard-Regular';
     font-weight: 400;
     font-size: 32px;
     line-height: 32px;
@@ -59,6 +72,7 @@ body {
     width:36px;         /* 아무말 대잔치 오른쪽사진*/
     height:36px;
     border-radius:100px;
+    cursor: pointer; /* 마우스 커서 포인터 표시 */
 }
 
 .image {
@@ -77,8 +91,6 @@ body {
 }
 
 .headtext h1{
-
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 24px;        /* 폰트 속성 */
     line-height: 31.4px;
@@ -103,7 +115,6 @@ article {
     width: 570px;
     margin-top: 30px;
 
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 16px;        /* 폰트 속성 */
     line-height: 31.4px;
@@ -124,7 +135,6 @@ article {
     max-width: 570px;
     margin-top: 30px;
 
-    font-family: 'Pretendard-Regular';
     font-weight: 700;
     font-size: 16px;        /* 폰트 속성 */
     line-height: 31.4px;
@@ -154,14 +164,14 @@ article {
 label[for=profile] {        /*이미지 글씨*/
     margin-top:20px;
     margin-bottom: 7px;
-    font-family: 'Pretendard-Regular';
+
     font-weight: 700;
     font-size: 15px;        /* 폰트 속성 */
     line-height: 17.9px;
 }
 
 #image {        /* 파일 선택 부분 css*/
-    font-family: 'Pretendard-Regular';
+
     font-weight: 400;
     font-size: 14px;        /* 폰트 속성 */
     line-height: 16.71px;
@@ -193,12 +203,12 @@ p {
     max-width:355px;
     width: 100%;
     height: 33px;
-    background-color: #ACA0EB;
+    background-color: #6dabea;
     border : none;
     border-radius: 7px;
 
     color:white;
-    font-family: 'Pretendard-Regular';
+
     font-weight: 700;
     font-size: 14px;        /* 폰트 속성 */
     line-height: 16.71px;
@@ -209,13 +219,14 @@ p {
 
 /* 버튼 활성화시 */
 #submitButton.active{
-    background-color: #7F6AEE;
+    background-color: #1e75cd;
+    
 }
 
 #helperText {
     display:none;
     color:#FF0000;
-    font-family: 'Pretendard-Regular';
+
     font-weight: 400;
     font-size: 12px;
     line-height: 14.52px;
@@ -230,7 +241,7 @@ p {
 /* 파일 명 이름 텍스트 */
 .fileNameText {
     margin-left : 17px;
-    font-family: 'Pretendard-Regular';
+
     font-weight: 400;
     font-size: 14px;
     line-height: 16.71px;
@@ -247,7 +258,7 @@ p {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    font-family: 'Pretendard-Regular';
+
     color: black;
     max-width: 68px;
 }
@@ -273,7 +284,7 @@ p {
 .dropdown-content a {
     display: block;
     color: black;
-    font-family: 'Pretendard-Regular';
+
     font-weight: 400;
     font-size: 12px;
     line-height: 14.52px;
