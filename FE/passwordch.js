@@ -151,4 +151,24 @@ const loadloginProfileImage = async () => {
     }
 }
 
+// 버튼 클릭시 드롭다운
+const toggleDropdown = (event) => {
+    console.log("toggleDropdown 실행"); // 디버그용 로그
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    dropdownMenu.classList.toggle("show");
+};
+
+// 드롭다운 외부 클릭 시 닫기
+document.addEventListener("click", (event) => {
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    const profileImg = document.getElementById("profile_imghead");
+
+    if (!dropdownMenu.contains(event.target) && event.target !== profileImg) {
+        dropdownMenu.classList.remove("show");
+    }
+});
+
+// 프로필 이미지를 클릭하면 드롭다운 메뉴 표시
+document.getElementById("profile_imghead").addEventListener("click", toggleDropdown);
+
 loadloginProfileImage();

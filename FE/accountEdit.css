@@ -233,11 +233,6 @@ body {
     opacity: 1;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
 .image1 {
     cursor: pointer;
 }
@@ -246,7 +241,13 @@ body {
     display:none;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
 .dropdown-content {
+    display:none;
     position: absolute;
     background-color: #f9f9f9;
     width: 115px;
@@ -259,6 +260,7 @@ body {
 }
 
 .dropdown-content a {
+    display: block;
     color: black;
     font-family: 'Pretendard-Regular';
     font-weight: 400;
@@ -268,6 +270,10 @@ body {
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+}
+
+.dropdown-content.show {
+    display: flex; /* 드롭다운 활성화 시 보이도록 설정 */
 }
 
 /* 모달 배경 스타일 */

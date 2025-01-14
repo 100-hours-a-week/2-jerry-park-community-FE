@@ -83,36 +83,25 @@ const saveNickname = async () => {
     }
 }
 
-// 페이지 로드 시 드롭다운 숨기기
-document.addEventListener("DOMContentLoaded", () => {
+// 버튼 클릭시 드롭다운
+const toggleDropdown = (event) => {
+    console.log("toggleDropdown 실행"); // 디버그용 로그
     const dropdownMenu = document.getElementById("dropdownMenu");
-    if (dropdownMenu) {
-        dropdownMenu.style.display = "none"; // 페이지 로드 시 드롭다운 숨기기
+    dropdownMenu.classList.toggle("show");
+};
+
+// 드롭다운 외부 클릭 시 닫기
+document.addEventListener("click", (event) => {
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    const profileImg = document.getElementById("profile_imghead");
+
+    if (!dropdownMenu.contains(event.target) && event.target !== profileImg) {
+        dropdownMenu.classList.remove("show");
     }
 });
 
-// 드롭다운
-const toggleDropdown = () => {
-    const dropdownMenu = document.getElementById("dropdownMenu");
-    dropdownMenu.classList.toggle("hidden"); // 클래스를 토글
-    if (dropdownMenu.style.display === "flex") {
-    } else {
-        dropdownMenu.style.display = "flex";
-    }
-}
-
-// 페이지의 다른 부분을 클릭하면 드롭다운을 닫도록 이벤트 추가
-window.onclick = function(event) {
-    if (!event.target.matches('.image1')) {
-        const dropdowns = document.getElementsByClassName("dropdown-content");
-        for (let i = 0; i < dropdowns.length; i++) {
-            const openDropdown = dropdowns[i];
-            if (openDropdown.style.display === "block") {
-                openDropdown.style.display = "none";
-            }
-        }
-    }
-}
+// 프로필 이미지를 클릭하면 드롭다운 메뉴 표시
+document.getElementById("profile_imghead").addEventListener("click", toggleDropdown);
 
 // 페이지 로딩시 회원정보 가져오기 (post_id 있으면)
 // users 정보 가져오기
