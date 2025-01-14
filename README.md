@@ -25,16 +25,16 @@ Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
 <br />
 
 ### 화면 구성
-|로그인 페이지|
+|로그인|
 |:---:|
 |<img width="1506" alt="image" src="https://github.com/user-attachments/assets/67ef4d77-d4c6-45d4-b781-543c40f25b46" />|
 |로그인, 회원가입 수행가능한 접속 시 페이지입니다.|
 
 
-|화면 명|
+|회원가입|
 |:---:|
 |<img width="1493" alt="image" src="https://github.com/user-attachments/assets/90938bf4-b7ce-4451-ab87-4860610fa14b" />|
-|화면에 대한 설명을 입력합니다.|
+|회원가입을 수행할 수 있는 페이지입니다.|
 
 <br />
 
