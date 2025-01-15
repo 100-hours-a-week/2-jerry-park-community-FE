@@ -63,7 +63,7 @@ Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
 <br />
 
 ## ⚙ 기술 스택
-> skills 폴더에 있는 아이콘을 이용할 수 있습니다.
+
 ### Front-end
 <div>
 <img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/JavaScript.png?raw=true" width="80">
@@ -95,13 +95,7 @@ Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
 
 <br />
 
-## 💁‍♂️ 프로젝트 팀원
-|Backend|Frontend|
-|:---:|:---:|
-| ![](https://github.com/yewon-Noh.png?size=120) | ![](https://github.com/SeongHo-C.png?size=120) |
-|[노예원](https://github.com/yewon-Noh)|[이성호](https://github.com/SeongHo-C)|
-
-
+## FE 프로젝트 구조
 ```
 
 2-jerry-park-fe
