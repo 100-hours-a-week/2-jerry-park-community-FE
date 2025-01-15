@@ -29,12 +29,12 @@ Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
 |:---:|
 |<img width="1500" alt="image" src="https://github.com/user-attachments/assets/67ef4d77-d4c6-45d4-b781-543c40f25b46" />|
 |로그인, 회원가입 수행가능한 접속 시 페이지입니다.|
-<br />
+
 |회원가입|
 |:---:|
 |<img width="1500" alt="image" src="https://github.com/user-attachments/assets/90938bf4-b7ce-4451-ab87-4860610fa14b" />|
 |회원가입을 수행할 수 있는 페이지입니다.|
-<br />
+
 |게시물 리스트|
 |:---:|
 |<img width="1500" alt="image" src="https://github.com/user-attachments/assets/2a3e6b36-d39d-4ca1-a567-97186419e921" />|
