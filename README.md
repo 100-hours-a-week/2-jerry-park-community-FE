@@ -55,7 +55,7 @@ Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
 ### Infra
 <div>
 <img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/AWSEC2.png?raw=true" width="80">
-![image](https://github.com/user-attachments/assets/921b0160-8748-4fb0-87f4-6eb346b24014)
+<img src="https://github.com/user-attachments/assets/921b0160-8748-4fb0-87f4-6eb346b24014" width="80">
   
 </div>
 
