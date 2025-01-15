@@ -48,7 +48,6 @@ Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
 ### Front-end
 <div>
 <img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/JavaScript.png?raw=true" width="80">
-<img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/React.png?raw=true" width="80">
 <img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/JWT.png?raw=true" width="80">
 </div>
 
