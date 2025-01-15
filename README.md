@@ -43,12 +43,13 @@ Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
 |게시물 상세조회|
 |:---:|
 |<img width="1500" alt="image" src="https://github.com/user-attachments/assets/43ba857c-6f22-4ffe-9f4f-595f090567c3" />|
-|게시물 리스트에서 클릭한 게시물을 볼 수 있고 해당 게시물의 좋아요를 누를 수 있으며, 댓글 작성, 수정, 삭제, 조회수를 확인 할 수 있는 페이지입니다. |
+|게시물 리스트에서 클릭한 게시물을 볼 수 있고 해당 게시물의 좋아요를 누를 수 있으며,게시물 수정,삭제 및 댓글 작성,수정,삭제,게시글 조회수를 확인 할 수 있는 페이지입니다. |
 
-|게시물 리스트|
+|게시물 수정|
 |:---:|
-|<img width="1500" alt="image" src="https://github.com/user-attachments/assets/2a3e6b36-d39d-4ca1-a567-97186419e921" />|
-|커뮤니티의 게시물을 한 눈에 볼 수 있는 페이지입니다.|
+|<img width="1500" alt="image" src="https://github.com/user-attachments/assets/db9ff96d-d2eb-41fa-ac64-7008818c28fe" />|
+|게시물 수정을 할 수 있는 페이지입니다. 게시글 사진 변경도 가능합니다.|
+
 
 
 
