@@ -55,7 +55,10 @@ Jerry's Community의 FE 코드를 담은 레포지스트리입니다.
 |<img width="1500" alt="image" src="https://github.com/user-attachments/assets/5081cfc5-7d7b-4678-9752-0e8dd5edbc88" />|
 |회원정보를 수정할 수 있는 페이지입니다. 회원탈퇴도 가능합니다.|
 
-
+|비밀번호 수정|
+|:---:|
+|<img width="1500" alt="image" src="https://github.com/user-attachments/assets/98494530-f96d-4e2b-87f3-8556be637a5f" />|
+|비밀번호를 수정할 수 있는 페이지입니다.|
 
 <br />
 
