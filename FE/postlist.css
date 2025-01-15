@@ -35,7 +35,7 @@ body {
     justify-content: center;
     gap: 141px;
     width: 100%;
-    width:1920px;
+    /* width:1920px; */
     height:104px;
     border-bottom: 1px solid black; /* 두께 2px, 검정색 실선 테두리 */
 
