@@ -13,6 +13,7 @@
 }
 
 html {
+    overflow-x: hidden; /* 가로 스크롤 제거 */
     font-family: 'CookieRun-Regular';
     /* width: 1920px; */
     width: 100vw; 

@@ -14,6 +14,7 @@
 
 html {
     /* width: 1920px; */
+    overflow-x: hidden; /* 가로 스크롤 제거 */
     font-family: 'CookieRun-Regular';
     width: 100vw; 
     width: 100%;
@@ -21,6 +22,7 @@ html {
     padding: 0;
 }
 body {
+    overflow-x: hidden; /* 가로 스크롤 제거 */
     font-family: 'CookieRun-Regular';
     display: flex;
     flex-direction: column;
