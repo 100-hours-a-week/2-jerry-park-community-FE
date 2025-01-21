@@ -173,7 +173,7 @@ p1 {
 .content p {
     width:100%;
     max-width:544px;
-    height:231px;
+    min-height:231px;
     margin-top: 20px;
     padding:0px;
     margin-bottom:0px;
