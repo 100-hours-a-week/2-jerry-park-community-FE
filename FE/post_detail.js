@@ -69,7 +69,6 @@ const confirmCommentDelete = (comment_id) => {
 }
 
 // 댓글 입력시 댓글작성 버튼 색 바뀌는 함수
-// 제목, 내용 받아오기
 const commentInput = document.getElementById('comment');
 const commentUpButton = document.getElementById('commentUp');
 
@@ -123,7 +122,7 @@ if (post_id) {
         .then(data => {
             // 서버에서 받은 데이터로 페이지에 데이터 표시 
             // 클래스 title, h1태그 부분에
-            document.querySelector('.title h1').textContent = data.title;
+            document.querySelector('.title h1').innerHTML = formatContent(data.title);
             document.querySelector('.content p').innerHTML = formatContent(data.content);
             // document.querySelector('.likes').textContent = data.likes;
             
