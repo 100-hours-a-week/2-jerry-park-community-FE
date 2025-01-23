@@ -32,7 +32,7 @@ const loadPostData = async (post_id) => {
         const postData = await response.json();
 
         document.getElementById('title').value = postData.title;
-        document.getElementById('content').value = postData.content;
+        document.getElementById('content').innerHTML = postData.content;
 
         // 기존 이미지 파일명 표시, 이미지 있다면
         if (postData.image) {
