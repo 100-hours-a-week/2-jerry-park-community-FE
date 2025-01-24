@@ -122,7 +122,7 @@ if (post_id) {
         .then(data => {
             // 서버에서 받은 데이터로 페이지에 데이터 표시 
             // 클래스 title, h1태그 부분에
-            document.querySelector('.title h1').innerHTML = formatContent(data.title);
+            document.querySelector('.title h1').textContent = formatContent(data.title);
             document.querySelector('.content p').innerHTML = formatContent(data.content);
             // document.querySelector('.likes').textContent = data.likes;
             
