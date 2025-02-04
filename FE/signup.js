@@ -88,6 +88,9 @@ const validateNickname = () => {
     const nickname = document.getElementById("nickname").value;
     const nicknameHelper = document.getElementById('helperText4');
 
+    // 정규식: 한글, 영어, 숫자, _, -만 허용 (2~10자)
+    const nicknamePattern = /^[a-zA-Z0-9가-힣_-]{2,10}$/;
+
     if (!nickname) {
         nicknameHelper.innerText = "* 닉네임을 입력해주세요.";
         nicknameHelper.style.display = "block"; // Helper text 표시
@@ -98,6 +101,10 @@ const validateNickname = () => {
         return false;
     } else if (/\s/.test(nickname)) {
         nicknameHelper.innerText = "* 띄어쓰기를 없애주세요.";
+        nicknameHelper.style.display = "block"; // Helper text 표시
+        return false;
+    } else if (!nicknamePattern.test(nickname)) {
+        nicknameHelper.innerText = "* 닉네임은 2~10자의 한글, 영문, 숫자, _, -만 사용할 수 있습니다.";
         nicknameHelper.style.display = "block"; // Helper text 표시
         return false;
     } else { // 유효할 시 helpertext 다시 숨기기
