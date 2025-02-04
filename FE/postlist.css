@@ -182,7 +182,7 @@ article {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* 그림자 강도 증가 */
 }
 
-/* 게시글 제목 공간 (26자 제한) */
+/* 게시글 제목 공간 */
 .postbox h1 {      
     margin-bottom: 0px;
     font-family: 'CookieRun-Regular';
@@ -199,7 +199,7 @@ article {
 
     white-space: normal;   /* 여러 줄로 넘길 수 있도록 설정 */
 
-    max-width: 26ch;       /* 26자까지만 표시 */
+    max-width: 100%;       /* 26자까지만 표시 */
 }
 
 .author {

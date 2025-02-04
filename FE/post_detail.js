@@ -124,7 +124,6 @@ if (post_id) {
             // 클래스 title, h1태그 부분에
             document.querySelector('.title h1').textContent = formatContent(data.title);
             document.querySelector('.content p').innerHTML = formatContent(data.content);
-            // document.querySelector('.likes').textContent = data.likes;
             
             document.querySelector('.userinfo p').textContent = data.nickname;
             document.getElementById('profile_img').src = `${BE_URL}${data.profile_img}`;

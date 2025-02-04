@@ -29,33 +29,59 @@ const loadPosts = async () => {
         posts.forEach(post => {   
             // 각 게시글 감싸는 div 요소 생성
             const postbox = document.createElement("div");
-
             // 생선한 div 요소에 클래스 이름 지정(css 적용 위해) 
             postbox.className = "postbox";
-            
             // 클릭시 해당 게시글 상세 페이지로 이동
             postbox.onclick = () => goToPostDetail(post.post_id);
 
-            // console.log ('이미지 값 : ', post.profile_img);
-            // 게시글 내용을 HTML로 작성
-            postbox.innerHTML = `
-            <h1>${post.title}</h1> <!-- 게시글 제목 -->
-            <div class="like">
-                <div class = "su1"> 
-                <p>좋아요 ${formatNumber(post.likes)}</p> <!-- 좋아요 수 -->
-                <p>댓글수 ${formatNumber(post.comment_count)}</p> <!-- 댓글수 -->
-                <p>조회수 ${formatNumber(post.views)}</p> <!-- 조회수 -->
+            // 제목 추가 - textContent 사용
+            const titleElement = document.createElement("h1");
+            titleElement.textContent = post.title;
+
+            // 좋아요/댓글수/조회수와 작성일 등 나머지 내용은 innerHTML로 추가
+            const likeElement = document.createElement("div");
+            likeElement.className = "like";
+            likeElement.innerHTML = `
+                <div class="su1"> 
+                    <p>좋아요 ${formatNumber(post.likes)}</p>
+                    <p>댓글수 ${formatNumber(post.comment_count)}</p>
+                    <p>조회수 ${formatNumber(post.views)}</p>
                 </div>
-                <p>${formatDate(post.created_time)}</p> <!-- 작성일 -->
-            </div>
-            <hr class ="posthr">
-            <div class="author">
+                <p>${formatDate(post.created_time)}</p>
+            `;
+
+            // 작성자 및 프로필 이미지 추가
+            const authorElement = document.createElement("div");
+            authorElement.className = "author";
+            authorElement.innerHTML = `
                 <img class="image" src="${BE_URL}${post.profile_img}" > <!-- 프로필 이미지 -->
-                <p>작성자: ${post.nickname}</p> <!-- 작성자 ID -->
-            </div>
-        `;
-            // console.log('프로필이미지 주소 : ', post.profile_img);
-            // alt="profile_img.webp"/
+                <p>작성자: ${post.nickname}</p>
+            `;
+
+            // 게시글 내용을 HTML로 작성
+        //     postbox.innerHTML = `
+        //     <h1>${post.title}</h1> <!-- 게시글 제목 -->
+        //     <div class="like">
+        //         <div class = "su1"> 
+        //         <p>좋아요 ${formatNumber(post.likes)}</p> <!-- 좋아요 수 -->
+        //         <p>댓글수 ${formatNumber(post.comment_count)}</p> <!-- 댓글수 -->
+        //         <p>조회수 ${formatNumber(post.views)}</p> <!-- 조회수 -->
+        //         </div>
+        //         <p>${formatDate(post.created_time)}</p> <!-- 작성일 -->
+        //     </div>
+        //     <hr class ="posthr">
+        //     <div class="author">
+        //         <img class="image" src="${BE_URL}${post.profile_img}" > <!-- 프로필 이미지 -->
+        //         <p>작성자: ${post.nickname}</p> <!-- 작성자 ID -->
+        //     </div>
+        // `;
+            // 생성한 요소들을 postbox에 추가
+            postbox.appendChild(titleElement);
+            postbox.appendChild(likeElement);
+            postbox.appendChild(authorElement);
+
+            // postbox를 postList에 추가
+            postList.appendChild(postbox);
             // 생성한 게시글 요소를 HTML 페이지의 'postList' 영역에 추가
             postList.appendChild(postbox);
         });
