@@ -27,6 +27,9 @@ const saveNickname = async () => {
     
     // 세션에서 user_id 가져오기
     const user_id = await getUserid();
+    
+    // 정규식: 한글, 영어, 숫자, _, -만 허용
+    const nicknamePattern = /^[a-zA-Z0-9가-힣_-]{1,10}$/;
 
     // 닉네임 입력 공란
     if (!nickname.trim()) {
@@ -39,6 +42,12 @@ const saveNickname = async () => {
         helperText1.innerText = "* 닉네임은 최대 10자 까지 작성 가능합니다.";
         helperText1.style.display = "block"; // Helper text 표시
         return
+    }
+    // 닉네임에 특수문자가 포함된 경우
+    if (!nicknamePattern.test(nickname)) {
+        helperText1.innerText = "* 닉네임은 한글, 영문, 숫자, _, -만 사용할 수 있습니다.";
+        helperText1.style.display = "block"; // Helper text 표시
+        return;
     }
 
     // 유효성 검사 성공시 try문 실행
