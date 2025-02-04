@@ -46,7 +46,7 @@ const toggleSignupButton = () => {
 // 비밀번호 유효성
 const validatePassword = () => {
     const password = document.getElementById("password").value;
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d!@#$%^&*(),.?":{}|<>~`'\\\-_/+=;]{8,20}$/;
     const pwHelper = document.getElementById('helperText1');
 
     if (!password) {
