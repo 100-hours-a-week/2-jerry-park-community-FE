@@ -245,6 +245,12 @@ p {
     font-weight: 400;
     font-size: 14px;
     line-height: 16.71px;
+
+    white-space: nowrap; /* 줄바꿈 방지 */
+    overflow: hidden;    /* 넘치는 텍스트 숨김 */
+    text-overflow: ellipsis; /* 말줄임표 처리 */
+    max-width: 450px; /* 최대 너비 지정 */
+    display: block; /* 블록 요소로 표시 */
 }
 
 .customFileButton {
