@@ -100,6 +100,7 @@ postForm.addEventListener('submit',async (event) => {
         const response = await fetch(`${BE_URL}/api/posts`, {
             method : 'POST',
             body: formData,
+            credentials :'include',
         });
 
         //서버 응답 확인
